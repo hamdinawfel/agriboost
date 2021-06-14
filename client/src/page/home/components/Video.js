@@ -1,19 +1,22 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from "@material-ui/core";
-
+import Link from '@material-ui/core/Link';
+import facebook from '../../../assets/facebook.jpg'
 const useStyles = makeStyles((theme) => ({
   root:{
     position:'relative',
-    top:-300,
+    top:-620,
+    padding:'0 100px 0 100px',
     [theme.breakpoints.down('md')]: {
-      top:-80,
-      
+      top:20,
+    padding:'0 20px 0 20px',
       },
    
   },
+ 
   video:{
-    width:700,
+    width:'100%',
         height:400,
         marginTop:30,
         [theme.breakpoints.down('sm')]: {
@@ -26,10 +29,19 @@ const useStyles = makeStyles((theme) => ({
   title:{
     fontSize:30,
     fontWeight:900,
-    textAlign:'center',
+    display:'block',
+    textAlign:'right',
+    margin:'0 auto',
+    color:'#3F51B5',
+    paddingBottom:10,
+    marginBottom:20,
+    borderBottom:'3px solid #3F51B5',
     [theme.breakpoints.down('sm')]: {
-    fontSize:25,
+    fontSize:20,
     fontWeight:600,
+    textAlign:'center',
+    marginBottom:20,
+    paddingBottom:10,
      
     },
   }
@@ -41,9 +53,9 @@ const useStyles = makeStyles((theme) => ({
 
   return (
     <div className={classes.root}>
-      <p className={classes.title}>شاهد هذا الفيديو لمعرفة المزيد</p>
-      
-      <div style={{ display:'flex', justifyContent:'center'}}>
+      <span className={classes.title}>إعرف عنا المزيد</span>
+      <Grid container>
+      <Grid item xs={12} md={6} style={{ display:'flex', justifyContent:'center', padding:15}}>
       <iframe
           id="video"
           className={classes.video}
@@ -52,8 +64,14 @@ const useStyles = makeStyles((theme) => ({
           allow="accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
       />
-      </div>
-    
+      </Grid>
+      <Grid item xs={12} md={6} style={{ display:'flex', justifyContent:'center',padding:15 }}>
+      <Link color="inherit" target="_blank" rel="noreferrer" href="https://www.facebook.com/Moubadiroun.tn/">
+           <img src={facebook}  className={classes.video} alt="facebook"/>
+              
+       </Link>
+      </Grid>
+      </Grid>
     </div>
   )
 }

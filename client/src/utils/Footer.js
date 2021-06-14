@@ -7,10 +7,16 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const useStyles = makeStyles((theme) => ({
     root:{
-        height:100,
-         background:'#222222'
+        // height:500,
+         background:'#222222',
+         marginTop:-400,
+         [theme.breakpoints.down('sm')]: {
+          marginTop:200,
+
+        },
     },
     title:{
+     
         marginTop:30,
         color:'#fff',
         fontSize:30,
@@ -61,7 +67,7 @@ export default function Footer() {
         <div className={classes.root}>
 
             <div >
-              <p className={classes.title}> 2021/06/30 : انتهاء مهلة تقديم الترشيحات يوم</p>
+              <p className={classes.title}>2021/06/30 : إنتهاء مهلة تقديم الترشيحات يوم</p>
             </div>
             <div className={classes.timeContainer} id="clock">
                 <Countdown 

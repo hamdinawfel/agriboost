@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // width: '100%',
     position:'relative',
-    top:-450,
+    top:-600,
     padding:100,
     [theme.breakpoints.down('md')]: {
       top:-500,
@@ -69,14 +69,21 @@ const useStyles = makeStyles((theme) => ({
   title:{
     fontSize:30,
     fontWeight:900,
-    textAlign:'center',
+    display:'block',
+    textAlign:'right',
+    margin:'0 auto',
+    color:'#3F51B5',
+    paddingBottom:10,
+    marginBottom:20,
+    borderBottom:'3px solid #3F51B5',
     [theme.breakpoints.down('sm')]: {
-      fontSize:25,
-      fontWeight:600,
-       
-      },
-   
-    
+    fontSize:20,
+    fontWeight:600,
+    textAlign:'center',
+    margin:10,
+    paddingBottom:10,
+     
+    },
   },
   stepTitle:{
     marginRight:20,
@@ -336,7 +343,7 @@ const [ checked, setChecked ] = useState('');
   return (
     <ThemeProvider theme={theme}>
     <div className={classes.root}>
-    <h3 className={classes.title}>الرجاء تعمير الجذاذة بكل دقة وباللغة العربية</h3>
+    <span className={classes.title}>الرجاء تعمير الجذاذة بكل دقة وباللغة العربية</span>
     <form className={classes.stepper} dir="rtl" onSubmit={handleSubmitForm}>
       <Stepper activeStep={activeStep} orientation="vertical" connector={<div style={{dispaly:'none'}}/>}>
          {/*  STEP  1*/}

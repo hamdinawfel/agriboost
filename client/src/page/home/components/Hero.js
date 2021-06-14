@@ -1,4 +1,6 @@
 import React from "react";
+import Countdown from 'react-countdown';
+
 import { makeStyles,useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cta: {
         position:'relative',
-         top:'-450px',
+         top:'-550px',
          textAlign:'start',
         display: 'inline-block',
         margin:'0 auto',
@@ -99,6 +101,25 @@ const useStyles = makeStyles((theme) => ({
                 fontSize:'18px',
                 fontWeight:300,
                 },
+        },
+        timeContainer:{
+            display:'flex',
+            margin:'0 auto',
+            justifyContent:'center',
+            alignItems:'center',
+            textAlign:'center',
+            height:120,
+           width:120,
+           borderRadius:'50%',
+           background:'#000',
+           
+        },
+        time:{
+           color:'#fff',
+          verticalAlign:'middle',
+        textShadow: '0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0)',
+        color:'#afeeee',
+        fontSize:20
         }
   }));
   export default function Hero () {
@@ -126,6 +147,16 @@ const useStyles = makeStyles((theme) => ({
             <h1 className={classes.caption}> 
             مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
             </h1>
+            <h1 className={classes.caption}> 
+            2021/06/30 : إنتهاء مهلة تقديم الترشيحات يو
+            </h1>
+            <div className={classes.timeContainer}>
+            <Countdown 
+                    className={classes.time}
+                    date={Date.now() + 1000 *60 *60*24*15}
+                    >
+                </Countdown>
+            </div>
             <Button className={classes.myButton} onClick={handleClickOpen}>
                 <PlayCircleOutlineIcon fontSize="large" style={{ verticalAlign:'middle', marginRight:20, marginTop:-5}}/>شاهد طريقة التسجيل 
             </Button>
