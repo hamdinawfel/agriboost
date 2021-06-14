@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
             مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
             </h1>
             <h1 className={classes.caption}> 
-            2021/06/30 : إنتهاء مهلة تقديم الترشيحات يو
+            2021/06/30 : إنتهاء مهلة تقديم الترشيحات يوم
             </h1>
             <div className={classes.timeContainer}>
             <Countdown 
