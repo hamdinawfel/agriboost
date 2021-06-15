@@ -3,6 +3,7 @@ import Pagination from '@material-ui/lab/Pagination';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import Button from '@material-ui/core/Button';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -14,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Redux
 import { connect } from 'react-redux';
-import { getCondidates, getCondidatesCount } from './actions';
+import { getCondidates, getCondidatesCount, logoutUser } from './actions';
 const useStyles = makeStyles({
     root:{
        padding:'0 20px'
@@ -38,9 +39,19 @@ const handlePage = (page) => {
     props.getCondidates(page);
     setPage(page)
 }
+const handleLogout = () => {
+    props.logoutUser();
+}
   return (
     <div className={classes.root} dir="rtl">
-        {!props.admin.loadingCount?<p style={{fontSize:28, fontWeight:900, margin:'10px 0'}}>العدد  الجملي للمشتركون : {props.admin.count}</p>:null}
+       {!props.admin.loadingCount?
+           <div style={{ display:'flex', justifyContent:'space-between', marginTop:10}}>
+              {!props.admin.loadingCount?<p style={{fontSize:28, fontWeight:900, margin:'10px 0'}}>العدد  الجملي للمشتركون : {props.admin.count}</p>:null}
+              <Button variant="contained" color="primary" style={{padding:'0px 40px', margin:'10px 0'}} onClick={handleLogout}>خروج</Button>
+            </div>
+            :
+            null
+        }
         {!props.admin.loadingCondidates?
         <TableContainer component={Paper}>
         <Table className={classes.table} size="small"  aria-label="simple table">
@@ -120,10 +131,10 @@ const handlePage = (page) => {
         </Table>
         </TableContainer>
         :
-        <div style={{ display:'flex', justifyContent:'center', alignItems:'center', marginTop:100}}>
+        <div style={{ display:'flex', justifyContent:'center', alignItems:'center', marginTop:200}}>
         <CircularProgress />
         </div>}
-    <div style={{ margin:20, display:'flex', justifyContent:'center'}}>
+    <div style={{ margin:10, display:'flex', justifyContent:'center'}}>
      {!props.admin.loadingCondidates?<span style={{marginLeft:20, verticalAlign:'middle', background:'#3f51b5', borderRadius:5, color:'#fff', fontWeight:600, padding:'5px 20px', float:'left'}}>{props.admin.condidates.length} مشتركون/الصفحة</span>:null}
      {!props.admin.loadingCondidates?<Pagination page={page} hideNextButton hidePrevButton onChange={(e, page)=>handlePage(page)} count={Math.floor(props.admin.count/10)+1} color="primary" />:null}
     
@@ -137,6 +148,7 @@ const mapStateToProps = (state) => ({
   });
   const mapActionsToProps = {
     getCondidates,
+    logoutUser,
     getCondidatesCount
   };
   export default connect(
