@@ -4,9 +4,11 @@ var sslRedirect = require('heroku-ssl-redirect').default;
 var cors = require('cors')
 const path = require("path");
 const mongoose = require("mongoose");
+const passport = require("passport");
 
 //Load routes
 const condidatRouter = require("./routes/condidatRouter");
+const users = require("./routes/users");
 
 const app = express()
 app.use(express.json());
@@ -36,11 +38,14 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-
+// Passport middleware
+app.use(passport.initialize());
 
 // Routes
 
 app.use("/condidates", condidatRouter);
+app.use("/users", users);
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/build'));

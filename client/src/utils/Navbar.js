@@ -33,7 +33,7 @@ export default function Navbar() {
   const classes = useStyles();
  
   return (
-    <AppBar position="sticky" color="default" elevation={0} className={classes.appBar}>
+    <AppBar position="relative" color="default" elevation={0} className={classes.appBar}>
         <img src={banner} alt="" className={classes.banner} />
     </AppBar>
   );

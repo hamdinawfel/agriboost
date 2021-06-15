@@ -52,6 +52,10 @@ const condidatSchema = new Schema({
     type: String,
     required:true
   },
+  sexe:{
+    type: String,
+    required:true
+  },
   email:{
     type: String,
     required:true
