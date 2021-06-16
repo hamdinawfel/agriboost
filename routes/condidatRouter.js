@@ -34,10 +34,41 @@ condidatRouter.route('/')
   }, (err) => next(err))
   .catch((err) => next(err));
 })
-
+condidatRouter.route('/:condidateId') 
+.put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+  Condidates.findByIdAndUpdate(req.params.condidateId, {
+    $set: {accepted: req.body.accepted}
+}, { new: true })
+.then((condidate) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(condidate);
+}, (err) => next(err))
+.catch((err) => next(err));
+})
 condidatRouter.route('/count') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
   Condidates.find({}).countDocuments()
+  .then((condidates) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(condidates);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+})
+condidatRouter.route('/accepeted') 
+.get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+  Condidates.find({ accepted: true}).skip((req.query.page -1)*10).limit(10)
+  .then((condidates) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(condidates);
+  }, (err) => next(err))
+  .catch((err) => next(err));
+})
+condidatRouter.route('/accepetd/count') 
+.get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+  Condidates.find({ accepted: true}).countDocuments()
   .then((condidates) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');

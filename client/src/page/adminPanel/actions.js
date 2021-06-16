@@ -8,7 +8,10 @@ import {
     GET_CONDIDATES,
     LOADING_CONDIDATES,
     LOADING_CONDIDATES_COUNT,
-    GET_CONDIDATES_COUNT
+    GET_CONDIDATES_COUNT,
+    GET_ACCEPTED_CONDIDATES,
+    GET_ACCEPTED_CONDIDATES_COUNT,
+    LOADING_ACCEPTED_CONDIDATES_COUNT
   } from './types';
   import axios from 'axios';
   import jwtDecode from 'jwt-decode';
@@ -92,6 +95,62 @@ import {
       .then((res) => {
         dispatch({
           type: GET_CONDIDATES_COUNT,
+          payload: res.data
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+  export const getAcceptedCondidatesCount = () => (dispatch) => { 
+    dispatch({ type: LOADING_ACCEPTED_CONDIDATES_COUNT });
+    axios
+      .get('/condidates/accepetd/count')
+      .then((res) => {
+        dispatch({
+          type: GET_ACCEPTED_CONDIDATES_COUNT,
+          payload: res.data
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  export const accepteCondidate = (condidateId, accepted) => (dispatch) => { 
+    dispatch({ type: LOADING_CONDIDATES });
+    const token = localStorage.getItem("accessToken");
+    if(token){
+      const decodedToken = jwtDecode(token);
+      if(decodedToken.exp *1000 < Date.now()){
+        dispatch(logoutUser());
+      }else{
+        dispatch({ type: SET_AUTHENTICATED });
+        axios.defaults.headers.common['Authorization'] = token;
+      }
+    }
+    axios
+      .put(`/condidates/${condidateId}`, accepted)
+      .then((res) => {
+        dispatch(getCondidates());
+        dispatch(getAcceptedCondidatesCount());
+      })
+      .catch((err) => console.log(err));
+  };
+
+  export const getAcceptedCondidates = (page) => (dispatch) => { 
+    const token = localStorage.getItem("accessToken");
+    if(token){
+      const decodedToken = jwtDecode(token);
+      if(decodedToken.exp *1000 < Date.now()){
+        dispatch(logoutUser());
+      }else{
+        dispatch({ type: SET_AUTHENTICATED });
+        axios.defaults.headers.common['Authorization'] = token;
+      }
+    }
+    dispatch({ type: LOADING_CONDIDATES });
+    axios
+      .get(`/condidates/accepeted?page=${page}`)
+      .then((res) => {
+        dispatch({
+          type: GET_ACCEPTED_CONDIDATES,
           payload: res.data
         });
       })

@@ -8,7 +8,10 @@ import {
     GET_CONDIDATES,
     LOADING_CONDIDATES,
     LOADING_CONDIDATES_COUNT,
-    GET_CONDIDATES_COUNT
+    GET_CONDIDATES_COUNT,
+    GET_ACCEPTED_CONDIDATES,
+    GET_ACCEPTED_CONDIDATES_COUNT,
+    LOADING_ACCEPTED_CONDIDATES_COUNT
   } from './types';
   
   const initialState = {
@@ -19,7 +22,9 @@ import {
     user:{},
     condidates:[],
     errors:{},
-    count:''
+    count:'',
+    loadingAcceptedCount: false,
+    acceptedCount:''
   };
   
   export default function(state = initialState, action) {
@@ -53,6 +58,23 @@ import {
           ...state,
           condidates: action.payload,
           loadingCondidates: false
+        };
+      case GET_ACCEPTED_CONDIDATES:
+        return {
+          ...state,
+          condidates: action.payload,
+          loadingCondidates: false
+        };
+      case LOADING_ACCEPTED_CONDIDATES_COUNT:
+        return {
+          ...state,
+          loadingAcceptedCount: true
+        };
+      case GET_ACCEPTED_CONDIDATES_COUNT:
+        return {
+          ...state,
+          acceptedCount: action.payload,
+          loadingAcceptedCount: false
         };
       case LOADING_CONDIDATES_COUNT:
         return {

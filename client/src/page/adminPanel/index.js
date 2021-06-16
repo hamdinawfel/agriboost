@@ -3,7 +3,7 @@ import Pagination from '@material-ui/lab/Pagination';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import Button from '@material-ui/core/Button';
+
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -11,11 +11,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 //Redux
 import { connect } from 'react-redux';
-import { getCondidates, getCondidatesCount, logoutUser } from './actions';
+import { getCondidates, getCondidatesCount, logoutUser, accepteCondidate, getAcceptedCondidates, getAcceptedCondidatesCount } from './actions';
 const useStyles = makeStyles({
     root:{
        padding:'0 20px'
@@ -30,14 +33,33 @@ const useStyles = makeStyles({
 function Dashboard(props) {
   const classes = useStyles();
   const [page, setPage] = useState(1);
+  const [acceptPage, setAcceptPage] = useState(1);
+  const [getAccepted, setGetAccepted] = useState(false);
+
 useEffect(() => {
     props.getCondidates(1);
     props.getCondidatesCount();
+    props.getAcceptedCondidatesCount();
 }, []);
+const handleGetCondidates = () => {
+    props.getCondidates(page);
+    setGetAccepted(false)
 
+}
 const handlePage = (page) => {
     props.getCondidates(page);
     setPage(page)
+}
+const handleAcceptPage = (page) => {
+    props.getAcceptedCondidates(page);
+    setAcceptPage(page)
+}
+const handleAccepted = (condidateId,accepted ) => {
+    props.accepteCondidate(condidateId, {accepted})
+}
+const handleGetAcceptedCondidates =  () => {
+    props.getAcceptedCondidates(acceptPage)
+    setGetAccepted(true)
 }
 const handleLogout = () => {
     props.logoutUser();
@@ -46,8 +68,12 @@ const handleLogout = () => {
     <div className={classes.root} dir="rtl">
        {!props.admin.loadingCount?
            <div style={{ display:'flex', justifyContent:'space-between', marginTop:10}}>
-              {!props.admin.loadingCount?<p style={{fontSize:28, fontWeight:900, margin:'10px 0'}}>العدد  الجملي للمشتركون : {props.admin.count}</p>:null}
-              <Button variant="contained" color="primary" style={{padding:'0px 40px', margin:'10px 0'}} onClick={handleLogout}>خروج</Button>
+              <div style={{ display:'flex'}}>
+              {!props.admin.loadingCount? <Button variant="contained" color="primary" style={{padding:'10px 40px', margin:'10px', fontSize:16, fontWeight:600}} onClick={handleGetCondidates} > قائمة المسجلين <span style={{marginRight:20}}>{props.admin.count}</span></Button>:null}
+              {!props.admin.loadingAcceptedCount? <Button variant="contained" style={{padding:'0px 40px', margin:'10px', background:'#10991e', color:'#fff', fontSize:16, fontWeight:600}} onClick={handleGetAcceptedCondidates}>قائمة المقبولين <span style={{marginRight:20}}>{props.admin.acceptedCount}</span></Button>:null}
+              
+              </div>
+              <Button variant="contained" style={{padding:'0px 40px', margin:'10px 0', fontSize:16, fontWeight:600}} onClick={handleLogout}>خروج</Button>
             </div>
             :
             null
@@ -57,6 +83,7 @@ const handleLogout = () => {
         <Table className={classes.table} size="small"  aria-label="simple table">
             <TableHead style={{background:'#eee'}}>
             <TableRow>
+                <TableCell align="right" style={{ fontWeight:600,minWidth:80}}>الإجراءات</TableCell>
                 <TableCell align="right" style={{ fontWeight:600,minWidth:80}}>التاريخ</TableCell>
                 <TableCell align="right" style={{ fontWeight:600,minWidth:120}}>الإسم و اللقب</TableCell>
                 <TableCell align="right" style={{ fontWeight:600,minWidth:80}}>الهاتف</TableCell>
@@ -80,7 +107,22 @@ const handleLogout = () => {
             </TableHead>
             <TableBody>
             {props.admin.condidates.map((item) => (
-                <TableRow key={item._id}>
+                <TableRow key={item._id} >
+                <TableCell align="right">
+                    {!item.accepted?
+                    <Tooltip title="إضافة إلى قائمة المقبولين" placement="left">
+                        <IconButton onClick={()=>handleAccepted(item._id, !item.accepted)}>
+                            <CheckBoxOutlineBlankIcon />
+                        </IconButton>
+                    </Tooltip>
+                    :
+                    <Tooltip title="حذف من قائمة المقبولين" placement="left">
+                      <IconButton onClick={()=>handleAccepted(item._id, !item.accepted)}>
+                        <CheckBoxIcon style={{ color:'#10991e'}}/>
+                      </IconButton>
+                    </Tooltip>
+                }
+                </TableCell>
                 <TableCell align="right">{item.createdAt.split('T')[0]}</TableCell>
                 <TableCell align="right">
                     {item.firstName}{" "}{item.lastName}
@@ -118,12 +160,12 @@ const handleLogout = () => {
                 <TableCell align="right">
                     {item.lastStadyLevel}
                 </TableCell>
-                {item.isBeneficiaryTreatment ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#19aa28'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
-                {item.isMotherOfResidingSon ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#19aa28'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
-                {item.isPreResidingAtDefenseCenter ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#19aa28'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
-                {item.isPreResidingAtCombinedCenter ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#19aa28'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
-                {item.isFamilymembersGuarantee ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#19aa28'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
-                {item.isFamilymembersStudent ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#19aa28'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
+                {item.isBeneficiaryTreatment ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#10991e'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
+                {item.isMotherOfResidingSon ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#10991e'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
+                {item.isPreResidingAtDefenseCenter ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#10991e'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
+                {item.isPreResidingAtCombinedCenter ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#10991e'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
+                {item.isFamilymembersGuarantee ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#10991e'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
+                {item.isFamilymembersStudent ==='نعم'?<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#10991e'}}>نعم</TableCell>:<TableCell align="center" style={{ fontSize:18, fontWeight:600, color:'#e52816'}}>لا</TableCell>}
                 
                 </TableRow>
             ))}
@@ -134,11 +176,19 @@ const handleLogout = () => {
         <div style={{ display:'flex', justifyContent:'center', alignItems:'center', marginTop:200}}>
         <CircularProgress />
         </div>}
-    <div style={{ margin:10, display:'flex', justifyContent:'center'}}>
-     {!props.admin.loadingCondidates?<span style={{marginLeft:20, verticalAlign:'middle', background:'#3f51b5', borderRadius:5, color:'#fff', fontWeight:600, padding:'5px 20px', float:'left'}}>{props.admin.condidates.length} مشتركون/الصفحة</span>:null}
-     {!props.admin.loadingCondidates?<Pagination page={page} hideNextButton hidePrevButton onChange={(e, page)=>handlePage(page)} count={Math.floor(props.admin.count/10)+1} color="primary" />:null}
-    
-    </div>
+        <div>
+            {!getAccepted?
+            <div style={{ margin:10, display:'flex', justifyContent:'center'}}>
+                {!props.admin.loadingCondidates?<span style={{marginLeft:20, verticalAlign:'middle', background:'#3f51b5', borderRadius:5, color:'#fff', fontWeight:600, padding:'5px 20px', float:'left'}}> عدد {props.admin.condidates.length} مسجل/الصفحة</span>:null}
+                {!props.admin.loadingCondidates?<Pagination page={page} hideNextButton hidePrevButton onChange={(e, page)=>handlePage(page)} count={Math.floor(props.admin.count/10)+1} color="primary" />:null}
+            </div>
+            :
+            <div style={{ margin:10, display:'flex', justifyContent:'center'}}>
+                {!props.admin.loadingCondidates?<span style={{marginLeft:20, verticalAlign:'middle', background:'#10991e', borderRadius:5, color:'#fff', fontWeight:600, padding:'5px 20px', float:'left'}}> عدد {props.admin.condidates.length} مقبول/الصفحة</span>:null}
+                {!props.admin.loadingCondidates?<Pagination color='secondary' page={acceptPage} hideNextButton hidePrevButton onChange={(e, acceptPage)=>handleAcceptPage(acceptPage)} count={Math.floor(props.admin.acceptedCount/10)+1} />:null}
+            </div>}
+            
+        </div>
     </div>
   );
 }
@@ -149,7 +199,10 @@ const mapStateToProps = (state) => ({
   const mapActionsToProps = {
     getCondidates,
     logoutUser,
-    getCondidatesCount
+    getCondidatesCount,
+    getAcceptedCondidatesCount,
+    accepteCondidate,
+    getAcceptedCondidates
   };
   export default connect(
     mapStateToProps,

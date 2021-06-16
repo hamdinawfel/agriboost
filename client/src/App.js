@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 //pages
 import Home from './page/home/index';
 import Dashboard from './page/adminPanel/index';
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <Provider store={store}>
+      <ThemeProvider theme={theme}>
             <Router>
               <Navbar />
               <div > 
@@ -30,10 +32,24 @@ function App() {
                 
               </div>
           </Router>
+      </ThemeProvider>
      </Provider>
   );
 }
 
+const theme = createMuiTheme({
+  palette: {
+     primary: {
+      main: '#3f51b5', // rgb(232, 36, 48)
+      green:'#10991e'
+    },
+    secondary: {
+      main:'#10991e',
+      red: '#FAE3E3',
+    },
+  },
+});
 
 export default App;
+
 
