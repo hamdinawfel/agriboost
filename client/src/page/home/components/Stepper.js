@@ -452,7 +452,7 @@ const [ checked, setChecked ] = useState('');
                     disabled={activeStep === 0}
                     className={classes.button}
                   >
-                    تصليح
+                   تصحيح
                   </Button>
                   <Button
                     variant="contained"
@@ -622,7 +622,7 @@ const [ checked, setChecked ] = useState('');
                     onClick={handleBackFirstStep}
                     className={classes.button}
                   >
-                    تصليح
+                    تصحيح
                   </Button>
                   <Button
                     variant="contained"
@@ -708,7 +708,7 @@ const [ checked, setChecked ] = useState('');
                     onClick={handleBackSecondStep}
                     className={classes.button}
                   >
-                    تصليح
+                    تصحيح
                   </Button>
                   <Button
                     // disabled
@@ -743,7 +743,7 @@ const [ checked, setChecked ] = useState('');
                 <Typography color={ checked === 'accesspet'? 'secondary':'primary'} style={{ fontSize:'20px'}}>أصرح على شرفي وأكد بأن المعطيات التي صرحت بها صحيحة وإن ثبوت عكس ذلك سيؤدي إلى رفض مطلبي بصفة آلية</Typography>
           </div>
           <Button  variant="outlined" onClick={handleReset} className={classes.button}>
-             إلغاء  
+            تصحيح    
           </Button>
           <Button
             type="submit"

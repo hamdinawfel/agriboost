@@ -138,11 +138,11 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div className={classes.root}>
         <div style={{position:'sticky'}}>
-        <img src={slider} style={{width:'100%', maxHeight:'600px', objectFit:'cover',}} alt="slider"/>
+        <img src={slider} style={{width:'100%', maxHeight:'600px', objectFit:'cover'}} alt="slider"/>
         </div>
         <div className={classes.cta}>
             <h1 className={classes.title} > 
-            مرحبا بكم بموقع التسجيل بمشروع الإدماج الإقتصادي للشباب مبادرون
+         مرحبا بكم بموقع التسجيل بمشروع الإدماج الإقتصادي للشباب أڨري بوست
              </h1>
             <h1 className={classes.caption}> 
             مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
