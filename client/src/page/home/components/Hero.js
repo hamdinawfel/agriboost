@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
             مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
             </h1>
             <h1 className={classes.caption}> 
-            2021/06/30 : إنتهاء مهلة تقديم الترشيحات يوم
+            2021/07/15 : إنتهاء مهلة تقديم الترشحات يوم
             </h1>
             <div className={classes.timeContainer}>
             <Countdown 
@@ -173,14 +173,18 @@ const useStyles = makeStyles((theme) => ({
                 <DialogTitle style={{ textAlign:'center'}} id="responsive-dialog-title">{"فيديو طريقة التسجيل"}</DialogTitle>
             </div>
                 <DialogContent style={{ display:'flex', justifyContent:'center', marginBottom:50}}>
-                <iframe
+                {/* <iframe
                         id="video"
                         className={classes.video}
                         src={"https://www.youtube.com/embed/Bp_BRQeeYK0"}
                         frameBorder="0"
                         allow="accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                    />
+                    /> */}
+                    <video controls className={classes.video}>
+                        <source src="#"
+                            type="video/webm"/>
+                     </video>
                 </DialogContent>
             </Dialog>
         </div>

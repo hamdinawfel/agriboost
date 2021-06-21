@@ -67,7 +67,7 @@ export default function Footer() {
         <div className={classes.root}>
 
             <div >
-              <p className={classes.title}>2021/06/30 : إنتهاء مهلة تقديم الترشيحات يوم</p>
+              <p className={classes.title}>2021/07/15 : آخر أجل للتسجيل</p>
             </div>
             <div className={classes.timeContainer} id="clock">
                 <Countdown 
@@ -81,20 +81,20 @@ export default function Footer() {
             <div>
                 <p style={{fontSize:18, color:'#fff', width:'100%', textAlign:'center'}}>تابعونا على</p>
                 <div className={classes.social}>
-                    <Link color="inherit" target="_blank" rel="noreferrer" href="https://www.facebook.com/Moubadiroun.tn/">
+                    <Link color="inherit" target="_blank" rel="noreferrer" href="#">
                     
                     <FacebookIcon fontSize="large" style={{color:"#fff"}}/>
                   
                 </Link>
-                <Link color="inherit" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCeW2uqE_ERQWDGA_5KCVoMw">
+                {/* <Link color="inherit" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCeW2uqE_ERQWDGA_5KCVoMw">
                 
                     <YouTubeIcon fontSize="large" style={{color:"#fff"}}/>
                   
-                </Link>
+                </Link> */}
                 </div>
                
                 </div>
-               <p className={classes.copyRight}>Powred by BS Partage. Copyright © 2021.</p>
+               <p className={classes.copyRight}>Directed by GCIC. Copyright © 2021.</p>
             </div>
         </div>
     )

@@ -469,7 +469,7 @@ const [ checked, setChecked ] = useState('');
         {/*  STEP  2*/}
           <Step   style={{background:'#eee', padding:15, borderRadius:5 ,marginBottom:20}}>
             <StepLabel style={{marginTop:20}}>
-              <span className={classes.stepTitle}>تعمير المعطيات التكملية</span>
+              <span className={classes.stepTitle}>تعمير المعطيات التكميلية</span>
               </StepLabel>
             <StepContent>
                 <Grid container className={classes.formBox}>
