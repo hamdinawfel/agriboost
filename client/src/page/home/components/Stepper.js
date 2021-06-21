@@ -452,7 +452,7 @@ const [ checked, setChecked ] = useState('');
                     disabled={activeStep === 0}
                     className={classes.button}
                   >
-                    أعود
+                    تصليح
                   </Button>
                   <Button
                     variant="contained"
@@ -622,7 +622,7 @@ const [ checked, setChecked ] = useState('');
                     onClick={handleBackFirstStep}
                     className={classes.button}
                   >
-                    أعود
+                    تصليح
                   </Button>
                   <Button
                     variant="contained"
@@ -708,7 +708,7 @@ const [ checked, setChecked ] = useState('');
                     onClick={handleBackSecondStep}
                     className={classes.button}
                   >
-                    أعود
+                    تصليح
                   </Button>
                   <Button
                     // disabled

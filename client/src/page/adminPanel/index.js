@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Pagination from '@material-ui/lab/Pagination';
 
+import html2canvas from 'html2canvas';
+import jsPdf from "jspdf";
+
+import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -64,6 +66,19 @@ const handleGetAcceptedCondidates =  () => {
 const handleLogout = () => {
     props.logoutUser();
 }
+const printPDF = () => {
+    const domElement = document.getElementById("table");
+    html2canvas(domElement, {
+      onclone: document => {
+        document.getElementById("print").style.visibility = "hidden";
+      }
+    }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPdf();
+      pdf.addImage(imgData, "PNG", 0, 0);
+      pdf.save(`${new Date().toISOString()}.pdf`);
+    });
+  };
   return (
     <div className={classes.root} dir="rtl">
        {!props.admin.loadingCount?
@@ -71,7 +86,9 @@ const handleLogout = () => {
               <div style={{ display:'flex'}}>
               {!props.admin.loadingCount? <Button variant="contained" color="primary" style={{padding:'10px 40px', margin:'10px', fontSize:16, fontWeight:600}} onClick={handleGetCondidates} > قائمة المسجلين <span style={{marginRight:20}}>{props.admin.count}</span></Button>:null}
               {!props.admin.loadingAcceptedCount? <Button variant="contained" style={{padding:'0px 40px', margin:'10px', background:'#10991e', color:'#fff', fontSize:16, fontWeight:600}} onClick={handleGetAcceptedCondidates}>قائمة المقبولين <span style={{marginRight:20}}>{props.admin.acceptedCount}</span></Button>:null}
-              
+              <button id="print" onClick={printPDF}>
+                    PRINT
+                </button>
               </div>
               <Button variant="contained" style={{padding:'0px 40px', margin:'10px 0', fontSize:16, fontWeight:600}} onClick={handleLogout}>خروج</Button>
             </div>
@@ -80,7 +97,7 @@ const handleLogout = () => {
         }
         {!props.admin.loadingCondidates?
         <TableContainer component={Paper}>
-        <Table className={classes.table} size="small"  aria-label="simple table">
+        <Table className={classes.table} size="small"  aria-label="simple table" id="table">
             <TableHead style={{background:'#eee'}}>
             <TableRow>
                 <TableCell align="right" style={{ fontWeight:600,minWidth:80}}>الإجراءات</TableCell>

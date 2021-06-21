@@ -12,7 +12,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import CloseIcon from '@material-ui/icons/Close';
 //images 
-import nature from '../../../assets/nature.jpg'
+import slider from '../../../assets/slider.jpg'
 const useStyles = makeStyles((theme) => ({
     root: {
       margin:'0 0 100px 0',
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline-block',
         margin:'0 auto',
         padding:'20px',
-        backgroundColor:'rgba(255,255,255,0.75)',
+        backgroundColor:'rgba(255,255,255,0.5)',
         width:'60%',
         [theme.breakpoints.down('sm')]: {
             top:'-380px',
@@ -138,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div className={classes.root}>
         <div style={{position:'sticky'}}>
-        <img src={nature} style={{width:'100%', maxHeight:'600px', objectFit:'cover',}} alt="nature"/>
+        <img src={slider} style={{width:'100%', maxHeight:'600px', objectFit:'cover',}} alt="slider"/>
         </div>
         <div className={classes.cta}>
             <h1 className={classes.title} > 

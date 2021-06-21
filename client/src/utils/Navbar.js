@@ -3,11 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import { makeStyles } from '@material-ui/core/styles';
 
  //logo
-import banner from '../assets/banner.png'
+import banner from '../assets/banner.jpg'
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-    backgroundColor:'#F5F5F5',
+    backgroundColor:'#fff',
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
