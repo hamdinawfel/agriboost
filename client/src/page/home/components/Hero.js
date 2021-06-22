@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cta: {
         position:'relative',
-         top:'-550px',
+         top:'-620px',
          textAlign:'start',
         display: 'inline-block',
         margin:'0 auto',
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
             width:'80%',
           },
         [theme.breakpoints.down('sm')]: {
-            top:'-380px',
+            top:'-600px',
             width:'80%',
             display: 'inline-block',
             margin:'0 auto'
@@ -123,6 +123,13 @@ const useStyles = makeStyles((theme) => ({
         textShadow: '0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0)',
         color:'#afeeee',
         fontSize:20
+        },
+        slider:{
+            width:'100%',
+            height:700,
+            [theme.breakpoints.down('md')]: {
+                height:'auto',
+              },
         }
   }));
   export default function Hero () {
@@ -141,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div className={classes.root}>
         <div style={{position:'sticky'}}>
-        <img src={slider} style={{width:'100%', maxHeight:'600px', objectFit:'cover'}} alt="slider"/>
+        <img src={slider} className={classes.slider} alt="slider"/>
         </div>
         <div className={classes.cta}>
             <h1 className={classes.title} > 
