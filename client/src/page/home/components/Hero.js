@@ -30,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: {
             width:'80%',
           },
+        // [theme.breakpoints.down('sm')]: {
+        //     top:'0px',
+        //     width:'80%',
+        //     display: 'block',
+        //     margin:'0 auto'
+        //   },
         [theme.breakpoints.down('sm')]: {
-            top:'-600px',
-            width:'80%',
-            display: 'inline-block',
-            margin:'0 auto'
-          },
-        [theme.breakpoints.down('xs')]: {
             top:'0',
             width:'90%',
             display:'block',

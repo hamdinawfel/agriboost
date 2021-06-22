@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     top:-620,
     padding:'0 100px 0 100px',
     [theme.breakpoints.down('md')]: {
-      top:-620,
-    padding:'0 20px 0 20px',
+    padding:'0 20px 100px 20px',
+    top:-480,
       },
     [theme.breakpoints.down('sm')]: {
       top:20,

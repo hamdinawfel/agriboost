@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
       top:-500,
        padding:10
       },
-    [theme.breakpoints.down('sm')]: {
-    top:-480,
-     padding:10
-    },
-  [theme.breakpoints.down('xs')]: {
+    // [theme.breakpoints.down('sm')]: {
+    // top:-480,
+    //  padding:10
+    // },
+  [theme.breakpoints.down('sm')]: {
       top:'-50px',
       width:'100%',
      padding:0
