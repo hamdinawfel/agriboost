@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         padding:'20px',
         backgroundColor:'rgba(255,255,255,0.5)',
         width:'60%',
+        [theme.breakpoints.down('md')]: {
+            width:'80%',
+          },
         [theme.breakpoints.down('sm')]: {
             top:'-380px',
             width:'80%',
@@ -153,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
             <div className={classes.timeContainer}>
             <Countdown 
                     className={classes.time}
-                    date={Date.now() + 1000 *60 *60*24*15}
+                    date={Date.now() + 1000 *60 *60*24*23 + 4*60*60*1000}
                     >
                 </Countdown>
             </div>

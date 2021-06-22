@@ -9,7 +9,11 @@ const useStyles = makeStyles((theme) => ({
     root:{
         // height:500,
          background:'#222222',
-         marginTop:-400,
+         marginTop:-500,
+         [theme.breakpoints.down('sm')]: {
+          marginTop:0,
+
+        },
          [theme.breakpoints.down('sm')]: {
           marginTop:200,
 
@@ -72,7 +76,7 @@ export default function Footer() {
             <div className={classes.timeContainer} id="clock">
                 <Countdown 
                     className={classes.time}
-                    date={Date.now() + 1000 *60 *60*24*15}
+                    date={Date.now() + 1000 *60 *60*24*23 + 4*60*60*1000}
                     >
                 </Countdown>
                 </div>

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     position:'relative',
     top:-620,
     padding:'0 100px 0 100px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       top:20,
     padding:'0 20px 0 20px',
       },
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
  
   video:{
     width:'100%',
-        height:400,
+        height:'300px',
         marginTop:30,
         [theme.breakpoints.down('sm')]: {
             width:'320px',
@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div className={classes.root}>
       <span className={classes.title}>إعرف عنا المزيد</span>
-      <Grid container>
-      <Grid item xs={12} md={6} style={{ display:'flex', justifyContent:'center', padding:15}}>
+      <Grid container style={{ display:'flex', justifyContent:'center'}}>
+      <Grid item sm={12} md={6} style={{ display:'flex', justifyContent:'center', padding:15}}>
       {/* <iframe
           id="video"
           className={classes.video}
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
        </video>
       </Grid>
-      <Grid item xs={12} md={6} style={{ display:'flex', justifyContent:'center',padding:15 }}>
+      <Grid item sm={12} md={6} style={{ display:'flex', justifyContent:'center',padding:15 }}>
       <Link color="inherit" target="_blank" rel="noreferrer" href="#">
            <img src={facebook}  className={classes.video} alt="facebook"/>
               

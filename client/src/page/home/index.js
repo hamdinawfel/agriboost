@@ -1,6 +1,6 @@
 import React from 'react'
 import Hero from './components/Hero'
-import Video from './components/Video'
+import About from './components/About'
 import Stepper from './components/Stepper'
 import Footer from '../../utils/Footer'
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
         <div>
             <Hero />
             <Stepper />
-            <Video />
+            <About />
             <Footer />
         </div>
     )

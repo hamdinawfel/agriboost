@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   stepper: {
     width: '100%',
   },
+
   button: {
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -106,6 +107,16 @@ const useStyles = makeStyles((theme) => ({
   labelRoot: {
     right: 25,
     fontSize:22,
+    [theme.breakpoints.down('sm')]: {
+      fontSize:18, 
+      },
+
+  },
+  staticLabel: {
+    right: 25,
+    fontSize:25,
+    fontWeight:600,
+    width:'100%',
     [theme.breakpoints.down('sm')]: {
       fontSize:18, 
       },
@@ -514,11 +525,12 @@ const [ checked, setChecked ] = useState('');
                    <Grid item xs={12} md={4} className={classes.item}>
                    <TextField 
                       disabled
+                      variant="filled"
                       style={{margin:10, width:'100%'}}
-                      label="الولاية" 
-                      value="القيروان"
+                      label="ولاية القيروان"
+                      // value="القيروان" 
                       InputLabelProps={{
-                        classes: { root: classes.labelRoot, shrink: classes.shrink }
+                        classes: { root: classes.staticLabel, shrink: classes.shrink }
                       }} />
                    </Grid>
                    <Grid item xs={12} md={4} className={classes.item}>
