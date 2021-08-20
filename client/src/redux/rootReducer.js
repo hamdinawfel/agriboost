@@ -4,9 +4,7 @@ import condidatReducer from '../page/home/reducer';
 import adminReducer from '../page/adminPanel/reducer';
 
 const rootReducer = combineReducers({
-
-   
-    condidat: condidatReducer,
+    condidate: condidatReducer,
     admin: adminReducer,
   })
   

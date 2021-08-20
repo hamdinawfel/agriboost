@@ -7,7 +7,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 //Load routes
-const condidatRouter = require("./routes/condidatRouter");
+// const condidatRouter = require("./routes/condidatRouter");
+const condidateRouter = require("./routes/condidateRouter");
 const users = require("./routes/users");
 
 const app = express()
@@ -43,7 +44,8 @@ app.use(passport.initialize());
 
 // Routes
 
-app.use("/condidates", condidatRouter);
+// app.use("/condidat", condidatRouter);
+app.use("/condidates", condidateRouter);
 app.use("/users", users);
 
 

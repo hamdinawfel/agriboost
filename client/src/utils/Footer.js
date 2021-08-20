@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Countdown from 'react-countdown';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -20,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     title:{
-     
-        marginTop:30,
         color:'#fff',
         fontSize:30,
         fontWeight:600,
@@ -41,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Share Tech Mono', 
       fontSize:30,
       color:'#afeeee',
-      marginBottom:-200,
       display:'flex',
       alignItems:'center',
       justifyContent:'center',
@@ -66,22 +62,34 @@ const useStyles = makeStyles((theme) => ({
     }));
 export default function Footer() {
   const classes = useStyles();
-
+  const renderer = ({ days,hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return null;
+    } else {
+      // Render a countdown
+      return (
+       <div>
+          <div style={{ paddingTop: 30}}>
+              <p className={classes.title}>
+                إنتهاء مهلة تقديم الترشحات يوم 31 أوت 2021
+              </p>
+          </div>
+            <div className={classes.timeContainer} id="clock">
+              <span className={classes.time}>{days}:{hours}:{minutes}:{seconds}</span>
+            </div>
+       </div>
+     ) ;
+    }
+  };
     return (
         <div className={classes.root}>
-
-            <div >
-              <p className={classes.title}>2021/07/15 : آخر أجل للتسجيل</p>
-            </div>
-            <div className={classes.timeContainer} id="clock">
-                <Countdown 
-                    className={classes.time}
-                    date={Date.now() + 1000 *60 *60*24*23 + 4*60*60*1000}
-                    >
-                </Countdown>
-                </div>
-           
-            <div style={{padding:'250px 0 10px 0', background:'#222'}}>
+          <Countdown 
+              date={parseInt(process.env.REACT_APP_START_TIME)}
+              renderer={renderer}
+              >
+          </Countdown>
+            <div style={{padding:'30PX 0 10px 0', background:'#222'}}>
             <div>
                 <p style={{fontSize:18, color:'#fff', width:'100%', textAlign:'center'}}>تابعونا على</p>
                 <div className={classes.social}>
@@ -90,11 +98,6 @@ export default function Footer() {
                     <FacebookIcon fontSize="large" style={{color:"#fff"}}/>
                   
                 </Link>
-                {/* <Link color="inherit" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCeW2uqE_ERQWDGA_5KCVoMw">
-                
-                    <YouTubeIcon fontSize="large" style={{color:"#fff"}}/>
-                  
-                </Link> */}
                 </div>
                
                 </div>

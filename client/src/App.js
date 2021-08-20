@@ -26,8 +26,8 @@ function App() {
               <div > 
                 <Switch>
                   <Route exact path="/" component={ Home } />
-                  <Route exact path="/admin/login" component={ Login } />
-                  <PrivateRoute exact path="/admin/dashboard" component={ Dashboard } />
+                  {/* <Route exact path="/admin/login" component={ Login } />
+                  <PrivateRoute exact path="/admin/dashboard" component={ Dashboard } /> */}
                 </Switch>
                 
               </div>
@@ -40,16 +40,16 @@ function App() {
 const theme = createMuiTheme({
   palette: {
      primary: {
-      main: '#3f51b5', // rgb(232, 36, 48)
-      green:'#10991e'
+       main: '#6AAF06', //#6AAF06
+      green:'#10991e',
+      dark:'#101F25'
     },
     secondary: {
-      main:'#10991e',
+      main:'#ff0000',
       red: '#FAE3E3',
     },
   },
 });
 
 export default App;
-
 

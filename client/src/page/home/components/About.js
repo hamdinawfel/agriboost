@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from "@material-ui/core";
 import Link from '@material-ui/core/Link';
 import facebook from '../../../assets/facebook.jpg'
+//
+import Title from '../../../utils/Title'
 const useStyles = makeStyles((theme) => ({
   root:{
     position:'relative',
@@ -30,25 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
           },
   },
-  title:{
-    fontSize:30,
-    fontWeight:900,
-    display:'block',
-    textAlign:'right',
-    margin:'0 auto',
-    color:'#3F51B5',
-    paddingBottom:10,
-    marginBottom:20,
-    borderBottom:'3px solid #3F51B5',
-    [theme.breakpoints.down('sm')]: {
-    fontSize:20,
-    fontWeight:600,
-    textAlign:'center',
-    marginBottom:20,
-    paddingBottom:10,
-     
-    },
-  }
   }));
 
   export default function Video () {
@@ -57,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
 
   return (
     <div className={classes.root}>
-      <span className={classes.title}>إعرف عنا المزيد</span>
-      <Grid container style={{ display:'flex', justifyContent:'center'}}>
+      <Title title="إعرف عنا المزيد" />
+      <Grid container style={{ display:'flex', justifyContent:'center', marginTop:20}}>
       <Grid item sm={12} md={6} style={{ display:'flex', justifyContent:'center', padding:15}}>
       {/* <iframe
           id="video"

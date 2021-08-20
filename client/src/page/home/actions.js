@@ -2,7 +2,10 @@ import {
     LOADING,
     SUCCESS_MESSAGE,
     FAIL_MESSAGE,
-    RESET
+    RESET,
+    SHOW_RESULT,
+    CLOSE_RESULT,
+    SET_ERROR,
   } from './types';
   import axios from 'axios';
   export const createCondidat = (data) => (dispatch) => {
@@ -20,4 +23,20 @@ import {
   export const reset = () => (dispatch) => {
     dispatch({ type: RESET })
   };
- 
+
+  export const getResult = (condidateCin) => (dispatch) => {
+    dispatch({ type: LOADING })
+    axios
+      .get(`/condidates/${condidateCin}`)
+      .then(res => { 
+        dispatch({ type: SHOW_RESULT,
+        payload: res.data })
+      })
+      .catch(err =>
+        dispatch({ type: SET_ERROR })
+      );
+  };
+  
+  export const closeResult = () => (dispatch) => {
+    dispatch({ type: CLOSE_RESULT })
+  };

@@ -19,7 +19,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-//
 import Alert from '@material-ui/lab/Alert';
 //Redux
 import { connect } from 'react-redux';
@@ -355,6 +354,7 @@ const [ checked, setChecked ] = useState('');
     <ThemeProvider theme={theme}>
     <div className={classes.root}>
     <span className={classes.title}>الرجاء تعمير الجذاذة بكل دقة وباللغة العربية</span>
+    <p style={{color:'#ff0000', textAlign:'right'}}><span style={{color:'#fff', background:'#ff0000', textAlign:'center', padding:'2px 15px', borderRadius:2, fontWeight:600}}>هام جدا</span> سيتم التثبت من كل المعطيات المصرح  بها في مراحل الفرز </p>
     <form className={classes.stepper} dir="rtl" onSubmit={handleSubmitForm}>
       <Stepper activeStep={activeStep} orientation="vertical" connector={<div style={{dispaly:'none'}}/>}>
          {/*  STEP  1*/}
@@ -787,7 +787,7 @@ const [ checked, setChecked ] = useState('');
   );
 }
 const mapStateToProps = (state) => ({
-  condidat: state.condidat,
+  condidate: state.condidate,
 });
 
 const mapActionsToProps = {
