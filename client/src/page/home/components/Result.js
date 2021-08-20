@@ -223,18 +223,15 @@ const theme = useTheme();
                     <p className={classes.header}> 
                     {/* {props.condidate.data.acceptedStatus} */}  {"نتيجة التسجيل بمشروع أڨري بوست"} 
                     </p>
-                    <div style={{ display:'flex', justifyContent: 'left', flexDirection: 'row-reverse'}}>
-                    <p className={classes.body} >
-                       {props.condidate.data.sexe === 'أنثى'?femalSexe:malSexe }
-                    </p>
-                    <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.firstName} {"  "} {props.condidate.data.lastName} {"  "}</span>
-                    <p className={classes.body} >
-                   
-                   {"صاحب  بطاقة  التعريف الوطنية رقم"} 
-                    </p>
-                    <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.cin} </span> 
-                    </div>
                     
+                    <p className={classes.body} >
+                       {props.condidate.data.sexe === 'أنثى'?femalSexe:malSexe } 
+                       <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.firstName} {"  "} {props.condidate.data.lastName} {"  "}</span>
+                       <span className={classes.body} >
+                        {"صاحب  بطاقة  التعريف الوطنية رقم"} 
+                        </span>
+                        <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.cin} </span> 
+                    </p>
                     <p className={classes.body}>
                     مطلبك لدى مشروع الإدماج الإقتصادي للشباب أڨري بوست  <span style={{fontWeight:600, margin:'0 10px'}}>مرحلة الفرز</span> 
                     </p>
