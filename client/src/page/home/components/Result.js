@@ -244,7 +244,7 @@ const theme = useTheme();
                       حظا{" "}موفقا  
                     </p>
                   </div>
-                  <Pdf targetRef={ref} filename={`نتيجة التسجيل بمشروع أڨري بوست للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?20:0} y={10}>
+                  <Pdf targetRef={ref} filename={`نتيجة التسجيل بمشروع أڨري بوست للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>
                     {({ toPdf }) => 
                       <Button className={classes.myButton} onClick={toPdf}>
                           <PrintIcon style={{ verticalAlign:'middle', marginRight:20, marginTop:-5}} /> طباعة
