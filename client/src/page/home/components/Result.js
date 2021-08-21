@@ -21,6 +21,11 @@ import { getResult, closeResult } from '../actions';
 //transform div to pdf 
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
+const options = {
+  orientation: 'landscape',
+  unit: 'px',
+  format: [4,2]
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -239,7 +244,7 @@ const theme = useTheme();
                       حظا{" "}موفقا  
                     </p>
                   </div>
-                  <Pdf targetRef={ref} filename={`نتيجة التسجيل بمشروع أڨري بوست للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={1.4}>
+                  <Pdf targetRef={ref} filename={`نتيجة التسجيل بمشروع أڨري بوست للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?50:0} y={10}>
                     {({ toPdf }) => 
                       <Button className={classes.myButton} onClick={toPdf}>
                           <PrintIcon style={{ verticalAlign:'middle', marginRight:20, marginTop:-5}} /> طباعة
