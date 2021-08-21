@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   }));
 
-  export default function Video () {
+  export default function ContactUs () {
   const classes = useStyles();
   
 

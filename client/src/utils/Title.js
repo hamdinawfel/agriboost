@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop:-25,
         zIndex: -1,
         backgroundColor: '#e1f7f6',
+        [theme.breakpoints.down('sm')]: {
+           marginTop:-30,
+        },
     },
     
   }));

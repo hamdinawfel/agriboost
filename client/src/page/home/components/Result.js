@@ -21,11 +21,6 @@ import { getResult, closeResult } from '../actions';
 //transform div to pdf 
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
-const options = {
-  orientation: 'landscape',
-  unit: 'px',
-  format: [4,2]
-};
 
 const useStyles = makeStyles((theme) => ({
     root: {

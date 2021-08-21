@@ -2,8 +2,9 @@ import React from 'react'
 import Countdown from 'react-countdown';
 
 import Hero from './components/Hero'
-import About from './components/About'
-import Stepper from './components/Stepper2'
+import ContactUs from './components/ContactUs'
+import ProjectTimeline from './components/ProjectTimeline'
+import Stepper from './components/Stepper2' //FIXME: REMOVE TOW
 import Result from './components/Result'
 import Footer from '../../utils/Footer'
 
@@ -25,7 +26,8 @@ export default function Home() {
                 date={parseInt(process.env.REACT_APP_START_TIME)}
                 renderer={renderer}
             />
-            <About />
+            <ProjectTimeline />
+            <ContactUs />
             <Footer />
         </div>
     )
