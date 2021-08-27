@@ -52,11 +52,26 @@ const useStyles = makeStyles((theme) => ({
   },
   stepTitle:{ 
     textAlign: 'right',
-    
-    fontSize:'1.5rem'
+    fontSize:'1.5rem',
+    display: 'flex', 
+    flexDirection: 'row-reverse',
+    alignItems: 'center'
   },
   stepSubtitle:{ 
     textAlign: 'right'
+  },
+  stepNumber: {
+    fontSize:'1.8rem',
+    fontWeight:600,
+    marginLeft:10,
+    backgroundColor:'rgba(0,0,0,0.3)',
+    color:"#fff", 
+    height:'32px',
+    width:'32px', 
+    borderRadius:'50%',
+    display:'flex',
+    justifyContent: 'center', 
+    alignItems: 'center'
   }
 }));
 
@@ -77,6 +92,7 @@ export default function ProjectTimeline() {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
+                  <span className={classes.stepNumber}>1</span>
                   التسجيل
                   </Typography>
                   <Typography variant="body2" color="textSecondary" className={classes.stepSubtitle}>
@@ -95,6 +111,7 @@ export default function ProjectTimeline() {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
+                  <span className={classes.stepNumber}>2</span>
                   التنقيط
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
@@ -113,6 +130,7 @@ export default function ProjectTimeline() {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
+                  <span className={classes.stepNumber}>3</span>
                   النتائج الأولية
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
@@ -131,6 +149,7 @@ export default function ProjectTimeline() {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
+                  <span className={classes.stepNumber}>4</span>
                   إداع الوثائق
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
@@ -149,6 +168,7 @@ export default function ProjectTimeline() {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
+                  <span className={classes.stepNumber}>5</span>
                   النتائج النهائية
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
@@ -166,6 +186,7 @@ export default function ProjectTimeline() {
               <TimelineContent>
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
+                  <span className={classes.stepNumber}>6</span>
                   التعاقد
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>

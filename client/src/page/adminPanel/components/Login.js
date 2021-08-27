@@ -35,12 +35,18 @@ const useStyles = makeStyles((theme) => ({
       form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
-     
-        
-      
       },
-      submit: {
+      submitBtn: {
         margin: theme.spacing(3, 0, 2),
+        padding:'15px 0',
+        color: '#fff',
+        backgroundColor: theme.palette.primary.main,
+        border:`1px solid ${theme.palette.primary.main}`,
+        transition: '0.5s',
+        '&:hover': {
+            color: theme.palette.primary.main,
+            backgroundColor: '#fff',
+        },
       },
       error:{
           width:'100%',
@@ -51,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
       },
       errorText:{
           fontWeight:600
-      }
+      },
+      
 }));
 
 function Login(props) {
@@ -118,7 +125,7 @@ const handleLoginUser = (e) => {
               disabled={props.admin.loading}
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={classes.submitBtn}
             >
          {props.admin.loading? <CircularProgress size={25} style={{color:'rgba(255,255,255,0.8)', verticalAlign:'middle'}}/>:<span>Se connecter</span>}
 

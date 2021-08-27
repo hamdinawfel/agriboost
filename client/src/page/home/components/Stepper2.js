@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -26,9 +26,6 @@ import Title from '../../../utils/Title'
 //Redux
 import { connect } from 'react-redux';
 import { createCondidat, reset} from '../actions';
-const theme = createMuiTheme({
-    direction: 'rtl', // Both here and <body dir="rtl">
-  });
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -385,7 +382,7 @@ const [ checked, setChecked ] = useState('');
     <Title title="تعمير الجذاذة" />
     <p style={{color:'#ff0000', textAlign:'right', margin:'40px 10px 20px 10px'}}>
         <span style={{color:'#fff', background:'#ff0000', textAlign:'center', padding:'2px 15px', borderRadius:2, fontWeight:600, marginLeft:10}}>هام جدا</span>
-        الرجاء تعمير الجذاذة باللغة العربية بكل دقة، سيتم التثبت من كل المعطيات المصرح  بها في مراحل الفرز 
+        االرجاء تعمير الجذاذة باللغة العربية و بكل دقة، سيتم التثبت من كل المعطيات المصرح بها في مراحل الفرز
     </p>
     <form className={classes.stepper} dir="rtl" onSubmit={handleSubmitForm}>
       <Stepper activeStep={activeStep} orientation="vertical" connector={<div style={{dispaly:'none'}}/>}>
@@ -851,7 +848,7 @@ const [ checked, setChecked ] = useState('');
             </React.Fragment>:null}
             { props.condidate.success === 'success'&& open?
             <Alert variant="filled" severity="success" style={{marginTop:20}}>
-            تمت عملية التسجيل الأولي عن بعد بنجاح 
+              تمت عملية التسجيل الأولي عن بعد بنجاح ، هذا الموقع سيمكنك بعد نهاية فترة التسجيل من التعرف على النتيجة، حظا موفقا
             </Alert>
            :
            null}

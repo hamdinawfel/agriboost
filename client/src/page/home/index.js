@@ -11,7 +11,11 @@ import Footer from '../../utils/Footer'
 const renderer = ({ completed }) => {
     if (completed) {
       // Render a completed state
-      return <Result />;
+      return (
+      <React.Fragment>
+         <Result />
+         <ProjectTimeline />
+        </React.Fragment>);
     } else {
       // Render a countdown
       return <Stepper />;
@@ -26,7 +30,6 @@ export default function Home() {
                 date={parseInt(process.env.REACT_APP_START_TIME)}
                 renderer={renderer}
             />
-            <ProjectTimeline />
             <ContactUs />
             <Footer />
         </div>

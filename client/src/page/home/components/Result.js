@@ -215,13 +215,13 @@ const theme = useTheme();
                 <IconButton onClick={handleClose} style={{ marginLeft:20}}>
                     <CloseIcon />
                 </IconButton>
-                <DialogTitle style={{ textAlign:'right'}} id="responsive-dialog-title">{"نتيجة التسجيل بمشروع أڨري بوست"}</DialogTitle>
+                <DialogTitle style={{ textAlign:'right'}} id="responsive-dialog-title">{"النتائج الأولية"}</DialogTitle>
             </div>
                 <DialogContent>
                   <div ref={ref} style={{ display:'block', margin:'0 auto' }}>
                     <img src={banner} style={{width : '100%'}} />
                     <p className={classes.header}> 
-                    {/* {props.condidate.data.acceptedStatus} */}  {"نتيجة التسجيل بمشروع أڨري بوست"} 
+                    {/* {props.condidate.data.acceptedStatus} */}  {"النتيجة الأولية للتسجيل بمشروع أڨري بوست"} 
                     </p>
                     
                     <p className={classes.body} >
@@ -233,13 +233,13 @@ const theme = useTheme();
                         <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.cin} </span> 
                     </p>
                     <p className={classes.body}>
-                    مطلبك لدى مشروع الإدماج الإقتصادي للشباب أڨري بوست  <span style={{fontWeight:600, margin:'0 10px'}}>مرحلة الفرز</span> 
+                    مطلبك بمشروع أڨري بوست <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.status}</span> 
                     </p>
                     <p className={classes.footer}>
                       حظا{" "}موفقا  
                     </p>
                   </div>
-                  <Pdf targetRef={ref} filename={`نتيجة التسجيل بمشروع أڨري بوست للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>
+                  <Pdf targetRef={ref} filename={`النتيجة الأولية للتسجيل بمشروع أڨري بوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>
                     {({ toPdf }) => 
                       <Button className={classes.myButton} onClick={toPdf}>
                           <PrintIcon style={{ verticalAlign:'middle', marginRight:20, marginTop:-5}} /> طباعة

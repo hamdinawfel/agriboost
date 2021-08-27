@@ -26,8 +26,8 @@ function App() {
               <div > 
                 <Switch>
                   <Route exact path="/" component={ Home } />
-                  {/* <Route exact path="/admin/login" component={ Login } />
-                  <PrivateRoute exact path="/admin/dashboard" component={ Dashboard } /> */}
+                  <Route exact path="/admin/login" component={ Login } />
+                  <PrivateRoute exact path="/admin/dashboard" component={ Dashboard } />
                 </Switch>
                 
               </div>

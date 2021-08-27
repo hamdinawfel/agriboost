@@ -49,3 +49,12 @@ exports.verifyAdmin = (req, res, next) => {
         return next(err);
     }
 }
+
+exports.verifyRoot = (req, res, next) => {
+    if(req.user.root === true) {
+      return next()
+    }
+    else{
+       return  res.status(403).json({ message: "You are not authorized to perform this operation!" });
+    }
+}

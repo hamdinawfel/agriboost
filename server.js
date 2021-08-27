@@ -9,6 +9,7 @@ const passport = require("passport");
 //Load routes
 // const condidatRouter = require("./routes/condidatRouter");
 const condidateRouter = require("./routes/condidateRouter");
+const countRouter = require("./routes/countRouter");
 const users = require("./routes/users");
 
 const app = express()
@@ -46,6 +47,7 @@ app.use(passport.initialize());
 
 // app.use("/condidat", condidatRouter);
 app.use("/condidates", condidateRouter);
+app.use("/count", countRouter);
 app.use("/users", users);
 
 

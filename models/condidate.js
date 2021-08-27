@@ -85,9 +85,10 @@ const condidateSchema = new Schema({
     required:true,
     default: 0
 },
-acceptedStatus:   {
+status:   {
   type: String,
   required:false,
+  default: "في مرحلة الفرز"
 },
   }, {
   timestamps: true
