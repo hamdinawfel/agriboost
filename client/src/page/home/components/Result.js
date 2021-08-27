@@ -184,7 +184,7 @@ const theme = useTheme();
             <Title title="النتائج الأولية" />
             <form onSubmit={handleSubmit} className={classes.box}>
                     <p className={classes.subTitle}> 
-                      للإطلاع على نتيجة التوجيه المهني، يرجى إدخال رقم بطاقة التعريف الوطنية
+                      للإطلاع على النتيجة، يرجى إدخال رقم بطاقة التعريف الوطنية
                     </p>
                     {props.condidate.error?
                     <p className={classes.errorText}> 
