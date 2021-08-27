@@ -209,7 +209,7 @@ const useStyles = makeStyles((theme) => ({
         </div>
         <div className={classes.cta}>
             <h1 className={classes.title} > 
-         مرحبا بكم بموقع التسجيل بمشروع الإدماج الإقتصادي للشباب أڨري بوست
+         مرحبا بكم بموقع التسجيل بمشروع الإدماج الإقتصادي للشباب أڨريبوست
              </h1>
             <h1 className={classes.caption}> 
             مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
