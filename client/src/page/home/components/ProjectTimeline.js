@@ -96,7 +96,7 @@ export default function ProjectTimeline() {
                   التسجيل
                   </Typography>
                   <Typography variant="body2" color="textSecondary" className={classes.stepSubtitle}>
-                  من 15  إلى 31 أوت 2021
+                  من 15  إلى 27 أوت 2021
                 </Typography>
                 </Paper>
               </TimelineContent>

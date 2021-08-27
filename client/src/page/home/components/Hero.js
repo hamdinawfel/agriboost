@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
   const Completionist = () => 
    <div>
       <p className={classes.caption}> 
-      إنتهت عملية التسجيل بتاريخ 31 أوت 2021
+      إنتهت عملية التسجيل بتاريخ 27 أوت 2021
     </p>
     <Button className={classes.myButton} onClick={handleResult}>
       النتائج   
@@ -163,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
       return (
           <div>
               <p className={classes.caption}>
-              إنتهاء مهلة تقديم الترشحات يوم 31 أوت 2021 
+              إنتهاء مهلة تقديم الترشحات يوم 27 أوت 2021 
               </p>
               <div className={classes.timeContainer}>
                   <span className={classes.time}>{days}:{hours}:{minutes}:{seconds}</span>
