@@ -221,7 +221,7 @@ const theme = useTheme();
                   <div ref={ref} style={{ display:'block', margin:'0 auto' }}>
                     <img src={banner} style={{width : '100%'}} />
                     <p className={classes.header}> 
-                    {/* {props.condidate.data.acceptedStatus} */}  {"النتيجة الأولية للتسجيل بمشروع أڨريبوست"} 
+                      {"النتيجة الأولية للتسجيل بمشروع أڨريبوست"} 
                     </p>
                     
                     <p className={classes.body} >
@@ -238,6 +238,7 @@ const theme = useTheme();
                     <p className={classes.footer}>
                       حظا{" "}موفقا  
                     </p>
+                   
                   </div>
                   <Pdf targetRef={ref} filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>
                     {({ toPdf }) => 
