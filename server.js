@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 //Load routes
-// const condidatRouter = require("./routes/condidatRouter");
 const condidateRouter = require("./routes/condidateRouter");
 const countRouter = require("./routes/countRouter");
 const users = require("./routes/users");
@@ -44,8 +43,6 @@ app.use(function (req, res, next) {
 app.use(passport.initialize());
 
 // Routes
-
-// app.use("/condidat", condidatRouter);
 app.use("/condidates", condidateRouter);
 app.use("/count", countRouter);
 app.use("/users", users);

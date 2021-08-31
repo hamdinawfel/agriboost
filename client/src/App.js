@@ -5,12 +5,10 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 //pages
 import Home from './page/home/index';
-import Dashboard from './page/adminPanel/index';
-import Login from './page/adminPanel/components/Login';
 
 //utils
 import Navbar from './utils/Navbar'
-import PrivateRoute from './utils/PrivateRoute';
+import PageNotFound from './utils/PageNotFound'
 
 //Redux setup
 import store from './redux/store'
@@ -26,8 +24,7 @@ function App() {
               <div > 
                 <Switch>
                   <Route exact path="/" component={ Home } />
-                  <Route exact path="/admin/login" component={ Login } />
-                  <PrivateRoute exact path="/admin/dashboard" component={ Dashboard } />
+                  <Route component={PageNotFound} />
                 </Switch>
                 
               </div>

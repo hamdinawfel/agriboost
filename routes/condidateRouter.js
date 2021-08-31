@@ -17,7 +17,7 @@ const candidateStatus =   {
 
 condidateRouter.route('/') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.find({}, { firstName:1, lastName:1, cin: 1, totalScore: 1, village:1, phone: 1, status:1}).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
+  Condidates.find({}).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
   .then((condidates) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
@@ -116,7 +116,7 @@ condidateRouter.route('/')
 //GET REJECTED CANDIDATES
 condidateRouter.route('/rejected') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.find({ status:candidateStatus.rejected }, { firstName:1, lastName:1, cin: 1, totalScore: 1, village:1, phone: 1, status:1}).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
+  Condidates.find({ status:candidateStatus.rejected }).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
   .then((condidates) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
@@ -127,7 +127,7 @@ condidateRouter.route('/rejected')
 //GET WAITED CANDIDATES
 condidateRouter.route('/waited') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.find({ status:candidateStatus.waited }, { firstName:1, lastName:1, cin: 1, totalScore: 1, village:1, phone: 1, status:1}).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
+  Condidates.find({ status:candidateStatus.waited }).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
   .then((condidates) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
@@ -138,7 +138,7 @@ condidateRouter.route('/waited')
 //GET INITAIL CANDIDATES
 condidateRouter.route('/initial') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.find({ status:candidateStatus.initial }, { firstName:1, lastName:1, cin: 1, totalScore: 1, village:1, phone: 1, status:1}).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
+  Condidates.find({ status:candidateStatus.initial }).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
   .then((condidates) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
@@ -149,7 +149,7 @@ condidateRouter.route('/initial')
 //GET FINAL CANDIDATES
 condidateRouter.route('/final') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.find({ status:candidateStatus.final }, { firstName:1, lastName:1, cin: 1, totalScore: 1, village:1, phone: 1, status:1}).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
+  Condidates.find({ status:candidateStatus.final }).sort({totalScore:-1}).skip((req.query.page -1)*10).limit(10)
   .then((condidates) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
@@ -159,15 +159,6 @@ condidateRouter.route('/final')
 })
 
 condidateRouter.route('/admin/:condidateId') 
-.get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.findById(req.params.condidateId)
-  .then((condidate) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json(condidate);
-  }, (err) => next(err))
-  .catch((err) => next(err));
-})
 .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
   Condidates.findByIdAndUpdate(req.params.condidateId, {
     $set: {status: req.body.status}
@@ -196,20 +187,10 @@ condidateRouter.route('/search/:candidateCin')
     res.status(404).json({error:err})
   });
 })
-condidateRouter.route('/accepeted') //TODO: verify this func
-.get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-  Condidates.find({ accepted: true}).skip((req.query.page -1)*10).limit(10)
-  .then((condidates) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json(condidates);
-  }, (err) => next(err))
-  .catch((err) => next(err));
-})
-// SHOW SUBMITION STATE TO CONDIDATE //TODO: ADD PROJECTION
+// SHOW SUBMITION STATE TO CONDIDATE 
 condidateRouter.route('/:condidateCin')
 .get((req, res, next) => {
-  Condidates.findOne({cin:req.params.condidateCin})
+  Condidates.findOne({cin:req.params.condidateCin}, {cin:1, firstName:1, lastName:1, status:1})
   .then((condidate) => {
     if(!condidate){
       return  res.status(404).json({error:'cin not found'});
