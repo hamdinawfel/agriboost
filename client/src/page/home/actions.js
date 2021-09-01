@@ -8,6 +8,7 @@ import {
     SET_ERROR,
   } from './types';
   import axios from 'axios';
+  
   export const createCondidat = (data) => (dispatch) => {
     dispatch({ type: LOADING })
     axios
