@@ -4,7 +4,7 @@ import Countdown from 'react-countdown';
 import Hero from './components/Hero'
 import ContactUs from './components/ContactUs'
 import ProjectTimeline from './components/ProjectTimeline'
-import Stepper from './components/Stepper2' //FIXME: REMOVE TOW
+import Stepper from './components/Stepper' 
 import Result from './components/Result'
 import Footer from '../../utils/Footer'
 

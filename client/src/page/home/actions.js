@@ -11,7 +11,7 @@ import {
   export const createCondidat = (data) => (dispatch) => {
     dispatch({ type: LOADING })
     axios
-      .post("condidates/", data)
+      .post(`/condidates/`, data)
       .then(res => { 
         dispatch({ type: SUCCESS_MESSAGE,
         payload: res.data })
@@ -23,7 +23,6 @@ import {
   export const reset = () => (dispatch) => {
     dispatch({ type: RESET })
   };
-
   export const getResult = (condidateCin) => (dispatch) => {
     dispatch({ type: LOADING })
     axios

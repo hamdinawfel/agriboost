@@ -1,4 +1,5 @@
-import React , {useState} from 'react';
+import React , { useState } from 'react';
+//MUI
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -9,23 +10,22 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import CircularProgress from '@material-ui/core/CircularProgress';
-//
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Alert from '@material-ui/lab/Alert';
+//
+import Title from '../../../utils/Title'
+
 //Redux
 import { connect } from 'react-redux';
 import { createCondidat, reset} from '../actions';
-const theme = createMuiTheme({
-    direction: 'rtl', // Both here and <body dir="rtl">
-  });
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,10 +37,6 @@ const useStyles = makeStyles((theme) => ({
       top:-500,
        padding:10
       },
-    // [theme.breakpoints.down('sm')]: {
-    // top:-480,
-    //  padding:10
-    // },
   [theme.breakpoints.down('sm')]: {
       top:'-50px',
       width:'100%',
@@ -52,10 +48,26 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
 
-  button: {
+  prevButton: {
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
     fontSize:22,
+    [theme.breakpoints.down('sm')]: {
+      fontSize:18,
+      },
+  },
+  nextButton: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    fontSize:22,
+    color: '#fff',
+    backgroundColor: theme.palette.primary.main,
+    border:`1px solid ${theme.palette.primary.main}`,
+    transition: '0.5s',
+    '&:hover': {
+        color: theme.palette.primary.main,
+        backgroundColor: '#fff',
+        },
     [theme.breakpoints.down('sm')]: {
       fontSize:18,
       },
@@ -65,25 +77,6 @@ const useStyles = makeStyles((theme) => ({
   },
   resetContainer: {
     padding: theme.spacing(3),
-  },
-  title:{
-    fontSize:30,
-    fontWeight:900,
-    display:'block',
-    textAlign:'right',
-    margin:'0 auto',
-    color:'#3F51B5',
-    paddingBottom:10,
-    marginBottom:20,
-    borderBottom:'3px solid #3F51B5',
-    [theme.breakpoints.down('sm')]: {
-    fontSize:20,
-    fontWeight:600,
-    textAlign:'center',
-    margin:10,
-    paddingBottom:10,
-     
-    },
   },
   stepTitle:{
     marginRight:20,
@@ -129,7 +122,6 @@ const useStyles = makeStyles((theme) => ({
     width:'100%',
     [theme.breakpoints.down('sm')]: {
     margin:10, 
-     
     },
   },
   item:{
@@ -151,12 +143,33 @@ function VerticalLinearStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [ open, setOpen ] = useState(false);
-  
+  // STEP 1
 var phoneRegex = /^\+?([0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;
 var cinRegex = /^[0-9]{8}$/;
+    
+const [ cin, setCin ] = useState('');
+const [ confirmCin, setConfirmCin ] = useState('');
+const [ cinError, setCinError ] = useState(false);
+
+const [ fingerPrint, setFingerPrint ] = useState('');
+const [ confirmFingerPrint, setConfirmFingerPrint ] = useState('');
+const [ fingerPrintError, setFingerPrintError ] = useState(false);
+
+const [ firstName, setFirstName ] = useState('');
+const [ firstNameError, setFirstNameError ] = useState(false);
+
+const [ lastName, setLastName ] = useState('');
+const [ lastNameError, setLastNameError ] = useState(false);
+
+const [sexe, setSexe] = React.useState('أنثى');
+
+const [birthDay, setBirthDay] = React.useState('');
+const [ birthDayError, setBirthDayError ] = useState(false);
 
   const handleBackFirstStep = () => {
     setActiveStep(0)
+    window.scrollTo(0, 900);
+
   };
   const handleSecondStep = () => {
     if( cin.match(cinRegex) &&  cin === confirmCin && fingerPrint.match(cinRegex) &&  fingerPrint === confirmFingerPrint
@@ -188,7 +201,33 @@ var cinRegex = /^[0-9]{8}$/;
 
   const handleBackSecondStep = () => {
     setActiveStep(1)
+    window.scrollTo(0, 900);
+
   };
+  // STEP 2
+  const [address, setAddress] = React.useState('');
+  const [ addressError, setAddressError ] = useState(false);
+
+  const [city, setCity] = React.useState('القيروان');
+
+  const [village, setVillage] = React.useState('');
+  const [ villageError, setVillageError ] = useState(false);
+
+  const [civilStatus, setcivilStatus] = React.useState('');
+  const [ civilStatusError, setCivilStatusError ] = useState(false);
+  
+  const [edicationalLevel, setedicationalLevel] = React.useState('');
+  const [ edicationalLevelError, setEdicationalLevelError ] = useState(false);
+
+  const [lastStadyLevel, setlastStadyLevel] = React.useState('');
+  const [ lastStadyLevelError, setLastStadyLevelError ] = useState(false);
+  
+ const [ phone, setPhone ] = useState('');
+ const [ phoneError, setPhoneError ] = useState(false);
+
+ const [ email, setEmail ] = useState('');
+ const [ emailError, setEmailError ] = useState(false);
+
   const handleThirdStep = () => {
     if( address !== '' && village !== '' && civilStatus !== '' &&  edicationalLevel !== '' &&  lastStadyLevel !== ''  && phone !=='' && email !=='') {
       setActiveStep(2)
@@ -225,99 +264,91 @@ var cinRegex = /^[0-9]{8}$/;
     }
   };
 
+  // STEP 3
+const [ firstCriteria, setFirstCriteria] = useState("");
+const [ firstCriteriaError, setFirstCriteriaError ] = useState(false);
+
+const [ secondCriteria, setSecondCriteria] = useState("");
+const [ secondCriteriaError, setSecondCriteriaError ] = useState(false);
+
+const [ thirdCriteria, setThirdCriteria] = useState("");
+const [ thirdCriteriaError, setThirdCriteriaError ] = useState(false);
+
+const [ fourthCriteria, setFourthCriteria] = useState("");
+const [ fourthCriteriaError, setFourthCriteriaError ] = useState(false);
+
+const [ fifthCriteria, setFifthCriteria] = useState("");
+const [ fifthCriteriaError, setFifthCriteriaError ] = useState(false);
+
+const [ sixthCriteria, setSixthCriteria] = useState("");
+const [ sixthCriteriaError, setSixthCriteriaError ] = useState(false);
+
+const [ seventhCriteria, setSeventhCriteria] = useState("");
+const [ seventhCriteriaError, setSeventhCriteriaError ] = useState(false);
+
+
   const handleLastStep = () => {
-    setActiveStep(3)
+
+    if( firstCriteria !== '' && secondCriteria !== '' && thirdCriteria !== '' &&  fourthCriteria !== '' &&  fifthCriteria !== ''  && sixthCriteria !=='' && seventhCriteria !=='') {
+        setActiveStep(3)
+        window.scrollTo(0, 970);
+        setFirstCriteriaError(false)
+        setSecondCriteriaError(false)
+        setThirdCriteriaError(false)
+        setFourthCriteriaError(false)
+        setFifthCriteriaError(false)
+        setSixthCriteriaError(false)
+        setSeventhCriteriaError(false)
+      }
+      if( firstCriteria === '') {
+        setFirstCriteriaError(true)
+      }
+     if( secondCriteria === '') {
+        setSecondCriteriaError(true)
+      }
+      if( thirdCriteria === '') {
+        setThirdCriteriaError(true)
+      }
+      if( fourthCriteria === '') {
+        setFourthCriteriaError(true)
+      }
+      if( fifthCriteria === '') {
+        setFifthCriteriaError(true)
+      }
+     if( sixthCriteria ==='') {
+        setSixthCriteriaError(true)
+      }
+      if( seventhCriteria === '') {
+        setSeventhCriteriaError(true)
+      }
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-    setCin('')
-    setFingerPrint('')
-    setFirstName('')
-    setLastName('')
-    setSexe('أنثى')
-    setBirthDay('')
-    setAddress('')
-    setVillage('')
-    setcivilStatus('')
-    setedicationalLevel('')
-    setlastStadyLevel('')
-    setPhone('')
-    setEmail('')
-    setIsBeneficiaryTreatment("لا")
-    setIsMotherOfResidingSon("لا")
-    setIsPreResidingAtDefenseCenter("لا")
-    setIsPreResidingAtCombinedCenter("لا")
-    setIsFamilymembersGuarantee("لا")
-    setIsFamilymembersStudent("لا")
-    setConfirmCin('')
-    setConfirmFingerPrint('')
+  // BACK TO STEP 2
+  const backToSecondStep = () => {
+    setActiveStep(2);
+    window.scrollTo(0, 1100);
     setOpen(false)
     setChecked('')
     setAccesspted(false)
     props.reset()
   };
-  // form setup
-  //STEP 1
-  const [ cin, setCin ] = useState('');
-  const [ confirmCin, setConfirmCin ] = useState('');
-  const [ cinError, setCinError ] = useState(false);
-
-  const [ fingerPrint, setFingerPrint ] = useState('');
-  const [ confirmFingerPrint, setConfirmFingerPrint ] = useState('');
-  const [ fingerPrintError, setFingerPrintError ] = useState(false);
-
-  const [ firstName, setFirstName ] = useState('');
-  const [ firstNameError, setFirstNameError ] = useState(false);
-
-  const [ lastName, setLastName ] = useState('');
-  const [ lastNameError, setLastNameError ] = useState(false);
-
-  const [sexe, setSexe] = React.useState('أنثى');
-
-  const [birthDay, setBirthDay] = React.useState('');
-  const [ birthDayError, setBirthDayError ] = useState(false);
-
-  //STEP 2
-  const [address, setAddress] = React.useState('');
-  const [ addressError, setAddressError ] = useState(false);
-
-  const [city, setCity] = React.useState('القيروان');
-
-  const [village, setVillage] = React.useState('');
-  const [ villageError, setVillageError ] = useState(false);
-
-  const [civilStatus, setcivilStatus] = React.useState('');
-  const [ civilStatusError, setCivilStatusError ] = useState(false);
-  
-  const [edicationalLevel, setedicationalLevel] = React.useState('');
-  const [ edicationalLevelError, setEdicationalLevelError ] = useState(false);
-
-  const [lastStadyLevel, setlastStadyLevel] = React.useState('');
-  const [ lastStadyLevelError, setLastStadyLevelError ] = useState(false);
-  
- const [ phone, setPhone ] = useState('');
- const [ phoneError, setPhoneError ] = useState(false);
-
- const [ email, setEmail ] = useState('');
- const [ emailError, setEmailError ] = useState(false);
-
-//STEP 3
-const [ isBeneficiaryTreatment, setIsBeneficiaryTreatment ] = useState("لا");
-const [ isMotherOfResidingSon, setIsMotherOfResidingSon ] = useState("لا");
-const [ isPreResidingAtDefenseCenter, setIsPreResidingAtDefenseCenter ] = useState("لا");
-const [ isPreResidingAtCombinedCenter, setIsPreResidingAtCombinedCenter ] = useState("لا");
-const [ isFamilymembersGuarantee, setIsFamilymembersGuarantee ] = useState("لا");
-const [ isFamilymembersStudent, setIsFamilymembersStudent ] = useState("لا");
-//end step3
+ 
+// SEND A FORM
 const [ accesspted, setAccesspted ] = useState(false);
 const [ checked, setChecked ] = useState('');
-
-
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     
+      const criteriaList = [
+        { question: "نوع بطاقة العلاج المنتفع بها", answer: firstCriteria },
+        { question: "البرنامج الوطني لمساعدة العائلات المعوزة المنتفع به" , answer: secondCriteria },
+        { question: "أم لإبن مقيم بأحد المراكز المندمجة للشباب و الطفولة" , answer: thirdCriteria },
+        { question: "البرنامج الوطني لمساعدة العائلات المعوزة المنتفع به" , answer: fourthCriteria },
+        { question: "أبناء أو إخوة على مقاعد الدراسة أو التكوين" , answer: fifthCriteria },
+        { question: "مسجل بمكتب التشغيل و العمل المستقل (قبل يوم 25 أكتوبر2019)" , answer: sixthCriteria },
+        { question: "عدد سنوات البطالة" , answer: seventhCriteria },
+      ];
       const data = {
         cin,
         fingerPrint,
@@ -333,12 +364,7 @@ const [ checked, setChecked ] = useState('');
         lastStadyLevel,
         phone,
         email,
-        isBeneficiaryTreatment,
-        isMotherOfResidingSon,
-        isPreResidingAtDefenseCenter,
-        isPreResidingAtCombinedCenter,
-        isFamilymembersGuarantee,
-        isFamilymembersStudent
+        criteriaList
 
       }
       if(accesspted){
@@ -351,14 +377,17 @@ const [ checked, setChecked ] = useState('');
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
     <div className={classes.root}>
-    <span className={classes.title}>الرجاء تعمير الجذاذة بكل دقة وباللغة العربية</span>
-    <p style={{color:'#ff0000', textAlign:'right'}}><span style={{color:'#fff', background:'#ff0000', textAlign:'center', padding:'2px 15px', borderRadius:2, fontWeight:600}}>هام جدا</span> سيتم التثبت من كل المعطيات المصرح  بها في مراحل الفرز </p>
+    <Title title="تعمير الجذاذة" />
+    <p style={{color:'#ff0000', textAlign:'right', margin:'40px 10px 20px 10px'}}>
+        <span style={{color:'#fff', background:'#ff0000', textAlign:'center', padding:'2px 15px', borderRadius:2, fontWeight:600, marginLeft:10}}>هام جدا</span>
+        االرجاء تعمير الجذاذة باللغة العربية و بكل دقة، سيتم التثبت من كل المعطيات المصرح بها في مراحل الفرز
+    </p>
     <form className={classes.stepper} dir="rtl" onSubmit={handleSubmitForm}>
       <Stepper activeStep={activeStep} orientation="vertical" connector={<div style={{dispaly:'none'}}/>}>
          {/*  STEP  1*/}
-          <Step  style={{background:'#eee', padding:15, borderRadius:5 ,marginBottom:20}}>
+          <Step  style={{background:'#F9F9F9', padding:15, borderRadius:5 ,marginBottom:20, border:'3px solid #eee'}}>
             <StepLabel style={{marginTop:20}}>
               <span className={classes.stepTitle}>تعمير المعطيات الشخصية</span>
               </StepLabel>
@@ -461,7 +490,7 @@ const [ checked, setChecked ] = useState('');
                   <Button
                     variant="outlined"
                     disabled={activeStep === 0}
-                    className={classes.button}
+                    className={classes.prevButton}
                   >
                    تصحيح
                   </Button>
@@ -469,7 +498,7 @@ const [ checked, setChecked ] = useState('');
                     variant="contained"
                     color="primary"
                     onClick={handleSecondStep}
-                    className={classes.button}
+                    className={classes.nextButton} 
                   >
                     أواصل
                   </Button>
@@ -478,7 +507,7 @@ const [ checked, setChecked ] = useState('');
             </StepContent>
           </Step>
         {/*  STEP  2*/}
-          <Step   style={{background:'#eee', padding:15, borderRadius:5 ,marginBottom:20}}>
+          <Step  style={{background:'#F9F9F9', padding:15, borderRadius:5 ,marginBottom:20, border:'3px solid #eee'}}>
             <StepLabel style={{marginTop:20}}>
               <span className={classes.stepTitle}>تعمير المعطيات التكميلية</span>
               </StepLabel>
@@ -632,7 +661,7 @@ const [ checked, setChecked ] = useState('');
                   <Button
                      variant="outlined"
                     onClick={handleBackFirstStep}
-                    className={classes.button}
+                    className={classes.prevButton}
                   >
                     تصحيح
                   </Button>
@@ -640,7 +669,7 @@ const [ checked, setChecked ] = useState('');
                     variant="contained"
                     color="primary"
                     onClick={handleThirdStep}
-                    className={classes.button}
+                    className={classes.nextButton}
                   >
                     أواصل
                   </Button>
@@ -649,76 +678,124 @@ const [ checked, setChecked ] = useState('');
             </StepContent>
           </Step>
           {/*  STEP  3*/}
-          <Step   style={{background:'#eee', padding:15, borderRadius:5 ,marginBottom:20}} >
+          <Step   style={{background:'#F9F9F9', padding:15, borderRadius:5 ,marginBottom:20, border:'3px solid #eee'}} >
             <StepLabel style={{marginTop:20}}>
               <span className={classes.stepTitle}>تعمير معطيات عن الحالة الإجتماعية</span>
               </StepLabel>
             <StepContent>
+               {/* first Criteria  -- المعيار الأول*/}
                 <Grid container className={classes.formBox}>
                    <Grid item xs={12} md={6} className={classes.item}>
                     <FormControl component="fieldset" style={{margin:10, width:'100%'}}>
-                        <FormLabel component="legend" style={{fontSize:22}}>منتفع بالبرنامج الوطني للعلاج المجاني وذو التعريفة المنخفظة</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={isBeneficiaryTreatment} onChange={(e)=>setIsBeneficiaryTreatment(e.target.value)}>
-                          <FormControlLabel value="نعم" control={<Radio color="primary" />} label="نعم" />
-                          <FormControlLabel value="لا" control={<Radio color="primary"  />} label="لا" />
+                        <FormLabel component="legend" style={{fontSize:22, color: firstCriteriaError ?'#ff0000':null}}>نوع بطاقة العلاج المنتفع بها :</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={ firstCriteria } onChange={(e)=>setFirstCriteria(e.target.value)}>
+                          <FormControlLabel value="firstOption" control={<Radio color="primary" />} label="بطاقة العلاج  المجاني" />
+                          <FormControlLabel value="secondOption" control={<Radio color="primary"  />} label="بطاقة علاج ذات التعريفة المنخفظة" />
                         </RadioGroup>
                       </FormControl>
                    </Grid>
+                   {/* second Criteria  -- المعيار الثاني */}
                    <Grid item xs={12} md={6} className={classes.item}>
                     <FormControl component="fieldset" style={{margin:10, width:'100%'}}>
-                        <FormLabel component="legend" style={{fontSize:22}}>أم لإبن مقيم بأحد المراكز المندمجة للشباب و الطفولة</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={isMotherOfResidingSon} onChange={(e)=>setIsMotherOfResidingSon(e.target.value)}>
-                          <FormControlLabel value="نعم" control={<Radio color="primary" />} label="نعم" />
-                          <FormControlLabel value="لا" control={<Radio color="primary"  />} label="لا" />
+                        <FormLabel component="legend" style={{fontSize:22, color: secondCriteriaError ?'#ff0000':null}}>أفراد من العائلة في الكفالة :</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={ secondCriteria } onChange={(e)=>setSecondCriteria(e.target.value)}>
+                          <FormControlLabel value="firstOption" control={<Radio color="primary" />} label="نعم" />
+                          <FormControlLabel value="secondOption" control={<Radio color="primary"  />} label="لا" />
                         </RadioGroup>
                       </FormControl>
                    </Grid>
+               {/* third Criteria  -- المعيار الثالث*/}
                    <Grid item xs={12} md={6} className={classes.item}>
                     <FormControl component="fieldset" style={{margin:10, width:'100%'}}>
-                        <FormLabel component="legend" style={{fontSize:22}}>مكفول سابقا من أحد مراكز الدفاع والإدماج الإجتماعي</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={isPreResidingAtDefenseCenter} onChange={(e)=>setIsPreResidingAtDefenseCenter(e.target.value)}>
-                          <FormControlLabel value="نعم" control={<Radio color="primary" />} label="نعم" />
-                          <FormControlLabel value="لا" control={<Radio color="primary"  />} label="لا" />
+                        <FormLabel component="legend" style={{fontSize:22, color: thirdCriteriaError ?'#ff0000':null}}>أم لإبن مقيم بأحد المراكز المندمجة للشباب و الطفولة :</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={ thirdCriteria } onChange={(e)=>setThirdCriteria(e.target.value)}>
+                          <FormControlLabel value="firstOption" control={<Radio color="primary" />} label="نعم" />
+                          <FormControlLabel value="secondOption" control={<Radio color="primary"  />} label="لا" />
                         </RadioGroup>
                       </FormControl>
                    </Grid>
+               {/* fourth Criteria  */}
                    <Grid item xs={12} md={6} className={classes.item}>
                     <FormControl component="fieldset" style={{margin:10, width:'100%'}}>
-                        <FormLabel component="legend" style={{fontSize:22}}>متعهد بك سابقا من أحد المراكز المندمجة للشباب و الطفولة</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={isPreResidingAtCombinedCenter} onChange={(e)=>setIsPreResidingAtCombinedCenter(e.target.value)}>
-                          <FormControlLabel value="نعم" control={<Radio color="primary" />} label="نعم" />
-                          <FormControlLabel value="لا" control={<Radio color="primary"  />} label="لا" />
+                        <FormLabel component="legend" style={{fontSize:22, color: fourthCriteriaError ?'#ff0000':null }}>البرنامج الوطني لمساعدة العائلات المعوزة المنتفع به :</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={ fourthCriteria } onChange={(e)=>setFourthCriteria(e.target.value)}>
+                          <FormControlLabel value="firstOption" control={<Radio color="primary" />} label="مكفول سابقا من أحد مراكز الدفاع والإدماج الإجتماعي" />
+                          <FormControlLabel value="secondOption" control={<Radio color="primary"  />} label="متعهد بك سابقا من أحد المراكز المندمجة للشباب و الطفولة" />
                         </RadioGroup>
                       </FormControl>
                    </Grid>
+               {/* fifth Criteria  */}
                    <Grid item xs={12} md={6} className={classes.item}>
                     <FormControl component="fieldset" style={{margin:10, width:'100%'}}>
-                        <FormLabel component="legend" style={{fontSize:22}}>أفراد من العائلة في الكفالة</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={isFamilymembersGuarantee} onChange={(e)=>setIsFamilymembersGuarantee(e.target.value)}>
-                          <FormControlLabel value="نعم" control={<Radio color="primary" />} label="نعم" />
-                          <FormControlLabel value="لا" control={<Radio color="primary"  />} label="لا" />
+                        <FormLabel component="legend" style={{fontSize:22, color: fifthCriteriaError ?'#ff0000':null}}>أبناء أو إخوة على مقاعد الدراسة أو التكوين</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={ fifthCriteria }  onChange={(e)=>setFifthCriteria(e.target.value)}>
+                          <FormControlLabel value="firstOption" control={<Radio color="primary" />} label="نعم" />
+                          <FormControlLabel value="secondOption" control={<Radio color="primary"  />} label="لا" />
                         </RadioGroup>
                       </FormControl>
                    </Grid>
+               {/* sixth Criteria */}
                    <Grid item xs={12} md={6} className={classes.item}>
                     <FormControl component="fieldset" style={{margin:10, width:'100%'}}>
-                        <FormLabel component="legend" style={{fontSize:22}}>أبناء أو إخوة على مقاعد الدراسة أو التكوين</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={isFamilymembersStudent}onChange={(e)=>setIsFamilymembersStudent(e.target.value)}>
-                          <FormControlLabel value="نعم" control={<Radio color="primary" />} label="نعم" />
-                          <FormControlLabel value="لا" control={<Radio color="primary"  />} label="لا" />
+                        <FormLabel component="legend" style={{fontSize:22, color: sixthCriteriaError ?'#ff0000':null}}>مسجل بمكتب التشغيل و العمل المستقل (قبل يوم 25 أكتوبر2019)</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={ sixthCriteria } onChange={(e)=>setSixthCriteria(e.target.value)}>
+                          <FormControlLabel value="firstOption" control={<Radio color="primary" />} label="نعم" />
+                          <FormControlLabel value="secondOption" control={<Radio color="primary"  />} label="لا" />
                         </RadioGroup>
                       </FormControl>
                    </Grid>
-                   
-                   
-                  
+               {/* seventh Criteria */}
+                   <Grid item xs={12} md={6} className={classes.item}>
+                    <TextField 
+                        select
+                        error={ seventhCriteriaError }
+                        value={ seventhCriteria }
+                        onChange={(e)=>setSeventhCriteria(e.target.value)}
+                        style={{margin:10, width:'100%'}}
+                        label="عدد سنوات البطالة :" 
+                        InputLabelProps={{
+                        classes: { root: classes.labelRoot, shrink: classes.shrink }
+                        }}>
+                            <MenuItem  value={1} dir="rtl" style={{fontSize:20}}>
+                               سنة واحدة
+                            </MenuItem>
+                            <MenuItem  value={2} dir="rtl" style={{fontSize:20}}>
+                              سنتان  
+                            </MenuItem>
+                            <MenuItem  value={3} dir="rtl" style={{fontSize:20}}>
+                              ثلاث سنوات  
+                            </MenuItem>
+                            <MenuItem  value={4} dir="rtl" style={{fontSize:20}}>
+                               أربع سنوات   
+                            </MenuItem>
+                            <MenuItem  value={5} dir="rtl" style={{fontSize:20}}>
+                               خمس سنوات
+                            </MenuItem>
+                            <MenuItem  value={6} dir="rtl" style={{fontSize:20}}>
+                               ست سنوات   
+                            </MenuItem>
+                            <MenuItem  value={7} dir="rtl" style={{fontSize:20}}>
+                               سبع سنوات      
+                            </MenuItem>
+                            <MenuItem  value={8} dir="rtl" style={{fontSize:20}}>
+                               ثمان سنوات   
+                            </MenuItem>
+                            <MenuItem  value={9} dir="rtl" style={{fontSize:20}}>
+                               تسع سنوات   
+                            </MenuItem>
+                            <MenuItem  value={10} dir="rtl" style={{fontSize:20}}>
+                               أكثر من عشر سنوات       
+                            </MenuItem>
+                       
+                    </TextField>
+                   </Grid>
                 </Grid>
               <div className={classes.actionsContainer}>
                 <div>
                   <Button
                     variant="outlined"
                     onClick={handleBackSecondStep}
-                    className={classes.button}
+                    className={classes.prevButton}
                   >
                     تصحيح
                   </Button>
@@ -727,7 +804,7 @@ const [ checked, setChecked ] = useState('');
                     variant="contained"
                     color="primary"
                     onClick={handleLastStep}
-                    className={classes.button}
+                    className={classes.nextButton}
                   >
                     أواصل
                   </Button>
@@ -739,55 +816,56 @@ const [ checked, setChecked ] = useState('');
       </Stepper>
       {activeStep === 3 && (
         <Paper square elevation={0} className={classes.resetContainer}>
-          <div style={{display:'flex', margin:'-20px 0 30px 0'}}>
-              <FormControlLabel
-              style={{ marginLeft:10}}
-                control={
-                  <Checkbox
-                    color={ checked === 'accesspet'? 'secondary':'primary'}
-                    checked={accesspted}
-                    onChange={()=>setAccesspted(!accesspted)}
-                    name="checkedB"
+          { props.condidate.success === '' ?
+            <React.Fragment>
+                <div style={{display:'flex', margin:'-20px 0 30px 0'}}>
+                    <FormControlLabel
+                    style={{ marginLeft:10}}
+                        control={
+                        <Checkbox
+                            color={ checked === 'accesspet'? 'secondary':'primary'}
+                            checked={accesspted}
+                            onChange={()=>setAccesspted(!accesspted)}
+                            name="checkedB"
+                            color="primary"
+                        />
+                        }
+                    />
+                        <Typography color={ checked === 'accesspet'? 'secondary':'#101F25'} style={{ fontSize:'20px'}}>أصرح على شرفي وأكد بأن المعطيات التي صرحت بها صحيحة وإن ثبوت عكس ذلك سيؤدي إلى رفض مطلبي بصفة آلية</Typography>
+                </div>
+                <Button  variant="outlined" onClick={backToSecondStep} className={classes.prevButton}>
+                    تصحيح    
+                </Button>
+                <Button
+                    type="submit"
+                    disabled={props.condidate.loading}
+                    variant="contained"
                     color="primary"
-                  />
-                }
-              />
-                <Typography color={ checked === 'accesspet'? 'secondary':'primary'} style={{ fontSize:'20px'}}>أصرح على شرفي وأكد بأن المعطيات التي صرحت بها صحيحة وإن ثبوت عكس ذلك سيؤدي إلى رفض مطلبي بصفة آلية</Typography>
-          </div>
-          <Button  variant="outlined" onClick={handleReset} className={classes.button}>
-            تصحيح    
-          </Button>
-          <Button
-            type="submit"
-            disabled={props.condidat.loading}
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            >
-            {props.condidat.loading ? <CircularProgress size={25} style={{color:'rgba(255,255,255,0.8)', verticalAlign:'middle'}}/>:<span>تسجيل</span>}
-            </Button>
-            { props.condidat.success && open?
+                    className={classes.nextButton}
+                    >
+                    {props.condidate.loading ? <CircularProgress size={25} style={{color:'rgba(255,255,255,0.8)', verticalAlign:'middle', margin:'3px 20px'}}/>:<span>تسجيل</span>}
+                    </Button>
+            </React.Fragment>:null}
+            { props.condidate.success === 'success'&& open?
             <Alert variant="filled" severity="success" style={{marginTop:20}}>
-            تمت عملية التسجيل الأولي عن بعد بنجاح 
-          </Alert>
-            
-           :null}
-           
-            { props.condidat.fail && open?
+              تمت عملية التسجيل الأولي عن بعد بنجاح ، هذا الموقع سيمكنك بعد نهاية فترة التسجيل من التعرف على النتيجة، حظا موفقا
+            </Alert>
+           :
+           null}
+            { props.condidate.success === 'fail'&& open?
             <Alert variant="filled" severity="error" style={{marginTop:20}}>
-               هذه العملية غير مسموح بها، لقد سبق وتم التسجيل
-          </Alert>
-            
-           :null}
+            هذه العملية غير مسموح بها، لقد سبق وتم التسجيل
+             </Alert>:
+           null}
         </Paper>
       )}
     </form>
     </div>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 const mapStateToProps = (state) => ({
-  condidate: state.condidate,
+    condidate: state.condidate,
 });
 
 const mapActionsToProps = {

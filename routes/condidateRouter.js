@@ -190,7 +190,7 @@ condidateRouter.route('/search/:candidateCin')
 // SHOW SUBMITION STATE TO CONDIDATE 
 condidateRouter.route('/:condidateCin')
 .get((req, res, next) => {
-  Condidates.findOne({cin:req.params.condidateCin}, {cin:1, firstName:1, lastName:1, status:1})
+  Condidates.findOne({cin:req.params.condidateCin}, {cin:1, firstName:1, lastName:1, status:1, sexe:1})
   .then((condidate) => {
     if(!condidate){
       return  res.status(404).json({error:'cin not found'});

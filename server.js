@@ -1,17 +1,22 @@
 require('dotenv').config()
-const express = require('express')
+let express = require('express')
 var sslRedirect = require('heroku-ssl-redirect').default;
 var cors = require('cors')
 const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
-
+let helmet = require('helmet');
 //Load routes
+
+let app = express();
+app.disable("x-powered-by");
+app.use(helmet())
+
+
 const condidateRouter = require("./routes/condidateRouter");
 const countRouter = require("./routes/countRouter");
 const users = require("./routes/users");
 
-const app = express()
 app.use(express.json());
 app.use(sslRedirect());
 
