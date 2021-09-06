@@ -9,11 +9,11 @@ const limiter = require('../middlewares/limiter');
 const condidateRouter = express.Router();
 
 const candidateStatus =   {
-  submitted:"في مرحلة الفرز",
-  rejected:"حضي بالرفض",
-  waited:"في قائمة الإنتضار",
-  initial:"حضي بالقبول مبدئيا",
-  final:"حضي بالقبول نهائيا"
+  submitted:"مطلبكم في مرحلة الفرز",
+  rejected:"نأسف لعدم قبول مطلبكم",
+  waited: "مطلبكم في قائمة الإنتضار",
+  initial:"حضي مطلبكم بالقبول مبدئيا",
+  final:"حضي مطلبكم بالقبول"
 }
 
 condidateRouter.route('/') 

@@ -226,14 +226,14 @@ const theme = useTheme();
                     
                     <p className={classes.body} >
                        {props.condidate.data.sexe === 'أنثى'?femalSexe:malSexe } 
-                       <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.firstName} {"  "} {props.condidate.data.lastName} {"  "}</span>
+                       <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.firstName} {"  "} {props.condidate.data.lastName} {" "}</span>
                        <span className={classes.body} >
                         {"صاحب  بطاقة  التعريف الوطنية رقم"} 
                         </span>
                         <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.cin} </span> 
                     </p>
-                    <p className={classes.body}>
-                      <span style={{fontWeight:600, margin:'10px'}}>{props.condidate.data.status}</span> 
+                    <p className={classes.body} style={{marginTop:20}}>
+                      <span style={{fontWeight:600}}>{props.condidate.data.status}</span> 
                     </p>
                   </div>
                   <Pdf targetRef={ref} filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>
