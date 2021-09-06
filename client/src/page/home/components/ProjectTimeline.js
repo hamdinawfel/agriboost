@@ -153,7 +153,7 @@ export default function ProjectTimeline() {
                   إداع الوثائق
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
-                  إداع الوثائق من قبل المقبولين أوليا للتثت من صحة المعلومات المصرح بها
+                  إيداع الوثائق من قبل المقبولين أوليا للتثبت من صحة المعلومات المصرح بها
                   </Typography>
                 </Paper>
               </TimelineContent>
