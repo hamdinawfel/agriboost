@@ -3,11 +3,11 @@ const bodyParser = require('body-parser');
 var User = require('../models/user');
 var passport = require('passport');
 var authenticate = require('../middlewares/authenticate');
-
+const limiter = require('../middlewares/limiter');
 var router = express.Router();
 router.use(bodyParser.json());
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup',limiter, (req, res, next) => {
     User.register(new User({email: req.body.username}), 
     req.body.password, (err, user) => {
     if(err) {
@@ -38,7 +38,7 @@ router.post('/signup', (req, res, next) => {
   });
   });
   
-  router.post('/login', passport.authenticate('local'), (req, res) => {
+  router.post('/login', limiter, passport.authenticate('local'), (req, res) => {
 
     var token = authenticate.getToken({_id: req.user._id});
     res.statusCode = 200;

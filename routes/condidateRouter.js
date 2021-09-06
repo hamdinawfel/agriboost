@@ -4,6 +4,7 @@ const Condidates = require('../models/condidate');
 var authenticate = require('../middlewares/authenticate');
 var score = require('../middlewares/score');
 var verify = require('../middlewares/verify');
+const limiter = require('../middlewares/limiter');
 
 const condidateRouter = express.Router();
 
@@ -189,11 +190,11 @@ condidateRouter.route('/search/:candidateCin')
 })
 // SHOW SUBMITION STATE TO CONDIDATE 
 condidateRouter.route('/:condidateCin')
-.get((req, res, next) => {
+.get(limiter,(req, res, next) => {
   Condidates.findOne({cin:req.params.condidateCin}, {cin:1, firstName:1, lastName:1, status:1, sexe:1})
   .then((condidate) => {
     if(!condidate){
-      return  res.status(404).json({error:'cin not found'});
+      return  res.status(404).json('cin not found');
     }else{
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');

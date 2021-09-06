@@ -8,7 +8,7 @@ import {
     SET_ERROR,
   } from './types';
   import axios from 'axios';
-  
+
   export const createCondidat = (data) => (dispatch) => {
     dispatch({ type: LOADING })
     axios
@@ -33,7 +33,10 @@ import {
         payload: res.data })
       })
       .catch(err =>
-        dispatch({ type: SET_ERROR })
+        dispatch({ 
+          type: SET_ERROR,
+          payload: err.response.status === 404?"الرجاء التثبت من رقم بطاقة التعريف الوطنية":err.response.status !== 429?"يوجد خلل ما، الرجاء التحقق من إرباطك من شبكة الأنترنات":"لقد أجريت العديد من محاولات الدخول في وقت قصير، حاول لاحقا"
+        })
       );
   };
   

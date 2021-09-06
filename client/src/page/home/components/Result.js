@@ -188,7 +188,7 @@ const theme = useTheme();
                     </p>
                     {props.condidate.error?
                     <p className={classes.errorText}> 
-                    الرجاء التثبت من رقم بطاقة التعريف الوطنية
+                      {props.condidate.errorMsg}
                     </p>:null}
                     <TextField 
                         error={cinError}
@@ -235,10 +235,6 @@ const theme = useTheme();
                     <p className={classes.body}>
                     مطلبك بمشروع أڨريبوست <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.status}</span> 
                     </p>
-                    <p className={classes.footer}>
-                      حظا{" "}موفقا  
-                    </p>
-                   
                   </div>
                   <Pdf targetRef={ref} filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>
                     {({ toPdf }) => 

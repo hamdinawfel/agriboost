@@ -12,6 +12,7 @@ import {
     loading: false,
     success : '',
     error:false,
+    errorMsg: '',
     showResult:false,
     data: {},
   };
@@ -60,6 +61,7 @@ import {
                 ...state,
                 loading: false,
                 error: true,
+                errorMsg : action.payload,
             };
         default:
             return state;
