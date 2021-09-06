@@ -150,7 +150,7 @@ export default function ProjectTimeline() {
                 <Paper elevation={3} className={classes.paper}>
                   <Typography variant="h6" component="h1" className={classes.stepTitle}>
                   <span className={classes.stepNumber}>4</span>
-                  إداع الوثائق
+                  إيداع الوثائق
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
                   إيداع الوثائق من قبل المقبولين أوليا للتثبت من صحة المعلومات المصرح بها
