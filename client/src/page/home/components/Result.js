@@ -233,7 +233,7 @@ const theme = useTheme();
                         <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.cin} </span> 
                     </p>
                     <p className={classes.body}>
-                    مطلبك بمشروع أڨريبوست <span style={{fontWeight:600, margin:'0 10px'}}>{props.condidate.data.status}</span> 
+                      <span style={{fontWeight:600, margin:'10px'}}>{props.condidate.data.status}</span> 
                     </p>
                   </div>
                   <Pdf targetRef={ref} filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}  scale={fullScreen?1.6:1.4}  x={fullScreen?40:0} y={10}>

@@ -96,7 +96,7 @@ export default function ProjectTimeline() {
                   التسجيل
                   </Typography>
                   <Typography variant="body2" color="textSecondary" className={classes.stepSubtitle}>
-                  من 15  إلى 27 أوت 2021
+                  من 15 إلى 30 سبتمبر 2021
                 </Typography>
                 </Paper>
               </TimelineContent>
@@ -115,7 +115,7 @@ export default function ProjectTimeline() {
                   التنقيط
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
-                  إحتساب وترتيب النقاط حسب ما تم التصريح به
+                  إحتساب وترتيب المترشحين  حسب ما تم التصريح به
                 </Typography>
                 </Paper>
               </TimelineContent>
@@ -153,7 +153,7 @@ export default function ProjectTimeline() {
                   إداع الوثائق
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
-                  إداع الوثائق من قبل القائمة الأولية للتثت من صحة المصرح به
+                  إداع الوثائق من قبل المقبولين أوليا للتثت من صحة المعلومات المصرح بها
                   </Typography>
                 </Paper>
               </TimelineContent>
@@ -172,7 +172,7 @@ export default function ProjectTimeline() {
                   النتائج النهائية
                   </Typography>
                   <Typography  color="textSecondary" className={classes.stepSubtitle}>
-                  قبول أصحاب الوثائق المدعمة للملفات
+                  التصريح بالقائمة النهائية للمقبولين
                   </Typography>
                 </Paper>
               </TimelineContent>

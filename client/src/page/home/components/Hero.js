@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
   const Completionist = () => 
    <div>
       <p className={classes.caption}> 
-      إنتهت عملية التسجيل بتاريخ 27 أوت 2021
+      إنتهت عملية التسجيل بتاريخ 30 سبتمبر 2021
     </p>
     <Button className={classes.myButton} onClick={handleResult}>
       النتائج   
