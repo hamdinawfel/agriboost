@@ -6,12 +6,13 @@ var authenticate = require('../middlewares/authenticate');
 const countRouter = express.Router();
 
 const candidateStatus =   {
-    submitted:"في مرحلة الفرز",
-    rejected:"حضي بالرفض",
-    waited:"في قائمة الإنتضار",
-    initial:"حضي بالقبول مبدئيا",
-    final:"حضي بالقبول نهائيا"
- }
+  submitted:"مطلبكم في مرحلة الفرز",
+  rejected:"نأسف لعدم قبول مطلبكم",
+  waited: "مطلبكم في قائمة الإنتضار",
+  initial:"حضي مطلبكم بالقبول مبدئيا",
+  final:"حضي مطلبكم بالقبول"
+}
+
 countRouter.route('/submitted') 
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
   Condidates.find({}).countDocuments()
