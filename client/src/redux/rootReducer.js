@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import condidatReducer from '../page/home/reducer';
+import condidatReducer from "../page/home/reducer";
 
 const rootReducer = combineReducers({
-    condidate: condidatReducer,
-  })
-  
+  condidate: condidatReducer,
+});
+
 export default rootReducer;

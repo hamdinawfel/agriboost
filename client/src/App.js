@@ -1,52 +1,47 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 //pages
-import Home from './page/home/index';
-
+import Home from "./page/home/Index";
 //utils
-import Navbar from './utils/Navbar'
-import PageNotFound from './utils/PageNotFound'
-
+import Navbar from "./utils/Navbar";
+import PageNotFound from "./utils/PageNotFound";
 //Redux setup
-import store from './redux/store'
-import { Provider } from 'react-redux';
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 function App() {
-
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-            <Router>
-              <Navbar />
-              <div > 
-                <Switch>
-                  <Route exact path="/" component={ Home } />
-                  <Route component={PageNotFound} />
-                </Switch>
-                
-              </div>
-          </Router>
+        <Router>
+          <Navbar />
+          <div>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route component={PageNotFound} />
+            </Switch>
+          </div>
+        </Router>
       </ThemeProvider>
-     </Provider>
+    </Provider>
   );
 }
 
 const theme = createMuiTheme({
   palette: {
-     primary: {
-       main: '#6AAF06', //#6AAF06
-      green:'#10991e',
-      dark:'#101F25'
+    primary: {
+      main: "#6AAF06",
+      green: "#10991e",
+      dark: "#101F25",
     },
     secondary: {
-      main:'#ff0000',
-      red: '#FAE3E3',
+      main: "#ff0000",
+      red: "#FAE3E3",
     },
   },
 });
 
 export default App;
-
