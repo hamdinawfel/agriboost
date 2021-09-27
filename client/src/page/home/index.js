@@ -3,12 +3,14 @@ import Countdown from "react-countdown";
 import Hero from "./components/Hero";
 import ContactUs from "./components/ContactUs";
 import ProjectTimeline from "./components/ProjectTimeline";
-import Stepper from "./components/Stepper";
+// import Stepper from "./components/Stepper";
+import Stepper from "./components/stepper/Index";
 import Result from "./components/Result";
 import Footer from "../../utils/Footer";
 
 const renderer = ({ completed }) => {
-  if (completed) {
+  if (!completed) {
+    //FIXME: REMOVE !
     // Render the result screen at the finishing the event time
     return (
       <React.Fragment>
