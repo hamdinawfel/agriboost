@@ -23,7 +23,7 @@ const renderer = ({ completed }) => {
     return <Stepper />;
   }
 };
-export default function Home() {
+export default function Index() {
   return (
     <div>
       <Hero />

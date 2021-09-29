@@ -6,6 +6,10 @@ import {
   SHOW_RESULT,
   CLOSE_RESULT,
   SET_ERROR,
+  FIRST_STEP,
+  SECOND_STEP,
+  THIRD_STEP,
+  LAST_STEP,
 } from "./types";
 import axios from "axios";
 
@@ -43,4 +47,16 @@ export const getResult = (condidateCin) => (dispatch) => {
 
 export const closeResult = () => (dispatch) => {
   dispatch({ type: CLOSE_RESULT });
+};
+export const displayFirstStep = () => (dispatch) => {
+  dispatch({ type: FIRST_STEP });
+};
+export const displaySecondStep = () => (dispatch) => {
+  dispatch({ type: SECOND_STEP });
+};
+export const displayThirdStep = () => (dispatch) => {
+  dispatch({ type: THIRD_STEP });
+};
+export const displayLastStep = () => (dispatch) => {
+  dispatch({ type: LAST_STEP });
 };

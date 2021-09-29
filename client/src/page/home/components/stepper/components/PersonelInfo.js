@@ -4,14 +4,10 @@ import * as yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-
-import setLocalStorage from "../utils/setLocalStorage";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+import { displaySecondStep } from "../../../actions";
 
 const validationSchema = yup.object({
   cin: yup
@@ -46,11 +42,43 @@ const validationSchema = yup.object({
     )
     .max(20, "الرجاء عدم تجاوج 20 حرف")
     .required("الرجاء التثبت من إدخال اللقب"),
+  birthDay: yup.string().required("الرجاء التثبت من إدخال تاريخ الولادة"),
+  address: yup
+    .string()
+    .matches(
+      /^[\u0621-\u064A\u0660-\u0669 ]+$/,
+      "الرجاء التثبت من إدخال العنوان باللغة العربية"
+    )
+    .required("الرجاء التثبت من إدخال العنوان"),
+  village: yup
+    .string()
+    .oneOf(
+      ["القيروان الشمالية", "القيروان الجنوبية", "حاجب العيون", "حفوز"],
+      "الرجاء التثبت من إدخال المعتمدية"
+    )
+    .required("الرجاء التثبت من إدخال المعتمدية"),
   sexe: yup
     .string()
     .oneOf(["أنثى", "ذكر"], "الرجاء التثبت من إدخال الجنس")
     .required("الرجاء التثبت من إدخال الجنس"),
-  birthDay: yup.string().required("الرجاء التثبت من إدخال تاريخ الولادة"),
+  civilStatus: yup
+    .string()
+    .oneOf(
+      ["أعزب", "عزباء", "متزوج", "متزوجة", "مطلق", "مطلقة", "أرمل", "أرملة"],
+      "الرجاء التثبت من إدخال الحالة المدنية"
+    )
+    .required("الرجاء التثبت من إدخال الحالة المدنية"),
+  phone: yup
+    .string()
+    .matches(
+      /^\d{8}$/,
+      "الرجاء التثبت من إدخال رقم الهاتف على النحو التالي: 22013013"
+    )
+    .required("الرجاء التثبت من إدخال رقم الهاتف"),
+  email: yup
+    .string("الرجاء التثبت من إدخال العنوان البريد الإلكتروني")
+    .email("الرجاء التثبت من إدخال العنوان البريد الإلكتروني")
+    .required("الرجاء التثبت من إدخال العنوان البريد الإلكتروني"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -90,8 +118,36 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 18,
     },
   },
+  btnContainer: {
+    margin: theme.spacing(2),
+  },
+  prevButton: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    fontSize: 22,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 18,
+    },
+  },
+  nextButton: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    fontSize: 22,
+    color: "#fff",
+    backgroundColor: theme.palette.primary.main,
+    border: `1px solid ${theme.palette.primary.main}`,
+    transition: "0.5s",
+    "&:hover": {
+      color: theme.palette.primary.main,
+      backgroundColor: "#fff",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 18,
+    },
+  },
 }));
-function PersonelInfo() {
+
+function PersonelInfo(props) {
   const classes = useStyles();
 
   const formik = useFormik({
@@ -102,14 +158,21 @@ function PersonelInfo() {
       confirmFingerPrint: "",
       firstName: "",
       lastName: "",
-      sexe: "",
       birthDay: "",
+      address: "",
+      village: "",
+      city: "القيروان",
+      sexe: "",
+      civilStatus: "",
+      phone: "",
+      email: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      setLocalStorage("personelInfo", values);
+      props.displaySecondStep();
     },
   });
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -248,37 +311,6 @@ function PersonelInfo() {
             />
           </Grid>
           <Grid item xs={12} sm={6} className={classes.item}>
-            <FormControl
-              component='fieldset'
-              style={{ margin: 10, width: "100%" }}>
-              <FormLabel
-                required
-                component='sexe'
-                className={classes.checkboxItem}>
-                الجنس
-              </FormLabel>
-              <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
-                {formik.touched.sexe && formik.errors.sexe}
-              </FormHelperText>
-              <RadioGroup
-                id='sexe'
-                name='sexe'
-                value={formik.touched.sexe}
-                onChange={formik.handleChange}>
-                <FormControlLabel
-                  value='أنثى'
-                  control={<Radio color='primary' />}
-                  label='أنثى'
-                />
-                <FormControlLabel
-                  value='ذكر'
-                  control={<Radio color='primary' />}
-                  label='ذكر'
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6} className={classes.item} dir='rtl'>
             <TextField
               InputLabelProps={{
                 classes: {
@@ -299,10 +331,201 @@ function PersonelInfo() {
               helperText={formik.touched.birthDay && formik.errors.birthDay}
             />
           </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              multiline
+              rowsMax={3}
+              label='العنوان'
+              id='address'
+              name='address'
+              value={formik.values.address}
+              onChange={formik.handleChange}
+              error={formik.touched.address && Boolean(formik.errors.address)}
+              helperText={formik.touched.address && formik.errors.address}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              select
+              label='المعتمدية'
+              id='village'
+              name='village'
+              value={formik.values.village}
+              onChange={formik.handleChange}
+              error={formik.touched.village && Boolean(formik.errors.village)}
+              helperText={formik.touched.village && formik.errors.village}>
+              <MenuItem
+                value='القيروان الشمالية'
+                dir='rtl'
+                style={{ fontSize: 20 }}>
+                القيروان الشمالية
+              </MenuItem>
+              <MenuItem
+                value='القيروان الجنوبية'
+                dir='rtl'
+                style={{ fontSize: 20 }}>
+                القيروان الجنوبية
+              </MenuItem>
+              <MenuItem value='حفوز' dir='rtl' style={{ fontSize: 20 }}>
+                حفوز
+              </MenuItem>
+              <MenuItem value='حاجب العيون ' dir='rtl' style={{ fontSize: 20 }}>
+                حاجب العيون
+              </MenuItem>
+            </TextField>
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.staticLabel, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              disabled
+              variant='filled'
+              label='ولاية القيروان'
+            />
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              select
+              label='الجنس'
+              id='sexe'
+              name='sexe'
+              value={formik.values.sexe}
+              onChange={formik.handleChange}
+              error={formik.touched.sexe && Boolean(formik.errors.sexe)}
+              helperText={formik.touched.sexe && formik.errors.sexe}>
+              <MenuItem value='أنثى' dir='rtl' style={{ fontSize: 20 }}>
+                أنثى
+              </MenuItem>
+              <MenuItem value='ذكر' dir='rtl' style={{ fontSize: 20 }}>
+                ذكر
+              </MenuItem>
+            </TextField>
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              select
+              disabled={formik.values.sexe === ""}
+              label='الحالة المدنية'
+              id='civilStatus'
+              name='civilStatus'
+              value={formik.values.civilStatus}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.civilStatus && Boolean(formik.errors.civilStatus)
+              }
+              helperText={
+                formik.touched.civilStatus && formik.errors.civilStatus
+              }>
+              {formik.values.sexe === "ذكر" ? (
+                <MenuItem value='أعزب' dir='rtl' style={{ fontSize: 20 }}>
+                  أعزب
+                </MenuItem>
+              ) : (
+                <MenuItem value='عزباء' dir='rtl' style={{ fontSize: 20 }}>
+                  عزباء
+                </MenuItem>
+              )}
+
+              {formik.values.sexe === "ذكر" ? (
+                <MenuItem value='متزوج' dir='rtl' style={{ fontSize: 20 }}>
+                  متزوج
+                </MenuItem>
+              ) : (
+                <MenuItem value='متزوجة' dir='rtl' style={{ fontSize: 20 }}>
+                  متزوجة
+                </MenuItem>
+              )}
+
+              {formik.values.sexe === "ذكر" ? (
+                <MenuItem value='مطلق' dir='rtl' style={{ fontSize: 20 }}>
+                  مطلق
+                </MenuItem>
+              ) : (
+                <MenuItem value='مطلقة' dir='rtl' style={{ fontSize: 20 }}>
+                  مطلقة
+                </MenuItem>
+              )}
+
+              {formik.values.sexe === "ذكر" ? (
+                <MenuItem value='أرمل' dir='rtl' style={{ fontSize: 20 }}>
+                  أرمل
+                </MenuItem>
+              ) : (
+                <MenuItem value='أرملة' dir='rtl' style={{ fontSize: 20 }}>
+                  أرملة
+                </MenuItem>
+              )}
+            </TextField>
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              dir='rtl'
+              label='الهاتف'
+              type='tel'
+              id='phone'
+              name='phone'
+              value={formik.values.phone}
+              onChange={formik.handleChange}
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              helperText={formik.touched.phone && formik.errors.phone}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              label='عنوان البريد الإلكتروني'
+              type='email'
+              id='email'
+              name='email'
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+          </Grid>
         </Grid>
+        <div className={classes.btnContainer}>
+          <div>
+            <Button
+              variant='contained'
+              color='primary'
+              type='submit'
+              // onClick={goToSecondStep}
+              className={classes.nextButton}>
+              أواصل
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );
 }
-
-export default PersonelInfo;
+const mapActionsToProps = {
+  displaySecondStep,
+};
+export default connect(null, mapActionsToProps)(PersonelInfo);

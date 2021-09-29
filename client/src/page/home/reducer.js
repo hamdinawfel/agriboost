@@ -6,6 +6,10 @@ import {
   SHOW_RESULT,
   CLOSE_RESULT,
   SET_ERROR,
+  FIRST_STEP,
+  SECOND_STEP,
+  THIRD_STEP,
+  LAST_STEP,
 } from "./types";
 
 const initialState = {
@@ -15,6 +19,7 @@ const initialState = {
   errorMsg: "",
   showResult: false,
   data: {},
+  activeStep: 0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -62,6 +67,26 @@ export default function reducer(state = initialState, action) {
         loading: false,
         error: true,
         errorMsg: action.payload,
+      };
+    case FIRST_STEP:
+      return {
+        ...state,
+        activeStep: 0,
+      };
+    case SECOND_STEP:
+      return {
+        ...state,
+        activeStep: 1,
+      };
+    case THIRD_STEP:
+      return {
+        ...state,
+        activeStep: 2,
+      };
+    case LAST_STEP:
+      return {
+        ...state,
+        activeStep: 3,
       };
     default:
       return state;
