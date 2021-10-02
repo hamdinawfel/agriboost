@@ -18,7 +18,7 @@ import SupplementaryInfo from "./components/SupplementaryInfo";
 import SocilalInfo from "./components/SocilalInfo";
 
 import { connect } from "react-redux";
-import { createCondidat, reset } from "../../actions";
+import { createCondidat, reset, displayThirdStep } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -109,55 +109,19 @@ const useStyles = makeStyles((theme) => ({
 
 function Index(props) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = useState(false);
-  // STEP 1
 
-  const backToFirstStep = () => {
-    setActiveStep(0);
-    window.scrollTo(0, 900);
-  };
-  const goToSecondStep = () => {
-    setActiveStep(1);
-  };
-
-  const backToSecondStep = () => {
-    setActiveStep(1);
+  const handleGoBack = () => {
+    props.displayThirdStep();
     window.scrollTo(0, 900);
   };
 
-  const goToThirdStep = () => {
-    setActiveStep(2);
-  };
-
-  const goToLastStep = () => {
-    setActiveStep(3);
-    window.scrollTo(0, 970);
-  };
-
-  // BACK TO STEP 2
-  // const backToSecondStep = () => {
-  //   setActiveStep(2);
-  //   window.scrollTo(0, 1100);
-  //   setOpen(false);
-  //   setChecked("");
-  //   setAccesspted(false);
-  //   props.reset();
-  // };
-
-  // SEND A FORM
   const [accesspted, setAccesspted] = useState(false);
   const [checked, setChecked] = useState("");
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-
-    const criteriaList = [];
-    const data = {
-      criteriaList,
-    };
+  const handleSendCandidate = () => {
     if (accesspted) {
-      props.createCondidat(data);
+      props.createCondidat({});
       setOpen(true);
     } else {
       setChecked("accesspet");
@@ -236,16 +200,16 @@ function Index(props) {
                 </div>
                 <Button
                   variant='outlined'
-                  onClick={backToSecondStep}
+                  onClick={handleGoBack}
                   className={classes.prevButton}>
                   تصحيح
                 </Button>
                 <Button
-                  type='submit'
                   disabled={props.condidate.loading}
                   variant='contained'
                   color='primary'
-                  className={classes.nextButton}>
+                  className={classes.nextButton}
+                  onClick={handleSendCandidate}>
                   {props.condidate.loading ? (
                     <CircularProgress
                       size={25}
@@ -291,5 +255,6 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
   createCondidat,
   reset,
+  displayThirdStep,
 };
 export default connect(mapStateToProps, mapActionsToProps)(Index);

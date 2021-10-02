@@ -163,19 +163,68 @@ function SupplementaryInfo(props) {
 
   const formik = useFormik({
     initialValues: {
-      edicationalLevel: "",
-      lastStadyLevel: "",
-      isCandidateHaveCnss: "",
-      snssDuration: "",
-      cnssId: "",
-      isCandidateHavePatente: "",
-      patenteDuration: "",
-      patenteId: "",
-      isCandidateHaveAnetiInscription: "",
+      edicationalLevel: localStorage.getItem("edicationalLevel")
+        ? JSON.parse(localStorage.getItem("edicationalLevel"))
+        : "",
+      lastStadyLevel: localStorage.getItem("lastStadyLevel")
+        ? JSON.parse(localStorage.getItem("lastStadyLevel"))
+        : "",
+      isCandidateHaveCnss: localStorage.getItem("isCandidateHaveCnss")
+        ? JSON.parse(localStorage.getItem("isCandidateHaveCnss"))
+        : "",
+      snssDuration: localStorage.getItem("snssDuration")
+        ? JSON.parse(localStorage.getItem("snssDuration"))
+        : "",
+      cnssId: localStorage.getItem("cnssId")
+        ? JSON.parse(localStorage.getItem("cnssId"))
+        : "",
+      isCandidateHavePatente: localStorage.getItem("isCandidateHavePatente")
+        ? JSON.parse(localStorage.getItem("isCandidateHavePatente"))
+        : "",
+      patenteDuration: localStorage.getItem("patenteDuration")
+        ? JSON.parse(localStorage.getItem("patenteDuration"))
+        : "",
+      patenteId: localStorage.getItem("patenteId")
+        ? JSON.parse(localStorage.getItem("patenteId"))
+        : "",
+      isCandidateHaveAnetiInscription: localStorage.getItem(
+        "isCandidateHaveAnetiInscription"
+      )
+        ? JSON.parse(localStorage.getItem("isCandidateHaveAnetiInscription"))
+        : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displayThirdStep();
+      window.scrollTo(0, 870);
+
+      localStorage.setItem(
+        "edicationalLevel",
+        JSON.stringify(values.edicationalLevel)
+      );
+      localStorage.setItem(
+        "lastStadyLevel",
+        JSON.stringify(values.lastStadyLevel)
+      );
+      localStorage.setItem(
+        "isCandidateHaveCnss",
+        JSON.stringify(values.isCandidateHaveCnss)
+      );
+      localStorage.setItem("snssDuration", JSON.stringify(values.snssDuration));
+      localStorage.setItem("cnssId", JSON.stringify(values.cnssId));
+      localStorage.setItem(
+        "isCandidateHavePatente",
+        JSON.stringify(values.isCandidateHavePatente)
+      );
+      localStorage.setItem(
+        "patenteDuration",
+        JSON.stringify(values.patenteDuration)
+      );
+      localStorage.setItem("patenteId", JSON.stringify(values.patenteId));
+      localStorage.setItem(
+        "isCandidateHaveAnetiInscription",
+        JSON.stringify(values.isCandidateHaveAnetiInscription)
+      );
     },
   });
   const handleGoBack = () => {
@@ -271,7 +320,7 @@ function SupplementaryInfo(props) {
               <RadioGroup
                 id='isCandidateHaveCnss'
                 name='isCandidateHaveCnss'
-                value={formik.touched.isCandidateHaveCnss}
+                value={formik.values.isCandidateHaveCnss}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='لا'
@@ -348,7 +397,7 @@ function SupplementaryInfo(props) {
               <RadioGroup
                 id='isCandidateHavePatente'
                 name='isCandidateHavePatente'
-                value={formik.touched.isCandidateHavePatente}
+                value={formik.values.isCandidateHavePatente}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='لا'
@@ -428,7 +477,7 @@ function SupplementaryInfo(props) {
               <RadioGroup
                 id='isCandidateHaveAnetiInscription'
                 name='isCandidateHaveAnetiInscription'
-                value={formik.touched.isCandidateHaveAnetiInscription}
+                value={formik.values.isCandidateHaveAnetiInscription}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='لا'

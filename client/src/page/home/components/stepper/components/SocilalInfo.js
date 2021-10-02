@@ -102,13 +102,31 @@ function SocilalInfo(props) {
 
   const formik = useFormik({
     initialValues: {
-      candidatetreatmentCard: "",
-      isCandidateHaveChildren: "",
-      isCandidateHaveSiblings: "",
+      candidatetreatmentCard: localStorage.getItem("candidatetreatmentCard")
+        ? JSON.parse(localStorage.getItem("candidatetreatmentCard"))
+        : "",
+      isCandidateHaveChildren: localStorage.getItem("isCandidateHaveChildren")
+        ? JSON.parse(localStorage.getItem("isCandidateHaveChildren"))
+        : "",
+      isCandidateHaveSiblings: localStorage.getItem("isCandidateHaveSiblings")
+        ? JSON.parse(localStorage.getItem("isCandidateHaveSiblings"))
+        : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displayLastStep();
+      localStorage.setItem(
+        "candidatetreatmentCard",
+        JSON.stringify(values.candidatetreatmentCard)
+      );
+      localStorage.setItem(
+        "isCandidateHaveChildren",
+        JSON.stringify(values.isCandidateHaveChildren)
+      );
+      localStorage.setItem(
+        "isCandidateHaveSiblings",
+        JSON.stringify(values.isCandidateHaveSiblings)
+      );
     },
   });
   const handleGoBack = () => {
@@ -134,7 +152,7 @@ function SocilalInfo(props) {
               <RadioGroup
                 id='candidatetreatmentCard'
                 name='candidatetreatmentCard'
-                value={formik.touched.candidatetreatmentCard}
+                value={formik.values.candidatetreatmentCard}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='بطاقة العلاج المجاني'
@@ -165,7 +183,7 @@ function SocilalInfo(props) {
               <RadioGroup
                 id='isCandidateHaveChildren'
                 name='isCandidateHaveChildren'
-                value={formik.touched.isCandidateHaveChildren}
+                value={formik.values.isCandidateHaveChildren}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='لا'
@@ -196,7 +214,7 @@ function SocilalInfo(props) {
               <RadioGroup
                 id='isCandidateHaveSiblings'
                 name='isCandidateHaveSiblings'
-                value={formik.touched.isCandidateHaveSiblings}
+                value={formik.values.isCandidateHaveSiblings}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='لا'

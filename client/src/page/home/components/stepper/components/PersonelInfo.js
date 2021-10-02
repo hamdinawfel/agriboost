@@ -149,27 +149,70 @@ const useStyles = makeStyles((theme) => ({
 
 function PersonelInfo(props) {
   const classes = useStyles();
-
   const formik = useFormik({
     initialValues: {
-      cin: "",
-      confirmCin: "",
-      fingerPrint: "",
-      confirmFingerPrint: "",
-      firstName: "",
-      lastName: "",
-      birthDay: "",
-      address: "",
-      village: "",
+      cin: localStorage.getItem("cin")
+        ? JSON.parse(localStorage.getItem("cin"))
+        : "",
+      confirmCin: localStorage.getItem("confirmCin")
+        ? JSON.parse(localStorage.getItem("confirmCin"))
+        : "",
+      fingerPrint: localStorage.getItem("confirmCin")
+        ? JSON.parse(localStorage.getItem("confirmCin"))
+        : "",
+      confirmFingerPrint: localStorage.getItem("confirmFingerPrint")
+        ? JSON.parse(localStorage.getItem("confirmFingerPrint"))
+        : "",
+      firstName: localStorage.getItem("firstName")
+        ? JSON.parse(localStorage.getItem("firstName"))
+        : "",
+      lastName: localStorage.getItem("lastName")
+        ? JSON.parse(localStorage.getItem("lastName"))
+        : "",
+      birthDay: localStorage.getItem("birthDay")
+        ? JSON.parse(localStorage.getItem("birthDay"))
+        : "",
+      address: localStorage.getItem("address")
+        ? JSON.parse(localStorage.getItem("address"))
+        : "",
+      village: localStorage.getItem("village")
+        ? JSON.parse(localStorage.getItem("village"))
+        : "",
       city: "القيروان",
-      sexe: "",
-      civilStatus: "",
-      phone: "",
-      email: "",
+      sexe: localStorage.getItem("sexe")
+        ? JSON.parse(localStorage.getItem("sexe"))
+        : "",
+      civilStatus: localStorage.getItem("civilStatus")
+        ? JSON.parse(localStorage.getItem("civilStatus"))
+        : "",
+      phone: localStorage.getItem("phone")
+        ? JSON.parse(localStorage.getItem("phone"))
+        : "",
+      email: localStorage.getItem("email")
+        ? JSON.parse(localStorage.getItem("email"))
+        : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displaySecondStep();
+      window.scrollTo(0, 900);
+      localStorage.setItem("cin", JSON.stringify(values.cin));
+      localStorage.setItem("confirmCin", JSON.stringify(values.confirmCin));
+      localStorage.setItem("fingerPrint", JSON.stringify(values.fingerPrint));
+      localStorage.setItem(
+        "confirmFingerPrint",
+        JSON.stringify(values.confirmFingerPrint)
+      );
+      localStorage.setItem("firstName", JSON.stringify(values.firstName));
+      localStorage.setItem("lastName", JSON.stringify(values.lastName));
+      localStorage.setItem("birthDay", JSON.stringify(values.birthDay));
+      localStorage.setItem("address", JSON.stringify(values.address));
+      localStorage.setItem("village", JSON.stringify(values.village));
+      localStorage.setItem("village", JSON.stringify(values.village));
+      localStorage.setItem("sexe", JSON.stringify(values.sexe));
+      localStorage.setItem("civilStatus", JSON.stringify(values.civilStatus));
+      localStorage.setItem("phone", JSON.stringify(values.phone));
+      localStorage.setItem("email", JSON.stringify(values.email));
     },
   });
 
@@ -337,8 +380,6 @@ function PersonelInfo(props) {
                 classes: { root: classes.labelRoot, shrink: classes.shrink },
               }}
               style={{ margin: 10, width: "100%" }}
-              multiline
-              rowsMax={3}
               label='العنوان'
               id='address'
               name='address'
