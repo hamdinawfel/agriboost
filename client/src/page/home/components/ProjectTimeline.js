@@ -107,7 +107,7 @@ function StepItem({ step }) {
   const classes = useStyles();
 
   return (
-    <TimelineItem key={step.stepNumber}>
+    <TimelineItem>
       <TimelineSeparator>
         <TimelineDot color='primary' variant='outlined'>
           {step.stepIcon}
@@ -140,7 +140,7 @@ export default function ProjectTimeline() {
       <Title title='مراحل المشروع' />
       <Timeline align='alternate' style={{ marginTop: 40 }}>
         {steps.map((item) => (
-          <StepItem step={item} />
+          <StepItem step={item} key={item.stepNumber} />
         ))}
       </Timeline>
     </div>
