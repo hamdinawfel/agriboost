@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { displayLastStep, displaySecondStep } from "../../../actions";
 
 const validationSchema = yup.object({
-  candidatetreatmentCard: yup
+  candidateTreatmentCard: yup
     .string()
     .oneOf(
       ["بطاقة علاج ذات التعريفة المنخفظة", "بطاقة العلاج المجاني"],
@@ -102,8 +102,8 @@ function SocilalInfo(props) {
 
   const formik = useFormik({
     initialValues: {
-      candidatetreatmentCard: localStorage.getItem("candidatetreatmentCard")
-        ? JSON.parse(localStorage.getItem("candidatetreatmentCard"))
+      candidateTreatmentCard: localStorage.getItem("candidateTreatmentCard")
+        ? JSON.parse(localStorage.getItem("candidateTreatmentCard"))
         : "",
       isCandidateHaveChildren: localStorage.getItem("isCandidateHaveChildren")
         ? JSON.parse(localStorage.getItem("isCandidateHaveChildren"))
@@ -116,8 +116,8 @@ function SocilalInfo(props) {
     onSubmit: (values) => {
       props.displayLastStep();
       localStorage.setItem(
-        "candidatetreatmentCard",
-        JSON.stringify(values.candidatetreatmentCard)
+        "candidateTreatmentCard",
+        JSON.stringify(values.candidateTreatmentCard)
       );
       localStorage.setItem(
         "isCandidateHaveChildren",
@@ -141,18 +141,18 @@ function SocilalInfo(props) {
               component='fieldset'
               style={{ margin: 10, width: "100%" }}>
               <FormLabel
-                component='candidatetreatmentCard'
+                component='candidateTreatmentCard'
                 className={classes.checkboxItem}>
                 نوع بطاقة العلاج المنتفع بها :
               </FormLabel>
               <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
-                {formik.touched.candidatetreatmentCard &&
-                  formik.errors.candidatetreatmentCard}
+                {formik.touched.candidateTreatmentCard &&
+                  formik.errors.candidateTreatmentCard}
               </FormHelperText>
               <RadioGroup
-                id='candidatetreatmentCard'
-                name='candidatetreatmentCard'
-                value={formik.values.candidatetreatmentCard}
+                id='candidateTreatmentCard'
+                name='candidateTreatmentCard'
+                value={formik.values.candidateTreatmentCard}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='بطاقة العلاج المجاني'

@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const Condidates = require("../models/condidate");
 var authenticate = require("../middlewares/authenticate");
-var score = require("../middlewares/score");
+var unemploymentScore = require("../middlewares/unemploymentScore");
+var unemploymentDuration = require("../middlewares/unemploymentDuration");
 var verify = require("../middlewares/verify");
 const limiter = require("../middlewares/limiter");
 
@@ -38,112 +39,68 @@ condidateRouter
       .then(
         (condidat) => {
           if (!condidat) {
-            var totalScore = 0;
-            var criteriaList = [];
-            const answerOptions = [
-              {
-                firstOption: "بطاقة العلاج  المجاني",
-                secondOption: "بطاقة علاج ذات التعريفة المنخفظة",
-              },
-              { firstOption: "نعم", secondOption: "لا" },
-              { firstOption: "نعم", secondOption: "لا" },
-              {
-                firstOption:
-                  "مكفول سابقا من أحد مراكز الدفاع والإدماج الإجتماعي",
-                secondOption:
-                  "متعهد بك سابقا من أحد المراكز المندمجة للشباب و الطفولة",
-              },
-              { firstOption: "نعم", secondOption: "لا" },
-              { firstOption: "نعم", secondOption: "لا" },
-            ];
+            let totalScore = 0;
+            if (req.body.candidateTreatmentCard === "بطاقة العلاج المجاني") {
+              totalScore = totalScore + 4;
+            }
+            if (
+              req.body.candidateTreatmentCard ===
+              "بطاقة علاج ذات التعريفة المنخفظة"
+            ) {
+              totalScore = totalScore + 3;
+            }
+            if (req.body.isCandidateHaveChildren === "نعم") {
+              totalScore = totalScore + 1;
+            }
+            if (req.body.isCandidateHaveSiblings === "نعم") {
+              totalScore = totalScore + 1;
+            }
+            if (req.body.isCandidateHaveAnetiInscription === "نعم") {
+              totalScore = totalScore + 1;
+            }
 
-            const firstCriteria = {
-              question: req.body.criteriaList[0].question,
-              answer:
-                req.body.criteriaList[0].answer === "firstOption"
-                  ? answerOptions[0].firstOption
-                  : answerOptions[0].secondOption,
-              score:
-                req.body.criteriaList[0].answer === "firstOption" ? 36 : 32,
-            };
-            const secondCriteria = {
-              question: req.body.criteriaList[1].question,
-              answer:
-                req.body.criteriaList[1].answer === "firstOption"
-                  ? answerOptions[1].firstOption
-                  : answerOptions[1].secondOption,
-              score: req.body.criteriaList[1].answer === "firstOption" ? 8 : 0,
-            };
-
-            const thirdCriteria = {
-              question: req.body.criteriaList[2].question,
-              answer:
-                req.body.criteriaList[2].answer === "firstOption"
-                  ? answerOptions[2].firstOption
-                  : answerOptions[2].secondOption,
-              score: req.body.criteriaList[2].answer === "firstOption" ? 8 : 0,
-            };
-            const fourthCriteria = {
-              question: req.body.criteriaList[3].question,
-              answer:
-                req.body.criteriaList[3].answer === "firstOption"
-                  ? answerOptions[3].firstOption
-                  : answerOptions[3].secondOption,
-              score: 4,
-            };
-            const fifthCriteria = {
-              question: req.body.criteriaList[4].question,
-              answer:
-                req.body.criteriaList[4].answer === "firstOption"
-                  ? answerOptions[4].firstOption
-                  : answerOptions[5].secondOption,
-              score: req.body.criteriaList[4].answer === "firstOption" ? 4 : 0,
-            };
-            const sixthCriteria = {
-              question: req.body.criteriaList[5].question,
-              answer:
-                req.body.criteriaList[5].answer === "firstOption"
-                  ? answerOptions[5].firstOption
-                  : answerOptions[5].secondOption,
-              score: req.body.criteriaList[5].answer === "firstOption" ? 10 : 0,
-            };
-
-            criteriaList = [
-              firstCriteria,
-              secondCriteria,
-              thirdCriteria,
-              fourthCriteria,
-              fifthCriteria,
-              sixthCriteria,
-            ];
-            criteriaList.forEach((element) => {
-              totalScore += element.score;
-            });
-            const seventhCriteria = {
-              question: req.body.criteriaList[6].question,
-              answer: req.body.criteriaList[6].answer,
-              score:
-                req.body.criteriaList[6].answer === 10
-                  ? 30
-                  : score(totalScore, req.body.criteriaList[6].answer),
-            };
             const newCondidate = new Condidates({
+              //Personel Info : STEP 1
               cin: req.body.cin,
               fingerPrint: req.body.fingerPrint,
               firstName: req.body.firstName,
               lastName: req.body.lastName,
               birthDay: req.body.birthDay,
               address: req.body.address,
-              city: req.body.city,
               village: req.body.village,
+              city: req.body.city,
+              sexe: req.body.sexe,
               civilStatus: req.body.civilStatus,
+              phone: req.body.phone,
+              email: req.body.email,
+              // Supplementary info : STEP 2
               edicationalLevel: req.body.edicationalLevel,
               lastStadyLevel: req.body.lastStadyLevel,
-              phone: req.body.phone,
-              sexe: req.body.sexe,
-              email: req.body.email,
-              criteriaList: [...criteriaList, seventhCriteria],
-              totalScore: totalScore + seventhCriteria.score,
+              isCandidateHaveCnss: req.body.isCandidateHaveCnss,
+              snssDuration: req.body.snssDuration,
+              cnssId: req.body.cnssId,
+              isCandidateHavePatente: req.body.isCandidateHavePatente,
+              patenteDuration: req.body.patenteDuration,
+              patenteId: req.body.patenteId,
+              isCandidateHaveAnetiInscription:
+                req.body.isCandidateHaveAnetiInscription,
+              // Social info : STEP 3
+              candidateTreatmentCard: req.body.candidateTreatmentCard,
+              isCandidateHaveChildren: req.body.isCandidateHaveChildren,
+              isCandidateHaveSiblings: req.body.isCandidateHaveSiblings,
+
+              totalScore:
+                totalScore +
+                unemploymentScore(
+                  unemploymentDuration(
+                    req.body.birthDay,
+                    req.body.lastStadyLevel,
+                    req.body.isCandidateHaveCnss,
+                    req.body.snssDuration,
+                    req.body.isCandidateHavePatente,
+                    req.body.patenteDuration
+                  )
+                ),
             });
             newCondidate
               .save()

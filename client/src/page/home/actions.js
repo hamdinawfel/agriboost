@@ -13,15 +13,57 @@ import {
 } from "./types";
 import axios from "axios";
 
-export const createCondidat = (data) => (dispatch) => {
+export const createCondidat = () => (dispatch) => {
   dispatch({ type: LOADING });
+  const candidateData = {
+    //Personel Info : STEP 1
+    cin: JSON.parse(localStorage.getItem("cin")),
+    fingerPrint: JSON.parse(localStorage.getItem("fingerPrint")),
+    firstName: JSON.parse(localStorage.getItem("firstName")),
+    lastName: JSON.parse(localStorage.getItem("lastName")),
+    birthDay: JSON.parse(localStorage.getItem("birthDay")),
+    address: JSON.parse(localStorage.getItem("address")),
+    village: JSON.parse(localStorage.getItem("village")),
+    city: "القيروان",
+    sexe: JSON.parse(localStorage.getItem("sexe")),
+    civilStatus: JSON.parse(localStorage.getItem("civilStatus")),
+    phone: JSON.parse(localStorage.getItem("phone")),
+    email: JSON.parse(localStorage.getItem("email")),
+    // Supplementary info : STEP 2
+    edicationalLevel: JSON.parse(localStorage.getItem("edicationalLevel")),
+    lastStadyLevel: JSON.parse(localStorage.getItem("lastStadyLevel")),
+    isCandidateHaveCnss: JSON.parse(
+      localStorage.getItem("isCandidateHaveCnss")
+    ),
+    snssDuration: JSON.parse(localStorage.getItem("snssDuration")),
+    cnssId: JSON.parse(localStorage.getItem("cnssId")),
+    isCandidateHavePatente: JSON.parse(
+      localStorage.getItem("isCandidateHavePatente")
+    ),
+    patenteDuration: JSON.parse(localStorage.getItem("patenteDuration")),
+    patenteId: JSON.parse(localStorage.getItem("patenteId")),
+    isCandidateHaveAnetiInscription: JSON.parse(
+      localStorage.getItem("isCandidateHaveAnetiInscription")
+    ),
+    // Social info : STEP 3
+    candidateTreatmentCard: JSON.parse(
+      localStorage.getItem("candidateTreatmentCard")
+    ),
+    isCandidateHaveChildren: JSON.parse(
+      localStorage.getItem("isCandidateHaveChildren")
+    ),
+    isCandidateHaveSiblings: JSON.parse(
+      localStorage.getItem("isCandidateHaveSiblings")
+    ),
+  };
   axios
-    .post(`/condidates/`, data)
+    .post(`/condidates/`, candidateData)
     .then((res) => {
       dispatch({ type: SUCCESS_MESSAGE, payload: res.data });
     })
     .catch((err) => dispatch({ type: FAIL_MESSAGE }));
 };
+
 export const reset = () => (dispatch) => {
   dispatch({ type: RESET });
 };

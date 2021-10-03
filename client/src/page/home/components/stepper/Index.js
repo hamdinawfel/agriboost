@@ -121,7 +121,7 @@ function Index(props) {
 
   const handleSendCandidate = () => {
     if (accesspted) {
-      props.createCondidat({});
+      props.createCondidat();
       setOpen(true);
     } else {
       setChecked("accesspet");

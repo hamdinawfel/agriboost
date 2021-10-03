@@ -157,8 +157,8 @@ function PersonelInfo(props) {
       confirmCin: localStorage.getItem("confirmCin")
         ? JSON.parse(localStorage.getItem("confirmCin"))
         : "",
-      fingerPrint: localStorage.getItem("confirmCin")
-        ? JSON.parse(localStorage.getItem("confirmCin"))
+      fingerPrint: localStorage.getItem("fingerPrint")
+        ? JSON.parse(localStorage.getItem("fingerPrint"))
         : "",
       confirmFingerPrint: localStorage.getItem("confirmFingerPrint")
         ? JSON.parse(localStorage.getItem("confirmFingerPrint"))
@@ -363,7 +363,7 @@ function PersonelInfo(props) {
               }}
               className={classes.textField}
               style={{ margin: 10, width: "100%" }}
-              dir='rtl'
+              // dir='rtl'
               type='date'
               id='birthDay'
               name='birthDay'

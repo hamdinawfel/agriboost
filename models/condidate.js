@@ -1,27 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const criteriaSchema = new Schema({
-  question: {
-    type: String,
-    required: true,
-  },
-  answer: {
-    type: String,
-    required: true,
-  },
-  score: {
-    type: Number,
-    required: true,
-  },
-  isVerified: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-});
 const condidateSchema = new Schema(
   {
+    //Personel Info : STEP 1
     cin: {
       type: String,
       required: true,
@@ -48,11 +30,15 @@ const condidateSchema = new Schema(
       type: String,
       required: true,
     },
+    village: {
+      type: String,
+      required: true,
+    },
     city: {
       type: String,
       required: true,
     },
-    village: {
+    sexe: {
       type: String,
       required: true,
     },
@@ -60,6 +46,15 @@ const condidateSchema = new Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    // Supplementary info : STEP 2
     edicationalLevel: {
       type: String,
       required: true,
@@ -68,19 +63,44 @@ const condidateSchema = new Schema(
       type: String,
       required: true,
     },
-    phone: {
+    isCandidateHaveCnss: {
       type: String,
       required: true,
     },
-    sexe: {
+    snssDuration: {
+      type: String,
+    },
+    cnssId: {
+      type: String,
+    },
+    isCandidateHavePatente: {
       type: String,
       required: true,
     },
-    email: {
+    patenteDuration: {
+      type: String,
+    },
+    patenteId: {
+      type: String,
+    },
+    isCandidateHaveAnetiInscription: {
       type: String,
       required: true,
     },
-    criteriaList: [criteriaSchema],
+    // Social info : STEP 3
+    candidateTreatmentCard: {
+      type: String,
+      required: true,
+    },
+    isCandidateHaveChildren: {
+      type: String,
+      required: true,
+    },
+    isCandidateHaveSiblings: {
+      type: String,
+      required: true,
+    },
+    //
     totalScore: {
       type: Number,
       required: true,
