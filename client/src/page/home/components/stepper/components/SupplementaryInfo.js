@@ -36,21 +36,27 @@ const validationSchema = yup.object({
     .oneOf(["لا", "نعم"], "الرجاء التثبت من إدخال الخيار المناسب")
     .required("الرجاء التثبت من إدخال الخيار المناسب"),
   snssDuration: yup
-    .string()
+    .number()
     .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
       if (isCandidateHaveCnss === "لا") {
         return schema;
       } else {
-        return schema.required(
-          "الرجاء التثبت من إدخال مدة فترة التأجير بالأشهر"
-        );
+        return schema
+          .test(
+            "maxDigits",
+            "مثال : 3 أو 6 أو9  ٠٠٠",
+            (number) => number % 3 === 0
+          )
+          .required(
+            "الرجاء التثبت من إدخال مدة الإنخراط  بالصندوق الوطني للضمان الاجتماعي"
+          );
       }
     }),
   cnssId: yup
     .string()
     .matches(
       /^[0-9]{10}$/,
-      "الرجاء التثبت من إدخال المعرف الوحيد بالصندوق الوطني للضمان الاجتماعي"
+      "الرجاء التثبت من إدخال المعرف الوحيد على شكل 10 أرقام (مثال : 1234567890)"
     )
     .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
       if (isCandidateHaveCnss === "لا") {
@@ -78,7 +84,10 @@ const validationSchema = yup.object({
     }),
   patenteId: yup
     .string()
-    .matches(/^[0-9]{7}$/, "الرجاء التثبت من إدخال المعرف الجبائي")
+    .matches(
+      /^[0-9]{7}$/,
+      "الرجاء التثبت من إدخال المعرف الجبائي على شكل 7 أرقام (مثال : 1234567)"
+    )
     .when("isCandidateHavePatente", (isCandidateHavePatente, schema) => {
       if (isCandidateHavePatente === "لا") {
         return schema;
@@ -310,8 +319,7 @@ function SupplementaryInfo(props) {
               <FormLabel
                 component='isCandidateHaveCnss'
                 className={classes.checkboxItem}>
-                هل سبق و تم تأجيرك من قبل مؤسسة منخرطة بالصندوق الوطني للضمان
-                الاجتماعي؟
+                هل سبق و تم إنخراطك بالصندوق الوطني للضمان الاجتماعي؟
               </FormLabel>
               <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
                 {formik.touched.isCandidateHaveCnss &&
@@ -344,7 +352,8 @@ function SupplementaryInfo(props) {
                 }}
                 className={classes.textField}
                 variant='filled'
-                label='أدخل مدة فترة التأجير بالأشهر'
+                label='أدخل مدة الإنخراط (المدة بالأشهر)'
+                placeholder='مثال: 3 أو 6 أو 9  ٠٠٠'
                 type='number'
                 id='snssDuration'
                 name='snssDuration'
@@ -468,7 +477,7 @@ function SupplementaryInfo(props) {
               <FormLabel
                 component='isCandidateHaveAnetiInscription'
                 className={classes.checkboxItem}>
-                مسجل بمكتب التشغيل و العمل المستقل
+                هل قمت بالتسجيل لدى مكتب التشغيل و العمل المستقل؟
               </FormLabel>
               <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
                 {formik.touched.isCandidateHaveAnetiInscription &&
