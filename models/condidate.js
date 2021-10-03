@@ -1,97 +1,120 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const criteriaSchema = new Schema({
-    question: {
-        type: String,
-        required:true
-      }, 
-    answer: {
-        type: String,
-        required:true
-      }, 
-    score:{ 
-        type: Number,
-        required:true
+const condidateSchema = new Schema(
+  {
+    //Personel Info : STEP 1
+    cin: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    isVerified:{ 
-        type: Boolean,
-        required:false,
-        default: false
-    }
-})
-const condidateSchema = new Schema({
-  cin: {
-    type: String,
-    required:true,
-    unique:true
+    fingerPrint: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    birthDay: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    village: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    sexe: {
+      type: String,
+      required: true,
+    },
+    civilStatus: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    // Supplementary info : STEP 2
+    edicationalLevel: {
+      type: String,
+      required: true,
+    },
+    lastStadyLevel: {
+      type: String,
+      required: true,
+    },
+    isCandidateHaveCnss: {
+      type: String,
+      required: true,
+    },
+    snssDuration: {
+      type: String,
+    },
+    cnssId: {
+      type: String,
+    },
+    isCandidateHavePatente: {
+      type: String,
+      required: true,
+    },
+    patenteDuration: {
+      type: String,
+    },
+    patenteId: {
+      type: String,
+    },
+    isCandidateHaveAnetiInscription: {
+      type: String,
+      required: true,
+    },
+    // Social info : STEP 3
+    candidateTreatmentCard: {
+      type: String,
+      required: true,
+    },
+    isCandidateHaveChildren: {
+      type: String,
+      required: true,
+    },
+    isCandidateHaveSiblings: {
+      type: String,
+      required: true,
+    },
+    //
+    totalScore: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    status: {
+      type: String,
+      required: false,
+      default: "في مرحلة الفرز",
+    },
   },
-  fingerPrint:{
-    type: String,
-    required:true,
-    unique:true
-  },
-  firstName:{
-    type: String,
-    required:true
-  },
-  lastName:{
-    type: String,
-    required:true
-  },
-  birthDay:{
-    type: String,
-    required:true
-  },
-  address:{
-    type: String,
-    required:true
-  },
-  city:{
-    type: String,
-    required:true
-  },
-  village:{
-    type: String,
-    required:true
-  },
-  civilStatus:{
-    type: String,
-    required:true
-  },
-  edicationalLevel:{
-    type: String,
-    required:true
-  },
-  lastStadyLevel:{
-    type: String,
-    required:true
-  },
-  phone:{
-    type: String,
-    required:true
-  },
-  sexe:{
-    type: String,
-    required:true
-  },
-  email:{
-    type: String,
-    required:true
-  },
-  criteriaList:[criteriaSchema],
-  totalScore:   {
-    type: Number,
-    required:true,
-    default: 0
-},
-status:   {
-  type: String,
-  required:false,
-  default: "في مرحلة الفرز"
-},
-  }, {
-  timestamps: true
-});
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("condidates", condidateSchema);
