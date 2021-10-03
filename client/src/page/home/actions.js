@@ -60,6 +60,7 @@ export const createCondidat = () => (dispatch) => {
     .post(`/condidates/`, candidateData)
     .then((res) => {
       dispatch({ type: SUCCESS_MESSAGE, payload: res.data });
+      localStorage.clear();
     })
     .catch((err) => dispatch({ type: FAIL_MESSAGE }));
 };
