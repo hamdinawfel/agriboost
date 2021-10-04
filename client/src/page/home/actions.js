@@ -42,9 +42,6 @@ export const createCondidat = () => (dispatch) => {
     ),
     patenteDuration: JSON.parse(localStorage.getItem("patenteDuration")),
     patenteId: JSON.parse(localStorage.getItem("patenteId")),
-    isCandidateHaveAnetiInscription: JSON.parse(
-      localStorage.getItem("isCandidateHaveAnetiInscription")
-    ),
     // Social info : STEP 3
     candidateTreatmentCard: JSON.parse(
       localStorage.getItem("candidateTreatmentCard")
@@ -54,6 +51,9 @@ export const createCondidat = () => (dispatch) => {
     ),
     isCandidateHaveSiblings: JSON.parse(
       localStorage.getItem("isCandidateHaveSiblings")
+    ),
+    isCandidateHaveAnetiInscription: JSON.parse(
+      localStorage.getItem("isCandidateHaveAnetiInscription")
     ),
   };
   axios

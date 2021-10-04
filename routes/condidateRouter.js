@@ -82,13 +82,12 @@ condidateRouter
               isCandidateHavePatente: req.body.isCandidateHavePatente,
               patenteDuration: req.body.patenteDuration,
               patenteId: req.body.patenteId,
-              isCandidateHaveAnetiInscription:
-                req.body.isCandidateHaveAnetiInscription,
               // Social info : STEP 3
               candidateTreatmentCard: req.body.candidateTreatmentCard,
               isCandidateHaveChildren: req.body.isCandidateHaveChildren,
               isCandidateHaveSiblings: req.body.isCandidateHaveSiblings,
-
+              isCandidateHaveAnetiInscription:
+                req.body.isCandidateHaveAnetiInscription,
               totalScore:
                 totalScore +
                 unemploymentScore(

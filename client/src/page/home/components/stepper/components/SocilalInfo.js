@@ -29,6 +29,10 @@ const validationSchema = yup.object({
     .string()
     .oneOf(["لا", "نعم"], "الرجاء التثبت من إدخال الخيار المناسب")
     .required("الرجاء التثبت من إدخال الخيار المناسب"),
+  isCandidateHaveAnetiInscription: yup
+    .string()
+    .oneOf(["لا", "نعم"], "الرجاء التثبت من إدخال الخيار المناسب")
+    .required("الرجاء التثبت من إدخال الخيار المناسب"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -111,6 +115,11 @@ function SocilalInfo(props) {
       isCandidateHaveSiblings: localStorage.getItem("isCandidateHaveSiblings")
         ? JSON.parse(localStorage.getItem("isCandidateHaveSiblings"))
         : "",
+      isCandidateHaveAnetiInscription: localStorage.getItem(
+        "isCandidateHaveAnetiInscription"
+      )
+        ? JSON.parse(localStorage.getItem("isCandidateHaveAnetiInscription"))
+        : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -127,6 +136,10 @@ function SocilalInfo(props) {
         "isCandidateHaveSiblings",
         JSON.stringify(values.isCandidateHaveSiblings)
       );
+      localStorage.setItem(
+        "isCandidateHaveAnetiInscription",
+        JSON.stringify(values.isCandidateHaveAnetiInscription)
+      );
     },
   });
   const handleGoBack = () => {
@@ -136,7 +149,7 @@ function SocilalInfo(props) {
     <div className={classes.root}>
       <form onSubmit={formik.handleSubmit}>
         <Grid container className={classes.formBox}>
-          <Grid item xs={12} sm={4} className={classes.item}>
+          <Grid item xs={12} sm={6} className={classes.item}>
             <FormControl
               component='fieldset'
               style={{ margin: 10, width: "100%" }}>
@@ -167,7 +180,7 @@ function SocilalInfo(props) {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={4} className={classes.item}>
+          <Grid item xs={12} sm={6} className={classes.item}>
             <FormControl
               component='fieldset'
               style={{ margin: 10, width: "100%" }}>
@@ -198,7 +211,7 @@ function SocilalInfo(props) {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={4} className={classes.item}>
+          <Grid item xs={12} sm={6} className={classes.item}>
             <FormControl
               component='fieldset'
               style={{ margin: 10, width: "100%" }}>
@@ -215,6 +228,37 @@ function SocilalInfo(props) {
                 id='isCandidateHaveSiblings'
                 name='isCandidateHaveSiblings'
                 value={formik.values.isCandidateHaveSiblings}
+                onChange={formik.handleChange}>
+                <FormControlLabel
+                  value='لا'
+                  control={<Radio color='primary' />}
+                  label='لا'
+                />
+                <FormControlLabel
+                  value='نعم'
+                  control={<Radio color='primary' />}
+                  label='نعم'
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6} className={classes.item}>
+            <FormControl
+              component='fieldset'
+              style={{ margin: 10, width: "100%" }}>
+              <FormLabel
+                component='isCandidateHaveAnetiInscription'
+                className={classes.checkboxItem}>
+                هل قمت بالتسجيل لدى مكتب التشغيل و العمل المستقل؟
+              </FormLabel>
+              <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
+                {formik.touched.isCandidateHaveAnetiInscription &&
+                  formik.errors.isCandidateHaveAnetiInscription}
+              </FormHelperText>
+              <RadioGroup
+                id='isCandidateHaveAnetiInscription'
+                name='isCandidateHaveAnetiInscription'
+                value={formik.values.isCandidateHaveAnetiInscription}
                 onChange={formik.handleChange}>
                 <FormControlLabel
                   value='لا'

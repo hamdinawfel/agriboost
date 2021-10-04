@@ -83,10 +83,6 @@ const condidateSchema = new Schema(
     patenteId: {
       type: String,
     },
-    isCandidateHaveAnetiInscription: {
-      type: String,
-      required: true,
-    },
     // Social info : STEP 3
     candidateTreatmentCard: {
       type: String,
@@ -97,6 +93,10 @@ const condidateSchema = new Schema(
       required: true,
     },
     isCandidateHaveSiblings: {
+      type: String,
+      required: true,
+    },
+    isCandidateHaveAnetiInscription: {
       type: String,
       required: true,
     },
