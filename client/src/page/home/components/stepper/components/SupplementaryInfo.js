@@ -416,7 +416,6 @@ function SupplementaryInfo(props) {
                   },
                 }}
                 className={classes.textField}
-                style={{ marginTop: 30 }}
                 variant='filled'
                 label='إدخال مدة فعالية المعرف الجبائي  بالأشهر'
                 type='number'

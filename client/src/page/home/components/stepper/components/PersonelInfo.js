@@ -45,10 +45,7 @@ const validationSchema = yup.object({
   birthDay: yup.string().required("الرجاء التثبت من إدخال تاريخ الولادة"),
   address: yup
     .string()
-    .matches(
-      /^[\u0621-\u064A\u0660-\u0669 ]+$/,
-      "الرجاء التثبت من إدخال العنوان باللغة العربية"
-    )
+    .matches(/^[ء-ي0-9 ،]+$/, "الرجاء التثبت من إدخال العنوان باللغة العربية")
     .required("الرجاء التثبت من إدخال العنوان"),
   village: yup
     .string()
