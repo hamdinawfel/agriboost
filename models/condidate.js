@@ -100,6 +100,10 @@ const condidateSchema = new Schema(
       type: String,
       required: true,
     },
+    unemploymentScore: {
+      type: Number,
+      required: true,
+    },
     //
     totalScore: {
       type: Number,

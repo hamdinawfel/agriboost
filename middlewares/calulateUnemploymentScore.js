@@ -1,4 +1,4 @@
-module.exports = function unemploymentScore(unemploymentDuration) {
+module.exports = function calulateUnemploymentScore(unemploymentDuration) {
   let score = 0;
   switch (true) {
     case unemploymentDuration < 24: // 24 months : 2 years

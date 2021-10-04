@@ -1,5 +1,5 @@
 const moment = require("moment");
-module.exports = function unemploymentDuration(
+module.exports = function calulateUnemploymentDuration(
   birthDate,
   lastStadyLevel,
   isCandidateHaveCnss,
