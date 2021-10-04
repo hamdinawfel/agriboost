@@ -21,7 +21,7 @@ app.use(sslRedirect());
 
 // Connect to MongoDB
 const url = "mongodb://localhost:27017/moubadiroun";
-// const url = process.env.mongoURI
+// const url = process.env.mongoURI;
 mongoose
   .connect(url, {
     useUnifiedTopology: true,

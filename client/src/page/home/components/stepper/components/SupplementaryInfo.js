@@ -95,10 +95,6 @@ const validationSchema = yup.object({
         return schema.required("الرجاء التثبت من إدخال المعرف الجبائي");
       }
     }),
-  isCandidateHaveAnetiInscription: yup
-    .string()
-    .oneOf(["لا", "نعم"], "الرجاء التثبت من إدخال الخيار المناسب")
-    .required("الرجاء التثبت من إدخال الخيار المناسب"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -196,11 +192,6 @@ function SupplementaryInfo(props) {
       patenteId: localStorage.getItem("patenteId")
         ? JSON.parse(localStorage.getItem("patenteId"))
         : "",
-      isCandidateHaveAnetiInscription: localStorage.getItem(
-        "isCandidateHaveAnetiInscription"
-      )
-        ? JSON.parse(localStorage.getItem("isCandidateHaveAnetiInscription"))
-        : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -230,10 +221,6 @@ function SupplementaryInfo(props) {
         JSON.stringify(values.patenteDuration)
       );
       localStorage.setItem("patenteId", JSON.stringify(values.patenteId));
-      localStorage.setItem(
-        "isCandidateHaveAnetiInscription",
-        JSON.stringify(values.isCandidateHaveAnetiInscription)
-      );
     },
   });
   const handleGoBack = () => {
@@ -469,37 +456,6 @@ function SupplementaryInfo(props) {
                 helperText={formik.touched.patenteId && formik.errors.patenteId}
               />
             ) : null}
-          </Grid>
-          <Grid item xs={12} sm={6} className={classes.item}>
-            <FormControl
-              component='fieldset'
-              style={{ margin: 10, width: "100%" }}>
-              <FormLabel
-                component='isCandidateHaveAnetiInscription'
-                className={classes.checkboxItem}>
-                هل قمت بالتسجيل لدى مكتب التشغيل و العمل المستقل؟
-              </FormLabel>
-              <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
-                {formik.touched.isCandidateHaveAnetiInscription &&
-                  formik.errors.isCandidateHaveAnetiInscription}
-              </FormHelperText>
-              <RadioGroup
-                id='isCandidateHaveAnetiInscription'
-                name='isCandidateHaveAnetiInscription'
-                value={formik.values.isCandidateHaveAnetiInscription}
-                onChange={formik.handleChange}>
-                <FormControlLabel
-                  value='لا'
-                  control={<Radio color='primary' />}
-                  label='لا'
-                />
-                <FormControlLabel
-                  value='نعم'
-                  control={<Radio color='primary' />}
-                  label='نعم'
-                />
-              </RadioGroup>
-            </FormControl>
           </Grid>
         </Grid>
         <div className={classes.btnContainer}>
