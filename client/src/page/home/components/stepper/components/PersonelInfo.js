@@ -392,6 +392,17 @@ function PersonelInfo(props) {
           <Grid item xs={12} md={6} className={classes.item}>
             <TextField
               InputLabelProps={{
+                classes: { root: classes.staticLabel, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              disabled
+              variant='filled'
+              label='ولاية القيروان'
+            />
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
                 classes: { root: classes.labelRoot, shrink: classes.shrink },
               }}
               style={{ margin: 10, width: "100%" }}
@@ -423,17 +434,7 @@ function PersonelInfo(props) {
               </MenuItem>
             </TextField>
           </Grid>
-          <Grid item xs={12} md={6} className={classes.item}>
-            <TextField
-              InputLabelProps={{
-                classes: { root: classes.staticLabel, shrink: classes.shrink },
-              }}
-              style={{ margin: 10, width: "100%" }}
-              disabled
-              variant='filled'
-              label='ولاية القيروان'
-            />
-          </Grid>
+
           <Grid item xs={12} md={6} className={classes.item}>
             <TextField
               InputLabelProps={{
