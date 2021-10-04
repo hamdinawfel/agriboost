@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const Condidates = require("../models/condidate");
 var authenticate = require("../middlewares/authenticate");
-var unemploymentScore = require("../middlewares/unemploymentScore");
-var unemploymentDuration = require("../middlewares/unemploymentDuration");
+var calulateUnemploymentScore = require("../middlewares/calulateUnemploymentScore");
+var calulateUnemploymentDuration = require("../middlewares/calulateUnemploymentDuration");
 var verify = require("../middlewares/verify");
 const limiter = require("../middlewares/limiter");
 
@@ -58,7 +58,16 @@ condidateRouter
             if (req.body.isCandidateHaveAnetiInscription === "نعم") {
               totalScore = totalScore + 1;
             }
-
+            const unemploymentScore = calulateUnemploymentScore(
+              calulateUnemploymentDuration(
+                req.body.birthDay,
+                req.body.lastStadyLevel,
+                req.body.isCandidateHaveCnss,
+                req.body.snssDuration,
+                req.body.isCandidateHavePatente,
+                req.body.patenteDuration
+              )
+            );
             const newCondidate = new Condidates({
               //Personel Info : STEP 1
               cin: req.body.cin,
@@ -88,18 +97,8 @@ condidateRouter
               isCandidateHaveSiblings: req.body.isCandidateHaveSiblings,
               isCandidateHaveAnetiInscription:
                 req.body.isCandidateHaveAnetiInscription,
-              totalScore:
-                totalScore +
-                unemploymentScore(
-                  unemploymentDuration(
-                    req.body.birthDay,
-                    req.body.lastStadyLevel,
-                    req.body.isCandidateHaveCnss,
-                    req.body.snssDuration,
-                    req.body.isCandidateHavePatente,
-                    req.body.patenteDuration
-                  )
-                ),
+              unemploymentScore,
+              totalScore: totalScore + unemploymentScore,
             });
             newCondidate
               .save()
