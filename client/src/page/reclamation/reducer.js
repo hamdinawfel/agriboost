@@ -1,8 +1,9 @@
-import { LOADING, SUCCESS_MESSAGE, FAIL_MESSAGE } from "./types";
+import { LOADING, SUCCESS_MESSAGE, SET_ERROR } from "./types";
 const initialState = {
   loading: false,
-  success: "",
-  errorMsg: "",
+  success: false,
+  error: false,
+  alertMessage: "",
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -15,14 +16,17 @@ export default function reducer(state = initialState, { type, payload }) {
     case SUCCESS_MESSAGE:
       return {
         ...state,
-        success: "success",
-        loading: false,
+        success: true,
+        error: false,
+        alertMessage: payload,
       };
-    case FAIL_MESSAGE:
+
+    case SET_ERROR:
       return {
         ...state,
-        success: "fail",
-        loading: false,
+        error: true,
+        success: false,
+        alertMessage: payload,
       };
 
     default:

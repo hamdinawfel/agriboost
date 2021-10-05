@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
@@ -8,6 +8,8 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Alert from "@material-ui/lab/Alert";
+
 import { connect } from "react-redux";
 import { sendReclamation } from "../actions";
 
@@ -95,6 +97,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props) {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -106,11 +110,26 @@ function Form(props) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.sendReclamation(values);
+      setOpen(true);
     },
   });
+  const { success, error, alertMessage } = props.reclamation;
   return (
     <Container component='main' maxWidth='sm'>
       <CssBaseline />
+      {(success || error) && open ? (
+        <Alert
+          variant='filled'
+          severity={success ? "success" : "error"}
+          style={{
+            marginTop: 20,
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "row-reverse",
+          }}>
+          {alertMessage}
+        </Alert>
+      ) : null}
       <div className={classes.paper}>
         <form className={classes.form} onSubmit={formik.handleSubmit}>
           <Grid container>
@@ -226,6 +245,7 @@ function Form(props) {
             fullWidth
             variant='contained'
             color='primary'
+            disabled={props.reclamation.loading}
             className={classes.submit}>
             أرسل
           </Button>
