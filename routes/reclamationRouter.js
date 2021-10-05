@@ -3,6 +3,7 @@ const express = require("express");
 const Reclamations = require("../models/reclamation");
 var authenticate = require("../middlewares/authenticate");
 const limiter = require("../middlewares/limiter");
+var verifyReclamationTime = require("../middlewares/verifyReclamationTime");
 
 const reclamationRouter = express.Router();
 
@@ -19,7 +20,7 @@ reclamationRouter
         });
       });
   })
-  .post(limiter, (req, res, next) => {
+  .post(limiter, verifyReclamationTime, (req, res, next) => {
     Reclamations.findOne({ cin: req.body.cin }).then((condidat) => {
       if (!condidat) {
         const reclamation = new Reclamations({

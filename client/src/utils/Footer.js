@@ -81,7 +81,7 @@ export default function Footer() {
   return (
     <div className={classes.root}>
       <Countdown
-        date={parseInt(process.env.REACT_APP_START_TIME)}
+        date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
         renderer={renderer}></Countdown>
       <div style={{ padding: "30PX 0 10px 0", background: "#222" }}>
         <div>

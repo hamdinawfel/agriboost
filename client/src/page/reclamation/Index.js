@@ -9,8 +9,7 @@ export default function Index() {
       {parseInt(process.env.REACT_APP_END_RECLAMATION) <= Date.now() ? (
         <Redirect to='/' />
       ) : null}
-      {parseInt(process.env.REACT_APP_START_RECLAMATION) <=
-      Date.now() ? null : (
+      {parseInt(process.env.REACT_APP_END_SUBMSITTION) <= Date.now() ? null : (
         <Redirect to='/' />
       )}
       <Title title='تسجيل الاعتراضات' />

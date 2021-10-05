@@ -27,7 +27,7 @@ export default function Index() {
     <div>
       <Hero />
       <Countdown
-        date={parseInt(process.env.REACT_APP_START_TIME)}
+        date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
         renderer={renderer}
       />
       <ContactUs />

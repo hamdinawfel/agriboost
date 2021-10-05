@@ -4,7 +4,7 @@ const Condidates = require("../models/condidate");
 var authenticate = require("../middlewares/authenticate");
 var calulateUnemploymentScore = require("../middlewares/calulateUnemploymentScore");
 var calulateUnemploymentDuration = require("../middlewares/calulateUnemploymentDuration");
-var verify = require("../middlewares/verify");
+var verifyCandidateTime = require("../middlewares/verifyCandidateTime");
 const limiter = require("../middlewares/limiter");
 
 const condidateRouter = express.Router();

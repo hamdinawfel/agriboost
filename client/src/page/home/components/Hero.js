@@ -238,7 +238,7 @@ export default function Hero() {
           مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
         </h1>
         <Countdown
-          date={parseInt(process.env.REACT_APP_START_TIME)}
+          date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
           renderer={renderer}></Countdown>
       </div>
     </div>
