@@ -9,7 +9,7 @@ import Result from "./components/Result";
 import Footer from "../../utils/Footer";
 
 const renderer = ({ completed }) => {
-  if (!completed) {
+  if (completed) {
     // Render the result screen at the finishing the event time
     return (
       <React.Fragment>

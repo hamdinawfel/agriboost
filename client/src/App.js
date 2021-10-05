@@ -5,6 +5,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 //pages
 import Home from "./page/home/Index";
+import Reclamation from "./page/reclamation/Index";
 //utils
 import Navbar from "./utils/Navbar";
 import PageNotFound from "./utils/PageNotFound";
@@ -21,6 +22,7 @@ function App() {
           <div>
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route exact path='/reclamation' component={Reclamation} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
