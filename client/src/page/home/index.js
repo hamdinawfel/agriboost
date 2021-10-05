@@ -9,7 +9,7 @@ import Result from "./components/Result";
 import Footer from "../../utils/Footer";
 
 const renderer = ({ completed }) => {
-  if (!completed) {
+  if (completed) {
     // Render the result screen at the finishing the event time
     return (
       <React.Fragment>
@@ -27,7 +27,7 @@ export default function Index() {
     <div>
       <Hero />
       <Countdown
-        date={parseInt(process.env.REACT_APP_START_TIME)}
+        date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
         renderer={renderer}
       />
       <ContactUs />

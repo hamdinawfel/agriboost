@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const Reclamations = require("../models/reclamation");
 var authenticate = require("../middlewares/authenticate");
+const limiter = require("../middlewares/limiter");
+var verifyReclamationTime = require("../middlewares/verifyReclamationTime");
 
 const reclamationRouter = express.Router();
 
@@ -18,24 +20,32 @@ reclamationRouter
         });
       });
   })
-  .post((req, res, next) => {
-    const reclamation = new Reclamations({
-      cin: req.body.cin,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      phone: req.body.phone,
-      message: req.body.message,
-    });
-    reclamation
-      .save()
-      .then((reclamation) => {
-        res.status(200).json(reclamation);
-      })
-      .catch((err) => {
-        res.status(400).json({
-          error: err,
+  .post(limiter, verifyReclamationTime, (req, res, next) => {
+    Reclamations.findOne({ cin: req.body.cin }).then((condidat) => {
+      if (!condidat) {
+        const reclamation = new Reclamations({
+          cin: req.body.cin,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          phone: req.body.phone,
+          message: req.body.message,
         });
-      });
+        reclamation
+          .save()
+          .then((reclamation) => {
+            res.status(200).json(reclamation);
+          })
+          .catch((err) => {
+            res.status(400).json({
+              error: err,
+            });
+          });
+      } else {
+        res.status(403).json({
+          error: "We have already been requested a reclamation",
+        });
+      }
+    });
   })
   .put((req, res, next) => {
     res.statusCode = 403;
@@ -69,7 +79,7 @@ reclamationRouter
   })
   .delete(
     authenticate.verifyUser,
-    authenticate.verifyAdmin,
+    authenticate.verifyRoot,
     (req, res, next) => {
       Reclamations.deleteOne({ _id: req.params.reclamationId })
         .then((reclamation) => {

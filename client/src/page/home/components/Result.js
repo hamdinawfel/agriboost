@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -12,6 +12,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import CloseIcon from "@material-ui/icons/Close";
 import PrintIcon from "@material-ui/icons/Print";
+import NewReleasesIcon from "@material-ui/icons/NewReleases";
 import Title from "../../../utils/Title";
 import banner from "../../../assets/banner.jpg";
 import { connect } from "react-redux";
@@ -78,11 +79,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   labelRoot: {
-    right: 25,
-    fontSize: 22,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: 18,
-    },
+    right: 0,
+    fontSize: 18,
   },
   shrink: {
     transformOrigin: "top right",
@@ -206,7 +204,17 @@ function Result(props) {
             <CircularProgress style={{ display: "block", margin: "0 auto" }} />
           )}
         </Button>
+        {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
+          <Link
+            href='/reclamation'
+            variant='body2'
+            style={{ display: "flex", alignItems: "center", fontSize: 18 }}>
+            <NewReleasesIcon style={{ marginLeft: 20 }} />
+            يمكنك تسجيل إعتراض على النتائج الأولية عبر هذا الرابط
+          </Link>
+        ) : null}
       </form>
+
       <Dialog
         fullScreen={fullScreen}
         open={props.condidate.showResult}
@@ -273,6 +281,21 @@ function Result(props) {
               </Button>
             )}
           </Pdf>
+          {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
+            <Link
+              href='/reclamation'
+              variant='body2'
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "end",
+                fontSize: 18,
+                margin: "20px 0",
+              }}>
+              يمكنك تسجيل إعتراض على النتائج الأولية عبر هذا الرابط
+              <NewReleasesIcon style={{ marginLeft: 20 }} />
+            </Link>
+          ) : null}
         </DialogContent>
       </Dialog>
     </div>
