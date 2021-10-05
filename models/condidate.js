@@ -113,7 +113,7 @@ const condidateSchema = new Schema(
     status: {
       type: String,
       required: false,
-      default: "في مرحلة الفرز",
+      default: "مطلبكم في مرحلة الفرز",
     },
   },
   {
