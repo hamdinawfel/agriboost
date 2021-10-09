@@ -55,8 +55,8 @@ const validationSchema = yup.object({
   cnssId: yup
     .string()
     .matches(
-      /^[0-9]{10}$/,
-      "الرجاء التثبت من إدخال المعرف الوحيد على شكل 10 أرقام (مثال : 1234567890)"
+      /^\d{6}-\d{2}$/,
+      "الرجاء التثبت من إدخال المعرف الوحيد على الشكل التالي  : 78-123456)"
     )
     .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
       if (isCandidateHaveCnss === "لا") {
@@ -85,8 +85,8 @@ const validationSchema = yup.object({
   patenteId: yup
     .string()
     .matches(
-      /^[0-9]{7}$/,
-      "الرجاء التثبت من إدخال المعرف الجبائي على شكل 7 أرقام (مثال : 1234567)"
+      /^\d{7}[a-zA-Z]{1}$/,
+      "الرجاء التثبت من إدخال المعرف الجبائي على الشكل :1234567x)"
     )
     .when("isCandidateHavePatente", (isCandidateHavePatente, schema) => {
       if (isCandidateHavePatente === "لا") {
