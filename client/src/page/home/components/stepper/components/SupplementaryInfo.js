@@ -85,8 +85,8 @@ const validationSchema = yup.object({
   patenteId: yup
     .string()
     .matches(
-      /^[0-9]{7}$/,
-      "الرجاء التثبت من إدخال المعرف الجبائي على شكل 7 أرقام (مثال : 1234567)"
+      /^\d{7}[a-zA-Z]{1}$/,
+      "الرجاء التثبت من إدخال المعرف الجبائي على الشكل :1234567x)"
     )
     .when("isCandidateHavePatente", (isCandidateHavePatente, schema) => {
       if (isCandidateHavePatente === "لا") {
