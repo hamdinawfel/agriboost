@@ -50,7 +50,7 @@ const validationSchema = yup.object({
   village: yup
     .string()
     .oneOf(
-      ["القيروان الشمالية", "القيروان الجنوبية", "حاجب العيون", "حفوز"],
+      ["القيروان الشمالية", "القيروان الجنوبية", "سيدي عمر بوحجلة", "حفوز"],
       "الرجاء التثبت من إدخال المعتمدية"
     )
     .required("الرجاء التثبت من إدخال المعتمدية"),
@@ -423,11 +423,14 @@ function PersonelInfo(props) {
                 style={{ fontSize: 20 }}>
                 القيروان الجنوبية
               </MenuItem>
+              <MenuItem
+                value='سيدي عمر بوحجلة'
+                dir='rtl'
+                style={{ fontSize: 20 }}>
+                سيدي عمر بوحجلة
+              </MenuItem>
               <MenuItem value='حفوز' dir='rtl' style={{ fontSize: 20 }}>
                 حفوز
-              </MenuItem>
-              <MenuItem value='حاجب العيون ' dir='rtl' style={{ fontSize: 20 }}>
-                حاجب العيون
               </MenuItem>
             </TextField>
           </Grid>

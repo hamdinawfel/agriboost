@@ -68,7 +68,7 @@ const steps = [
   {
     stepNumber: 1,
     stepTitle: "التسجيل",
-    stepSubtitle: "من 15 إلى 30 سبتمبر 2021",
+    stepSubtitle: "من 13 إلى 30 نوفمبر 2021",
     stepIcon: <DevicesIcon fontSize='large' />,
   },
   {
