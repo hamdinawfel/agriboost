@@ -1,6 +1,6 @@
 {
-  "name": "y",
-  "version": "1.0.0",
+  "name": "agriboost",
+  "version": "1.0.2",
   "engines": {
     "node": "10.16.0",
     "npm": "7.10.0"
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "dev": "nodemon -L app.js",
     "heroku-prebuild": "npm i -f",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -25,10 +26,12 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.10.13",
-    "nodemon": "^2.0.6",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
