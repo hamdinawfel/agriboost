@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -32,7 +33,7 @@ const validationSchema = yup.object({
       /^[\u0621-\u064A\u0660-\u0669 ]+$/,
       "الرجاء التثبت من إدخال الإسم باللغة العربية"
     )
-    .max(20, "الرجاء عدم تجاوج 20 حرف")
+    .max(70, "الرجاء عدم تجاوج 70 حرف")
     .required("الرجاء التثبت من إدخال الإسم"),
   lastName: yup
     .string()
@@ -40,9 +41,16 @@ const validationSchema = yup.object({
       /^[\u0621-\u064A\u0660-\u0669 ]+$/,
       "الرجاء التثبت من إدخال اللقب باللغة العربية"
     )
-    .max(20, "الرجاء عدم تجاوج 20 حرف")
+    .max(70, "الرجاء عدم تجاوج 70 حرف")
     .required("الرجاء التثبت من إدخال اللقب"),
-  birthDay: yup.string().required("الرجاء التثبت من إدخال تاريخ الولادة"),
+  birthDay: yup
+    .string()
+    .test("birthDay", "الفئة العمرية المستهدفة هي بين 18 و 35 سنة", (value) => {
+      return moment().diff(moment(value), "years") >= 18;
+    })
+    .test("birthDay", "الفئة العمرية المستهدفة هي بين 18 و 35 سنة", (value) => {
+      return moment().diff(moment(value), "years") <= 35;
+    }),
   address: yup
     .string()
     .matches(/^[ء-ي0-9 ،]+$/, "الرجاء التثبت من إدخال العنوان باللغة العربية")
