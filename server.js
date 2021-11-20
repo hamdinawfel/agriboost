@@ -10,6 +10,7 @@ let helmet = require("helmet");
 //Load routes
 
 let app = express();
+
 app.use(sslRedirect());
 app.disable("x-powered-by");
 app.use(helmet());
