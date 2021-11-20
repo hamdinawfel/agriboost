@@ -97,13 +97,13 @@ function RegistrationReceipt(props) {
             alignItems: "center",
             marginBottom: 20,
           }}>
-          <IconButton onClick={handleClose} style={{ marginLeft: 20 }}>
+          <IconButton onClick={handleClose} style={{ marginLeft: 5 }}>
             <CloseIcon />
           </IconButton>
           <DialogTitle
-            style={{ textAlign: "center" }}
+            className={classes.dialogTitle}
             id='responsive-dialog-title'>
-            {" طباعة وصل تسجيل بمشروع أڨريبوست"}
+            {"طباعة وصل التسجيل"}
           </DialogTitle>
         </div>
         <DialogContent>
