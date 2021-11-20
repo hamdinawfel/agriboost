@@ -18,7 +18,7 @@ const validationSchema = yup.object({
   confirmCin: yup
     .string()
     .oneOf([yup.ref("cin"), null], "الرجاء التثبت من رقم بطاقة التعريف الوطنية")
-    .required("الرجاء التثبت من رقم بطاقة التعريف الوطنية"),
+    .required("الرجاء تأكيد رقم بطاقة التعريف الوطنية"),
   fingerPrint: yup
     .string()
     .matches(/^[0-9]{8}$/, "الرجاء التثبت من رقم البصمة")
@@ -26,7 +26,7 @@ const validationSchema = yup.object({
   confirmFingerPrint: yup
     .string()
     .oneOf([yup.ref("fingerPrint"), null], "الرجاء التثبت من رقم البصمة")
-    .required("الرجاء التثبت من رقم البصمة"),
+    .required("الرجاء تأكيد رقم البصمة"),
   firstName: yup
     .string()
     .matches(
@@ -80,6 +80,10 @@ const validationSchema = yup.object({
       "الرجاء التثبت من إدخال رقم الهاتف على النحو التالي: 22013013"
     )
     .required("الرجاء التثبت من إدخال رقم الهاتف"),
+  confirmPhone: yup
+    .string()
+    .oneOf([yup.ref("phone"), null], "الرجاء التثبت من إدخال رقم الهاتف")
+    .required("الرجاء تأكيد رقم الهاتف"),
   email: yup
     .string("الرجاء التثبت من إدخال العنوان البريد الإلكتروني")
     .email("الرجاء التثبت من إدخال العنوان البريد الإلكتروني"),
@@ -192,6 +196,9 @@ function PersonelInfo(props) {
       phone: localStorage.getItem("phone")
         ? JSON.parse(localStorage.getItem("phone"))
         : "",
+      confirmPhone: localStorage.getItem("confirmPhone")
+        ? JSON.parse(localStorage.getItem("confirmPhone"))
+        : "",
       email: localStorage.getItem("email")
         ? JSON.parse(localStorage.getItem("email"))
         : "",
@@ -216,6 +223,7 @@ function PersonelInfo(props) {
       localStorage.setItem("sexe", JSON.stringify(values.sexe));
       localStorage.setItem("civilStatus", JSON.stringify(values.civilStatus));
       localStorage.setItem("phone", JSON.stringify(values.phone));
+      localStorage.setItem("confirmPhone", JSON.stringify(values.confirmPhone));
       localStorage.setItem("email", JSON.stringify(values.email));
     },
   });
@@ -539,6 +547,28 @@ function PersonelInfo(props) {
               onChange={formik.handleChange}
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               helperText={formik.touched.phone && formik.errors.phone}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.item}>
+            <TextField
+              InputLabelProps={{
+                classes: { root: classes.labelRoot, shrink: classes.shrink },
+              }}
+              style={{ margin: 10, width: "100%" }}
+              dir='rtl'
+              label='تأكيد رقم الهاتف'
+              type='tel'
+              id='confirmPhone'
+              name='confirmPhone'
+              value={formik.values.confirmPhone}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.confirmPhone &&
+                Boolean(formik.errors.confirmPhone)
+              }
+              helperText={
+                formik.touched.confirmPhone && formik.errors.confirmPhone
+              }
             />
           </Grid>
           <Grid item xs={12} md={6} className={classes.item}>
