@@ -52,7 +52,7 @@ const condidateSchema = new Schema(
     },
     email: {
       type: String,
-      required: true,
+      required: false,
     },
     // Supplementary info : STEP 2
     edicationalLevel: {
