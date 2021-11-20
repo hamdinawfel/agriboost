@@ -6,6 +6,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 let helmet = require("helmet");
+
 //Load routes
 let app = express();
 app.use(sslRedirect());
