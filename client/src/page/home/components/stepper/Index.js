@@ -16,6 +16,7 @@ import Title from "../../../../utils/Title";
 import PersonelInfo from "./components/PersonelInfo";
 import SupplementaryInfo from "./components/SupplementaryInfo";
 import SocilalInfo from "./components/SocilalInfo";
+import RegistrationReceipt from "./components/RegistrationReceipt";
 
 import { connect } from "react-redux";
 import { createCondidat, reset, displayThirdStep } from "../../actions";
@@ -232,6 +233,9 @@ function Index(props) {
                 style={{ marginTop: 20 }}>
                 تمت عملية التسجيل الأولي عن بعد بنجاح، موفقا حظا٠
               </Alert>
+            ) : null}
+            {props.condidate.success === "success" && open ? (
+              <RegistrationReceipt />
             ) : null}
             {props.condidate.success === "fail" && open ? (
               <Alert
