@@ -19,6 +19,7 @@ const initialState = {
   errorMsg: "",
   showResult: false,
   data: {},
+  printData: {},
   activeStep: 0,
 };
 
@@ -33,7 +34,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         success: "success",
-        condidat: action.payload,
+        printData: action.payload,
         loading: false,
       };
     case FAIL_MESSAGE:
