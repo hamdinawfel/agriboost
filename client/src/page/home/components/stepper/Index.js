@@ -230,8 +230,7 @@ function Index(props) {
                 variant='filled'
                 severity='success'
                 style={{ marginTop: 20 }}>
-                تمت عملية التسجيل الأولي عن بعد بنجاح ، هذا الموقع سيمكنك بعد
-                نهاية فترة التسجيل من التعرف على النتيجة، حظا موفقا
+                تمت عملية التسجيل الأولي عن بعد بنجاح، موفقا حظا٠
               </Alert>
             ) : null}
             {props.condidate.success === "fail" && open ? (

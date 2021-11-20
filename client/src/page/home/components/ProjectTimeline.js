@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row-reverse",
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
   stepSubtitle: {
     textAlign: "right",
@@ -61,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+      height: "22px",
+      width: "22px",
+    },
   },
 }));
 
@@ -68,7 +76,7 @@ const steps = [
   {
     stepNumber: 1,
     stepTitle: "التسجيل",
-    stepSubtitle: "من 15 إلى 30 سبتمبر 2021",
+    stepSubtitle: "من 22 نوفمبر إلى 6 ديسمبر 2021",
     stepIcon: <DevicesIcon fontSize='large' />,
   },
   {

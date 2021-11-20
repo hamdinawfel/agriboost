@@ -41,22 +41,16 @@ const validationSchema = yup.object({
       if (isCandidateHaveCnss === "لا") {
         return schema;
       } else {
-        return schema
-          .test(
-            "maxDigits",
-            "مثال : 3 أو 6 أو9  ٠٠٠",
-            (number) => number % 3 === 0
-          )
-          .required(
-            "الرجاء التثبت من إدخال مدة الإنخراط  بالصندوق الوطني للضمان الاجتماعي"
-          );
+        return schema.required(
+          "الرجاء التثبت من إدخال مدة الإنخراط  بالصندوق الوطني للضمان الاجتماعي"
+        );
       }
     }),
   cnssId: yup
     .string()
     .matches(
-      /^\d{6}-\d{2}$/,
-      "الرجاء التثبت من إدخال المعرف الوحيد على الشكل التالي  : 78-123456)"
+      /^\d{8}-\d{2}$/,
+      "الرجاء التثبت من إدخال المعرف الوحيد على الشكل التالي  : 01-12345678)"
     )
     .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
       if (isCandidateHaveCnss === "لا") {
@@ -339,8 +333,7 @@ function SupplementaryInfo(props) {
                 }}
                 className={classes.textField}
                 variant='filled'
-                label='أدخل مدة الإنخراط (المدة بالأشهر)'
-                placeholder='مثال: 3 أو 6 أو 9  ٠٠٠'
+                label='أدخل مدة الإنخراط  بالأشهر'
                 type='number'
                 id='snssDuration'
                 name='snssDuration'
@@ -384,7 +377,7 @@ function SupplementaryInfo(props) {
               <FormLabel
                 component='isCandidateHavePatente'
                 className={classes.checkboxItem}>
-                هل سبق لك الحصول على بطاقة تعريف جبائية (باتيندة) ؟
+                هل سبق لك الحصول على معرف جبائي (باتيندة) ؟
               </FormLabel>
               <FormHelperText style={{ color: "#ff0000", textAlign: "right" }}>
                 {formik.touched.isCandidateHavePatente &&
@@ -417,7 +410,8 @@ function SupplementaryInfo(props) {
                 }}
                 className={classes.textField}
                 variant='filled'
-                label='إدخال مدة فعالية المعرف الجبائي  بالأشهر'
+                label='أدخل مدة فعالية المعرف الجبائي بالأشهر'
+                placeholder='المدة من تاريخ فتح المعرف الجبائي إلى غاية غلقه'
                 type='number'
                 id='patenteDuration'
                 name='patenteDuration'

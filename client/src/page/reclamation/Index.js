@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 import Form from "./components/Form";
 import Title from "../../utils/Title";
 
+
 export default function Index() {
   return (
     <div style={{ marginTop: 20 }}>

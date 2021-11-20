@@ -12,7 +12,7 @@ const condidateRouter = express.Router();
 const candidateStatus = {
   submitted: "مطلبكم في مرحلة الفرز",
   rejected: "نأسف لعدم قبول مطلبكم",
-  waited: "مطلبكم في قائمة الإنتضار",
+  waited: "مطلبكم في قائمة الإنتظار",
   initial: "حضي مطلبكم بالقبول مبدئيا",
   final: "حضي مطلبكم بالقبول",
 };
@@ -249,5 +249,4 @@ condidateRouter.route("/:condidateCin").get(limiter, (req, res, next) => {
       res.status(404).json({ error: err });
     });
 });
-
 module.exports = condidateRouter;

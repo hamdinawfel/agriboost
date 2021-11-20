@@ -6,9 +6,10 @@ const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 let helmet = require("helmet");
-//Load routes
 
+//Load routes
 let app = express();
+app.use(sslRedirect());
 app.disable("x-powered-by");
 app.use(helmet());
 
@@ -18,7 +19,6 @@ const reclamationRouter = require("./routes/reclamationRouter");
 const users = require("./routes/users");
 
 app.use(express.json());
-app.use(sslRedirect());
 
 // Connect to MongoDB
 // const url = "mongodb://localhost:27017/moubadiroun";
