@@ -24,7 +24,7 @@ import { createCondidat, reset, displayThirdStep } from "../../actions";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    top: -600,
+    top: -700,
     padding: 100,
     [theme.breakpoints.down("md")]: {
       top: -500,

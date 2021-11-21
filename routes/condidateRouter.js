@@ -34,7 +34,7 @@ condidateRouter
       )
       .catch((err) => next(err));
   })
-  .post((req, res, next) => {
+  .post(verifyCandidateTime, (req, res, next) => {
     Condidates.findOne({ cin: req.body.cin })
       .then(
         (condidat) => {
