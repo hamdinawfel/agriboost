@@ -134,8 +134,8 @@ function Index(props) {
       <Title title='تعمير الجذاذة' />
       <p className={classes.warningText}>
         <span className={classes.noteWarning}>هام جدا</span>
-        الرجاء تعمير الجذاذة باللغة العربية و بكل دقة، سيتم التثبت من كل
-        المعطيات المصرح بها في مراحل الفرز
+        إن التسجيل في هذه المنصة نهائي، الرجاء التثبت من المعطيات المدرجة قبل
+        تأكيد التسجيل
       </p>
       <div className={classes.stepper} dir='rtl'>
         <Stepper

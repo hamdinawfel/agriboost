@@ -31,9 +31,9 @@ const validationSchema = yup.object({
     .string()
     .matches(
       /^[\u0621-\u064A\u0660-\u0669 ]+$/,
-      "الرجاء التثبت من إدخال الإسم باللغة العربية"
+      "الرجاء التثبت من إدخال الإسم الثلاثي باللغة العربية"
     )
-    .max(70, "الرجاء عدم تجاوج 70 حرف")
+    .max(255, "الرجاء عدم تجاوج 255 حرف")
     .required("الرجاء التثبت من إدخال الإسم"),
   lastName: yup
     .string()
@@ -41,7 +41,7 @@ const validationSchema = yup.object({
       /^[\u0621-\u064A\u0660-\u0669 ]+$/,
       "الرجاء التثبت من إدخال اللقب باللغة العربية"
     )
-    .max(70, "الرجاء عدم تجاوج 70 حرف")
+    .max(255, "الرجاء عدم تجاوج 255 حرف")
     .required("الرجاء التثبت من إدخال اللقب"),
   birthDay: yup
     .string()
@@ -336,7 +336,7 @@ function PersonelInfo(props) {
               type='text'
               id='firstName'
               name='firstName'
-              label='الإسم'
+              label='الإسم الثلاثي'
               value={formik.values.firstName}
               onChange={formik.handleChange}
               error={

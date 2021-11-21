@@ -148,7 +148,7 @@ export default function Hero() {
   const Completionist = () => (
     <div>
       <p className={classes.caption}>
-        إنتهت عملية التسجيل بتاريخ 06 ديسمبر 2021
+        إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
       </p>
       <Button className={classes.myButton} onClick={handleResult}>
         النتائج
@@ -162,7 +162,7 @@ export default function Hero() {
       return (
         <div>
           <p className={classes.caption}>
-            إنتهاء مهلة تقديم الترشحات يوم 06 ديسمبر 2021
+            إنتهاء مهلة تقديم الترشحات يوم 05 ديسمبر 2021
           </p>
           <div className={classes.timeContainer}>
             <span className={classes.time}>

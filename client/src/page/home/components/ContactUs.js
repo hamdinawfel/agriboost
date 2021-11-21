@@ -64,7 +64,11 @@ export default function ContactUs() {
           sm={12}
           md={6}
           style={{ display: "flex", justifyContent: "center", padding: 15 }}>
-          <Link color='inherit' target='_blank' rel='noreferrer' href='#'>
+          <Link
+            color='inherit'
+            target='_blank'
+            rel='noreferrer'
+            href='https://www.facebook.com/Agriboost.Kairouan'>
             {/* TODO: Add facebook page link */}
             <img src={facebook} className={classes.video} alt='facebook' />
           </Link>
