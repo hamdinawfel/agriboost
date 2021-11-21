@@ -111,7 +111,7 @@ function RegistrationReceipt(props) {
             <img src={banner} style={{ width: "100%" }} alt='Agriboost' />
             <p className={classes.header}>{"وصل تسجيل بمشروع  أڨريبوست"}</p>
             <p className={classes.body}>
-              تمت عملية التسجيل الأولي بمشروع أڨريبوست بنجاح
+              تمت عملية التسجيل بمشروع أڨريبوست بنجاح
             </p>
             <p className={classes.body}>
               {props.condidate.data.sexe === "أنثى" ? femalSexe : malSexe}

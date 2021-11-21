@@ -231,7 +231,7 @@ function Index(props) {
                 variant='filled'
                 severity='success'
                 style={{ marginTop: 20 }}>
-                تمت عملية التسجيل الأولي عن بعد بنجاح، موفقا حظا٠
+                تمت عملية التسجيل بنجاح، موفقا حظا٠
               </Alert>
             ) : null}
             {props.condidate.success === "success" && open ? (
