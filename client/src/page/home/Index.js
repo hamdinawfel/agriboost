@@ -3,9 +3,9 @@ import Countdown from "react-countdown";
 import Hero from "./components/Hero";
 import ContactUs from "./components/ContactUs";
 import ProjectTimeline from "./components/ProjectTimeline";
-// import Stepper from "./components/Stepper";
 import Stepper from "./components/stepper/Index";
 import Result from "./components/Result";
+import Criteria from "./components/Criteria";
 import Footer from "../../utils/Footer";
 
 const renderer = ({ completed }) => {
@@ -19,7 +19,12 @@ const renderer = ({ completed }) => {
     );
   } else {
     // Render the form for submittion a candidate
-    return <Stepper />;
+    return (
+      <React.Fragment>
+        <Criteria />
+        <Stepper />
+      </React.Fragment>
+    );
   }
 };
 export default function Index() {

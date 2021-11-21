@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     margin: "0 auto",
     padding: "20px",
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: "rgba(255,255,255,0.85)",
     width: "60%",
     [theme.breakpoints.down("md")]: {
       width: "80%",
