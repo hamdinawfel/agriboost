@@ -46,21 +46,21 @@ const validationSchema = yup.object({
         );
       }
     }),
-  cnssId: yup
-    .string()
-    .matches(
-      /^\d{8}-\d{2}$/,
-      "الرجاء التثبت من إدخال المعرف الوحيد على الشكل التالي  : 01-12345678)"
-    )
-    .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
-      if (isCandidateHaveCnss === "لا") {
-        return schema;
-      } else {
-        return schema.required(
-          "الرجاء التثبت من إدخال المعرف الوحيد بالصندوق الوطني للضمان الاجتماعي"
-        );
-      }
-    }),
+  // cnssId: yup
+  //   .string()
+  //   .matches(
+  //     /^\d{8}-\d{2}$/,
+  //     "الرجاء التثبت من إدخال المعرف الوحيد على الشكل التالي  : 01-12345678)"
+  //   )
+  //   .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
+  //     if (isCandidateHaveCnss === "لا") {
+  //       return schema;
+  //     } else {
+  //       return schema.required(
+  //         "الرجاء التثبت من إدخال المعرف الوحيد بالصندوق الوطني للضمان الاجتماعي"
+  //       );
+  //     }
+  //   }),
   isCandidateHavePatente: yup
     .string()
     .oneOf(["لا", "نعم"], "الرجاء التثبت من إدخال الخيار المناسب")
@@ -76,19 +76,19 @@ const validationSchema = yup.object({
         );
       }
     }),
-  patenteId: yup
-    .string()
-    .matches(
-      /^\d{7}[a-zA-Z]{1}$/,
-      "الرجاء التثبت من إدخال المعرف الجبائي على الشكل :1234567x)"
-    )
-    .when("isCandidateHavePatente", (isCandidateHavePatente, schema) => {
-      if (isCandidateHavePatente === "لا") {
-        return schema;
-      } else {
-        return schema.required("الرجاء التثبت من إدخال المعرف الجبائي");
-      }
-    }),
+  // patenteId: yup
+  //   .string()
+  //   .matches(
+  //     /^\d{7}[a-zA-Z]{1}$/,
+  //     "الرجاء التثبت من إدخال المعرف الجبائي على الشكل :1234567x)"
+  //   )
+  //   .when("isCandidateHavePatente", (isCandidateHavePatente, schema) => {
+  //     if (isCandidateHavePatente === "لا") {
+  //       return schema;
+  //     } else {
+  //       return schema.required("الرجاء التثبت من إدخال المعرف الجبائي");
+  //     }
+  //   }),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -174,23 +174,23 @@ function SupplementaryInfo(props) {
       snssDuration: localStorage.getItem("snssDuration")
         ? JSON.parse(localStorage.getItem("snssDuration"))
         : "",
-      cnssId: localStorage.getItem("cnssId")
-        ? JSON.parse(localStorage.getItem("cnssId"))
-        : "",
+      // cnssId: localStorage.getItem("cnssId")
+      //   ? JSON.parse(localStorage.getItem("cnssId"))
+      //   : "",
       isCandidateHavePatente: localStorage.getItem("isCandidateHavePatente")
         ? JSON.parse(localStorage.getItem("isCandidateHavePatente"))
         : "",
       patenteDuration: localStorage.getItem("patenteDuration")
         ? JSON.parse(localStorage.getItem("patenteDuration"))
         : "",
-      patenteId: localStorage.getItem("patenteId")
-        ? JSON.parse(localStorage.getItem("patenteId"))
-        : "",
+      // patenteId: localStorage.getItem("patenteId")
+      //   ? JSON.parse(localStorage.getItem("patenteId"))
+      //   : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displayThirdStep();
-      window.scrollTo(0, 870);
+      window.scrollTo(0, 1500);
 
       localStorage.setItem(
         "edicationalLevel",
@@ -205,7 +205,7 @@ function SupplementaryInfo(props) {
         JSON.stringify(values.isCandidateHaveCnss)
       );
       localStorage.setItem("snssDuration", JSON.stringify(values.snssDuration));
-      localStorage.setItem("cnssId", JSON.stringify(values.cnssId));
+      // localStorage.setItem("cnssId", JSON.stringify(values.cnssId));
       localStorage.setItem(
         "isCandidateHavePatente",
         JSON.stringify(values.isCandidateHavePatente)
@@ -214,12 +214,12 @@ function SupplementaryInfo(props) {
         "patenteDuration",
         JSON.stringify(values.patenteDuration)
       );
-      localStorage.setItem("patenteId", JSON.stringify(values.patenteId));
+      // localStorage.setItem("patenteId", JSON.stringify(values.patenteId));
     },
   });
   const handleGoBack = () => {
     props.displayFirstStep();
-    window.scrollTo(0, 900);
+    window.scrollTo(0, 1300);
   };
   return (
     <div className={classes.root}>
@@ -348,7 +348,7 @@ function SupplementaryInfo(props) {
                 }
               />
             ) : null}
-            {formik.values.isCandidateHaveCnss === "نعم" ? (
+            {/* {formik.values.isCandidateHaveCnss === "نعم" ? (
               <TextField
                 InputLabelProps={{
                   classes: {
@@ -367,7 +367,7 @@ function SupplementaryInfo(props) {
                 error={formik.touched.cnssId && Boolean(formik.errors.cnssId)}
                 helperText={formik.touched.cnssId && formik.errors.cnssId}
               />
-            ) : null}
+            ) : null} */}
           </Grid>
 
           <Grid item xs={12} sm={6} className={classes.item}>
@@ -427,7 +427,7 @@ function SupplementaryInfo(props) {
                 }
               />
             ) : null}
-            {formik.values.isCandidateHavePatente === "نعم" ? (
+            {/* {formik.values.isCandidateHavePatente === "نعم" ? (
               <TextField
                 InputLabelProps={{
                   classes: {
@@ -448,7 +448,7 @@ function SupplementaryInfo(props) {
                 }
                 helperText={formik.touched.patenteId && formik.errors.patenteId}
               />
-            ) : null}
+            ) : null} */}
           </Grid>
         </Grid>
         <div className={classes.btnContainer}>

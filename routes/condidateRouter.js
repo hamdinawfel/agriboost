@@ -87,10 +87,8 @@ condidateRouter
               lastStadyLevel: req.body.lastStadyLevel,
               isCandidateHaveCnss: req.body.isCandidateHaveCnss,
               snssDuration: req.body.snssDuration,
-              cnssId: req.body.cnssId,
               isCandidateHavePatente: req.body.isCandidateHavePatente,
               patenteDuration: req.body.patenteDuration,
-              patenteId: req.body.patenteId,
               // Social info : STEP 3
               candidateTreatmentCard: req.body.candidateTreatmentCard,
               isCandidateHaveChildren: req.body.isCandidateHaveChildren,

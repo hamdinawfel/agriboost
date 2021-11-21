@@ -206,7 +206,7 @@ function PersonelInfo(props) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displaySecondStep();
-      window.scrollTo(0, 900);
+      window.scrollTo(0, 1500);
       localStorage.setItem("cin", JSON.stringify(values.cin));
       localStorage.setItem("confirmCin", JSON.stringify(values.confirmCin));
       localStorage.setItem("fingerPrint", JSON.stringify(values.fingerPrint));

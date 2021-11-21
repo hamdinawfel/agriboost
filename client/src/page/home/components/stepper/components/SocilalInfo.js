@@ -124,6 +124,7 @@ function SocilalInfo(props) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displayLastStep();
+      window.scrollTo(0, 1600);
       localStorage.setItem(
         "candidateTreatmentCard",
         JSON.stringify(values.candidateTreatmentCard)
@@ -144,6 +145,7 @@ function SocilalInfo(props) {
   });
   const handleGoBack = () => {
     props.displaySecondStep();
+    window.scrollTo(0, 1500);
   };
   return (
     <div className={classes.root}>
