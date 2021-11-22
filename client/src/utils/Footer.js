@@ -67,7 +67,7 @@ export default function Footer() {
         <div>
           <div style={{ paddingTop: 30 }}>
             <p className={classes.title}>
-              إنتهاء مهلة تقديم الترشحات يوم 05 ديسمبر 2021
+              إنتهاء مهلة التسجيل يوم 05 ديسمبر 2021
             </p>
           </div>
           <div className={classes.timeContainer} id='clock'>

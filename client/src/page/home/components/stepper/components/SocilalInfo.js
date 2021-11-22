@@ -9,7 +9,8 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { connect } from "react-redux";
 import { displayLastStep, displaySecondStep } from "../../../actions";
 
@@ -103,6 +104,9 @@ const useStyles = makeStyles((theme) => ({
 
 function SocilalInfo(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const xs = useMediaQuery(theme.breakpoints.down("xs"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
 
   const formik = useFormik({
     initialValues: {
@@ -124,7 +128,11 @@ function SocilalInfo(props) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displayLastStep();
-      window.scrollTo(0, 1600);
+      if (xs || sm) {
+        window.scrollTo(0, 2300);
+      } else {
+        window.scrollTo(0, 1600);
+      }
       localStorage.setItem(
         "candidateTreatmentCard",
         JSON.stringify(values.candidateTreatmentCard)
@@ -145,7 +153,11 @@ function SocilalInfo(props) {
   });
   const handleGoBack = () => {
     props.displaySecondStep();
-    window.scrollTo(0, 1500);
+    if (xs || sm) {
+      window.scrollTo(0, 2200);
+    } else {
+      window.scrollTo(0, 1600);
+    }
   };
   return (
     <div className={classes.root}>

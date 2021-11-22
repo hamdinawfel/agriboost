@@ -162,7 +162,7 @@ export default function Hero() {
       return (
         <div>
           <p className={classes.caption}>
-            إنتهاء مهلة تقديم الترشحات يوم 05 ديسمبر 2021
+            إنتهاء مهلة التسجيل يوم 05 ديسمبر 2021
           </p>
           <div className={classes.timeContainer}>
             <span className={classes.time}>
