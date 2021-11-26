@@ -10,6 +10,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import CloseIcon from "@material-ui/icons/Close";
 import slider from "../../../assets/slider.jpg";
+import reveal from "../../../assets/reveal.mp4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -207,18 +208,15 @@ export default function Hero() {
                 justifyContent: "center",
                 marginBottom: 50,
               }}>
-              {/* TODO: Add the video bran here */}
-              {/* <iframe
-                        id="video"
-                        className={classes.video}
-                        src={"https://www.youtube.com/embed/Bp_BRQeeYK0"}
-                        frameBorder="0"
-                        allow="accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    /> */}
-              <video controls className={classes.video}>
-                <source src='#' type='video/webm' />
-              </video>
+              <iframe
+                title='reveal'
+                id='reveal'
+                className={classes.video}
+                src={reveal}
+                frameBorder='0'
+                allow='accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+              />
             </DialogContent>
           </Dialog>
         </div>
