@@ -208,15 +208,9 @@ export default function Hero() {
                 justifyContent: "center",
                 marginBottom: 50,
               }}>
-              <iframe
-                title='reveal'
-                id='reveal'
-                className={classes.video}
-                src={reveal}
-                frameBorder='0'
-                allow='accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-              />
+              <video controls className={classes.video}>
+                <source src={reveal} type='video/webm' />
+              </video>
             </DialogContent>
           </Dialog>
         </div>

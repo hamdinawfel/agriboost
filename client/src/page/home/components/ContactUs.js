@@ -46,15 +46,9 @@ export default function ContactUs() {
           sm={12}
           md={6}
           style={{ display: "flex", justifyContent: "center", padding: 15 }}>
-          <iframe
-            title='reveal'
-            id='video'
-            className={classes.video}
-            src={reveal}
-            frameBorder='0'
-            allow='accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
-          />
+          <video controls className={classes.video}>
+            <source src={reveal} type='video/webm' />
+          </video>
         </Grid>
         <Grid
           item
@@ -66,7 +60,6 @@ export default function ContactUs() {
             target='_blank'
             rel='noreferrer'
             href='https://www.facebook.com/Agriboost.Kairouan'>
-            {/* TODO: Add facebook page link */}
             <img src={facebook} className={classes.video} alt='facebook' />
           </Link>
         </Grid>
