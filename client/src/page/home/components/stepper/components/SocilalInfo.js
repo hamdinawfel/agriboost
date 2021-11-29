@@ -18,7 +18,7 @@ const validationSchema = yup.object({
   candidateTreatmentCard: yup
     .string()
     .oneOf(
-      ["بطاقة علاج ذات التعريفة المنخفظة", "بطاقة العلاج المجاني"],
+      ["بطاقة علاج ذات التعريفة المنخفظة", "بطاقة العلاج المجاني", "لا شئ"],
       "الرجاء التثبت من إدخال نوع بطاقة العلاج المنتفع بها"
     )
     .required("الرجاء التثبت من إدخال الخيار المناسب"),
@@ -190,6 +190,11 @@ function SocilalInfo(props) {
                   value='بطاقة علاج ذات التعريفة المنخفظة'
                   control={<Radio color='primary' />}
                   label='بطاقة علاج ذات التعريفة المنخفظة'
+                />
+                <FormControlLabel
+                  value='لا شئ'
+                  control={<Radio color='primary' />}
+                  label='لا شئ'
                 />
               </RadioGroup>
             </FormControl>
