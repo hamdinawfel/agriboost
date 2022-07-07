@@ -8,6 +8,7 @@ module.exports = function calulateUnemploymentDuration(
   patenteDuration
 ) {
   let unemploymentDuration = 0;
+  
   const minimumWorkAge = 18 * 12;
   unemploymentDuration =
     moment().diff(`${birthDate}`, "months") - minimumWorkAge;
