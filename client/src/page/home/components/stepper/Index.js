@@ -10,7 +10,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Alert from "@material-ui/lab/Alert";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import Title from "../../../../utils/Title";
 import PersonelInfo from "./components/PersonelInfo";
@@ -24,7 +25,7 @@ import { createCondidat, reset, displayThirdStep } from "../../actions";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    top: -600,
+    top: -700,
     padding: 100,
     [theme.breakpoints.down("md")]: {
       top: -500,
@@ -112,9 +113,17 @@ function Index(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
+  const theme = useTheme();
+  const xs = useMediaQuery(theme.breakpoints.down("xs"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
   const handleGoBack = () => {
     props.displayThirdStep();
-    window.scrollTo(0, 900);
+    if (xs || sm) {
+      window.scrollTo(0, 2200);
+    } else {
+      window.scrollTo(0, 1600);
+    }
   };
 
   const [accesspted, setAccesspted] = useState(false);
@@ -178,7 +187,7 @@ function Index(props) {
           <Paper square elevation={0} className={classes.resetContainer}>
             {props.condidate.success === "" ? (
               <React.Fragment>
-                <div style={{ display: "flex", margin: "-20px 0 30px 0" }}>
+                <div style={{ display: "flex", marginTop: "-20px" }}>
                   <FormControlLabel
                     style={{ marginLeft: 10 }}
                     control={
@@ -198,6 +207,13 @@ function Index(props) {
                     أصرح على شرفي وأكد بأن المعطيات التي صرحت بها صحيحة وإن ثبوت
                     عكس ذلك سيؤدي إلى رفض مطلبي بصفة آلية
                   </Typography>
+                </div>
+                <div style={{ margin: "-10px 0 30px 0" }}>
+                  <p className={classes.warningText}>
+                    <span className={classes.noteWarning}>هام جدا</span>
+                    إن التسجيل في هذه المنصة نهائي، الرجاء التثبت من المعطيات
+                    المدرجة قبل تأكيد التسجيل
+                  </p>
                 </div>
                 <Button
                   variant='outlined'
@@ -231,7 +247,7 @@ function Index(props) {
                 variant='filled'
                 severity='success'
                 style={{ marginTop: 20 }}>
-                تمت عملية التسجيل الأولي عن بعد بنجاح، موفقا حظا٠
+                تمت عملية التسجيل بنجاح، موفقا حظا٠
               </Alert>
             ) : null}
             {props.condidate.success === "success" && open ? (

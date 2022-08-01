@@ -36,12 +36,12 @@ export const createCondidat = () => (dispatch) => {
       localStorage.getItem("isCandidateHaveCnss")
     ),
     snssDuration: JSON.parse(localStorage.getItem("snssDuration")),
-    cnssId: JSON.parse(localStorage.getItem("cnssId")),
+    // cnssId: JSON.parse(localStorage.getItem("cnssId")),
     isCandidateHavePatente: JSON.parse(
       localStorage.getItem("isCandidateHavePatente")
     ),
     patenteDuration: JSON.parse(localStorage.getItem("patenteDuration")),
-    patenteId: JSON.parse(localStorage.getItem("patenteId")),
+    // patenteId: JSON.parse(localStorage.getItem("patenteId")),
     // Social info : STEP 3
     candidateTreatmentCard: JSON.parse(
       localStorage.getItem("candidateTreatmentCard")

@@ -8,6 +8,7 @@ const passport = require("passport");
 let helmet = require("helmet");
 
 //Load routes
+
 let app = express();
 app.use(sslRedirect());
 app.disable("x-powered-by");
@@ -36,7 +37,7 @@ mongoose
   });
 app.use(cors());
 
-// cors middleware
+// cors middleware config
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

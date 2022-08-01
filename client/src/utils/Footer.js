@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 export default function Footer() {
   const classes = useStyles();
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -66,7 +67,7 @@ export default function Footer() {
         <div>
           <div style={{ paddingTop: 30 }}>
             <p className={classes.title}>
-              إنتهاء مهلة تقديم الترشحات يوم 06 ديسمبر 2021
+              إنتهاء مدة التسجيل يوم 05 ديسمبر 2021
             </p>
           </div>
           <div className={classes.timeContainer} id='clock'>
@@ -95,7 +96,11 @@ export default function Footer() {
             تابعونا على
           </p>
           <div className={classes.social}>
-            <Link color='inherit' target='_blank' rel='noreferrer' href='#'>
+            <Link
+              color='inherit'
+              target='_blank'
+              rel='noreferrer'
+              href='https://www.facebook.com/Agriboost.Kairouan'>
               <FacebookIcon fontSize='large' style={{ color: "#fff" }} />
             </Link>
           </div>

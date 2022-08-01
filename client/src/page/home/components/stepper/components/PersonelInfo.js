@@ -2,7 +2,8 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import moment from "moment";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -31,9 +32,9 @@ const validationSchema = yup.object({
     .string()
     .matches(
       /^[\u0621-\u064A\u0660-\u0669 ]+$/,
-      "الرجاء التثبت من إدخال الإسم باللغة العربية"
+      "الرجاء التثبت من إدخال الإسم الثلاثي باللغة العربية"
     )
-    .max(70, "الرجاء عدم تجاوج 70 حرف")
+    .max(255, "الرجاء عدم تجاوج 255 حرف")
     .required("الرجاء التثبت من إدخال الإسم"),
   lastName: yup
     .string()
@@ -41,7 +42,7 @@ const validationSchema = yup.object({
       /^[\u0621-\u064A\u0660-\u0669 ]+$/,
       "الرجاء التثبت من إدخال اللقب باللغة العربية"
     )
-    .max(70, "الرجاء عدم تجاوج 70 حرف")
+    .max(255, "الرجاء عدم تجاوج 255 حرف")
     .required("الرجاء التثبت من إدخال اللقب"),
   birthDay: yup
     .string()
@@ -157,6 +158,10 @@ const useStyles = makeStyles((theme) => ({
 
 function PersonelInfo(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const xs = useMediaQuery(theme.breakpoints.down("xs"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
   const formik = useFormik({
     initialValues: {
       cin: localStorage.getItem("cin")
@@ -206,7 +211,11 @@ function PersonelInfo(props) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displaySecondStep();
-      window.scrollTo(0, 900);
+      if (xs || sm) {
+        window.scrollTo(0, 2200);
+      } else {
+        window.scrollTo(0, 1500);
+      }
       localStorage.setItem("cin", JSON.stringify(values.cin));
       localStorage.setItem("confirmCin", JSON.stringify(values.confirmCin));
       localStorage.setItem("fingerPrint", JSON.stringify(values.fingerPrint));
@@ -336,7 +345,7 @@ function PersonelInfo(props) {
               type='text'
               id='firstName'
               name='firstName'
-              label='الإسم'
+              label='الإسم الثلاثي'
               value={formik.values.firstName}
               onChange={formik.handleChange}
               error={

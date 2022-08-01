@@ -70,17 +70,11 @@ const condidateSchema = new Schema(
     snssDuration: {
       type: String,
     },
-    cnssId: {
-      type: String,
-    },
     isCandidateHavePatente: {
       type: String,
       required: true,
     },
     patenteDuration: {
-      type: String,
-    },
-    patenteId: {
       type: String,
     },
     // Social info : STEP 3

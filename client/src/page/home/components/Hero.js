@@ -10,6 +10,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import CloseIcon from "@material-ui/icons/Close";
 import slider from "../../../assets/slider.jpg";
+import reveal from "../../../assets/reveal.mp4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     margin: "0 auto",
     padding: "20px",
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: "rgba(255,255,255,0.85)",
     width: "60%",
     [theme.breakpoints.down("md")]: {
       width: "80%",
@@ -148,7 +149,7 @@ export default function Hero() {
   const Completionist = () => (
     <div>
       <p className={classes.caption}>
-        إنتهت عملية التسجيل بتاريخ 06 ديسمبر 2021
+        إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
       </p>
       <Button className={classes.myButton} onClick={handleResult}>
         النتائج
@@ -162,7 +163,7 @@ export default function Hero() {
       return (
         <div>
           <p className={classes.caption}>
-            إنتهاء مهلة تقديم الترشحات يوم 06 ديسمبر 2021
+            إنتهاء مدة التسجيل يوم 05 ديسمبر 2021
           </p>
           <div className={classes.timeContainer}>
             <span className={classes.time}>
@@ -207,17 +208,8 @@ export default function Hero() {
                 justifyContent: "center",
                 marginBottom: 50,
               }}>
-              {/* TODO: Add the video bran here */}
-              {/* <iframe
-                        id="video"
-                        className={classes.video}
-                        src={"https://www.youtube.com/embed/Bp_BRQeeYK0"}
-                        frameBorder="0"
-                        allow="accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    /> */}
               <video controls className={classes.video}>
-                <source src='#' type='video/webm' />
+                <source src={reveal} type='video/webm' />
               </video>
             </DialogContent>
           </Dialog>

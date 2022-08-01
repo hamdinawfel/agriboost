@@ -11,10 +11,11 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 import { connect } from "react-redux";
 import { displayThirdStep, displayFirstStep } from "../../../actions";
-
 const validationSchema = yup.object({
   edicationalLevel: yup
     .string()
@@ -46,21 +47,6 @@ const validationSchema = yup.object({
         );
       }
     }),
-  cnssId: yup
-    .string()
-    .matches(
-      /^\d{8}-\d{2}$/,
-      "الرجاء التثبت من إدخال المعرف الوحيد على الشكل التالي  : 01-12345678)"
-    )
-    .when("isCandidateHaveCnss", (isCandidateHaveCnss, schema) => {
-      if (isCandidateHaveCnss === "لا") {
-        return schema;
-      } else {
-        return schema.required(
-          "الرجاء التثبت من إدخال المعرف الوحيد بالصندوق الوطني للضمان الاجتماعي"
-        );
-      }
-    }),
   isCandidateHavePatente: yup
     .string()
     .oneOf(["لا", "نعم"], "الرجاء التثبت من إدخال الخيار المناسب")
@@ -74,19 +60,6 @@ const validationSchema = yup.object({
         return schema.required(
           "الرجاء التثبت من إدخال مدة فعالية المعرف الجبائي  بالأشهر"
         );
-      }
-    }),
-  patenteId: yup
-    .string()
-    .matches(
-      /^\d{7}[a-zA-Z]{1}$/,
-      "الرجاء التثبت من إدخال المعرف الجبائي على الشكل :1234567x)"
-    )
-    .when("isCandidateHavePatente", (isCandidateHavePatente, schema) => {
-      if (isCandidateHavePatente === "لا") {
-        return schema;
-      } else {
-        return schema.required("الرجاء التثبت من إدخال المعرف الجبائي");
       }
     }),
 });
@@ -160,6 +133,10 @@ const useStyles = makeStyles((theme) => ({
 function SupplementaryInfo(props) {
   const classes = useStyles();
 
+  const theme = useTheme();
+  const xs = useMediaQuery(theme.breakpoints.down("xs"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
   const formik = useFormik({
     initialValues: {
       edicationalLevel: localStorage.getItem("edicationalLevel")
@@ -174,24 +151,21 @@ function SupplementaryInfo(props) {
       snssDuration: localStorage.getItem("snssDuration")
         ? JSON.parse(localStorage.getItem("snssDuration"))
         : "",
-      cnssId: localStorage.getItem("cnssId")
-        ? JSON.parse(localStorage.getItem("cnssId"))
-        : "",
       isCandidateHavePatente: localStorage.getItem("isCandidateHavePatente")
         ? JSON.parse(localStorage.getItem("isCandidateHavePatente"))
         : "",
       patenteDuration: localStorage.getItem("patenteDuration")
         ? JSON.parse(localStorage.getItem("patenteDuration"))
         : "",
-      patenteId: localStorage.getItem("patenteId")
-        ? JSON.parse(localStorage.getItem("patenteId"))
-        : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       props.displayThirdStep();
-      window.scrollTo(0, 870);
-
+      if (xs || sm) {
+        window.scrollTo(0, 2180);
+      } else {
+        window.scrollTo(0, 1550);
+      }
       localStorage.setItem(
         "edicationalLevel",
         JSON.stringify(values.edicationalLevel)
@@ -205,7 +179,7 @@ function SupplementaryInfo(props) {
         JSON.stringify(values.isCandidateHaveCnss)
       );
       localStorage.setItem("snssDuration", JSON.stringify(values.snssDuration));
-      localStorage.setItem("cnssId", JSON.stringify(values.cnssId));
+      // localStorage.setItem("cnssId", JSON.stringify(values.cnssId));
       localStorage.setItem(
         "isCandidateHavePatente",
         JSON.stringify(values.isCandidateHavePatente)
@@ -214,12 +188,15 @@ function SupplementaryInfo(props) {
         "patenteDuration",
         JSON.stringify(values.patenteDuration)
       );
-      localStorage.setItem("patenteId", JSON.stringify(values.patenteId));
     },
   });
   const handleGoBack = () => {
     props.displayFirstStep();
-    window.scrollTo(0, 900);
+    if (xs || sm) {
+      window.scrollTo(0, 2200);
+    } else {
+      window.scrollTo(0, 1550);
+    }
   };
   return (
     <div className={classes.root}>
@@ -348,26 +325,6 @@ function SupplementaryInfo(props) {
                 }
               />
             ) : null}
-            {formik.values.isCandidateHaveCnss === "نعم" ? (
-              <TextField
-                InputLabelProps={{
-                  classes: {
-                    root: classes.labelRoot,
-                    shrink: classes.shrink,
-                  },
-                }}
-                className={classes.textField}
-                variant='filled'
-                label='أدخل المعرف الوحيد بالصندوق الوطني للضمان الاجتماعي'
-                type='text'
-                id='cnssId'
-                name='cnssId'
-                value={formik.values.cnssId}
-                onChange={formik.handleChange}
-                error={formik.touched.cnssId && Boolean(formik.errors.cnssId)}
-                helperText={formik.touched.cnssId && formik.errors.cnssId}
-              />
-            ) : null}
           </Grid>
 
           <Grid item xs={12} sm={6} className={classes.item}>
@@ -425,28 +382,6 @@ function SupplementaryInfo(props) {
                   formik.touched.patenteDuration &&
                   formik.errors.patenteDuration
                 }
-              />
-            ) : null}
-            {formik.values.isCandidateHavePatente === "نعم" ? (
-              <TextField
-                InputLabelProps={{
-                  classes: {
-                    root: classes.labelRoot,
-                    shrink: classes.shrink,
-                  },
-                }}
-                className={classes.textField}
-                variant='filled'
-                label='أدخل المعرف الجبائي'
-                type='text'
-                id='patenteId'
-                name='patenteId'
-                value={formik.values.patenteId}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.patenteId && Boolean(formik.errors.patenteId)
-                }
-                helperText={formik.touched.patenteId && formik.errors.patenteId}
               />
             ) : null}
           </Grid>

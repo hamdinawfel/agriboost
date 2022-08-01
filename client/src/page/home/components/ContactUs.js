@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import Link from "@material-ui/core/Link";
 import facebook from "../../../assets/facebook.jpg";
+import reveal from "../../../assets/reveal.mp4";
+
 import Title from "../../../utils/Title";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,19 +46,8 @@ export default function ContactUs() {
           sm={12}
           md={6}
           style={{ display: "flex", justifyContent: "center", padding: 15 }}>
-          {/* TODO: Add brand video */}
-          {/* <iframe
-              id="video"
-              className={classes.video}
-              // src={"https://www.youtube.com/embed/Bp_BRQeeYK0"}
-              // src={"https://www.youtube.com/embed/Bp_BRQeeYK0"}
-              frameBorder="0"
-              allow="accelerometer, autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-          /> */}
-
           <video controls className={classes.video}>
-            <source src='#' type='video/webm' />
+            <source src={reveal} type='video/webm' />
           </video>
         </Grid>
         <Grid
@@ -64,8 +55,11 @@ export default function ContactUs() {
           sm={12}
           md={6}
           style={{ display: "flex", justifyContent: "center", padding: 15 }}>
-          <Link color='inherit' target='_blank' rel='noreferrer' href='#'>
-            {/* TODO: Add facebook page link */}
+          <Link
+            color='inherit'
+            target='_blank'
+            rel='noreferrer'
+            href='https://www.facebook.com/Agriboost.Kairouan'>
             <img src={facebook} className={classes.video} alt='facebook' />
           </Link>
         </Grid>
