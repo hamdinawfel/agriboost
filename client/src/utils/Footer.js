@@ -6,8 +6,8 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: "#222222",
-    marginTop: -500,
+    backgroundColor: '#00a35c',
+    marginTop: 0,
     [theme.breakpoints.down("sm")]: {
       marginTop: 0,
     },
@@ -84,7 +84,7 @@ export default function Footer() {
       <Countdown
         date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
         renderer={renderer}></Countdown>
-      <div style={{ padding: "30PX 0 10px 0", background: "#222" }}>
+      <div style={{ padding: "30PX 0 10px 0"}}>
         <div>
           <p
             style={{

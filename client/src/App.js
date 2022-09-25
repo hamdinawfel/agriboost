@@ -12,6 +12,7 @@ import PageNotFound from "./utils/PageNotFound";
 //Redux setup
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import reservation from "./page/reservation/Reservation";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <div>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route exact path='/reclamation' component={Reclamation} />
+              <Route exact path='/reclamation' component={Reclamation} /> 
+              <Route exact path='/reservation' component={reservation} /> 
               <Route component={PageNotFound} />
             </Switch>
           </div>
