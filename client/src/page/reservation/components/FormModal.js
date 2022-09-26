@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Grid, TextField } from '@material-ui/core';
@@ -23,8 +23,7 @@ const validationSchema = yup.object({
       /^\d{4}$/,
       "الرجاء التثبت من إدخال رقم الهاتف على النحو التالي: 2201"
     )
-    .required("الرجاء التثبت من إدخال رقم الهاتف"),
-});
+  });
 
 const useStyles = makeStyles((theme) => ({
   form:{
@@ -60,22 +59,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormModal = () => {
+const FormModal = ({valid, setValid, session}) => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       cin: "",
       phone: "",
-      code: "",
+      session: session,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+        console.log(values)
+        setValid(true)
     },
   });
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
         <Grid container>
+          <h2 style={{textAlign:'center', width:'100%'}}>الرجاء إدخال المعطيات التالية</h2>
             <Grid item lg={12} className={classes.item}>
             <TextField
                 InputLabelProps={{
@@ -116,35 +118,15 @@ const FormModal = () => {
                 helperText={formik.touched.phone && formik.errors.phone}
             />
             </Grid>
-            <Grid item lg={12} className={classes.item}>
-            <TextField
-                InputLabelProps={{
-                classes: {
-                    root: classes.labelRoot,
-                    shrink: classes.shrink,
-                },
-                }}
-                className={classes.textField}
-                dir='rtl'
-                type='text'
-                id='code'
-                name='code'
-                label="الرقم السري"
-                value={formik.values.phone}
-                onChange={formik.handleChange}
-                error={formik.touched.phone && Boolean(formik.errors.phone)}
-                helperText={formik.touched.phone && formik.errors.phone}
-            />
-            </Grid>
-        </Grid>
-        <Button
+          </Grid>
+          <Button
             type='submit'
             fullWidth
             variant='contained'
             color='primary'
             className={classes.submit}>
-            أرسل
-        </Button>
+              أرسل
+          </Button>
     </form>
   );
 }

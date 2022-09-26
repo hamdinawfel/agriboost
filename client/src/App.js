@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from "@material-ui/styles";
 //pages
 import Home from "./page/home/Index";
@@ -34,7 +34,7 @@ function App() {
   );
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#6AAF06",

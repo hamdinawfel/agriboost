@@ -38,11 +38,11 @@ const ReservationCard = ({session, period}) => {
         {session}
         </Typography>
         <Typography className={classes.text} variant="body2" component="p">
-        {period}
+        {period} 
         </Typography>
       </CardContent>
       <CardActions>
-        <CardModal />
+        <CardModal session={session}/>
       </CardActions>
     </Card>
   );

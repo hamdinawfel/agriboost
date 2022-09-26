@@ -6,7 +6,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#00a35c',
+    backgroundColor: '#008343',
     marginTop: 0,
     [theme.breakpoints.down("sm")]: {
       marginTop: 0,

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Modal } from '@material-ui/core';
 import FormModal from './FormModal';
+import FormValidation from './FormValidation';
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -27,15 +28,17 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     padding: '2rem',
     width: '30vw',
-    height: '60vh',
+    height: '45vh',
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`,
   },
 }));
 
-const CardModal = () => {
+const CardModal = ({session}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [valid, setValid] = useState(false)
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -59,8 +62,11 @@ const CardModal = () => {
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
-              <h2 style={{textAlign:'center'}}>الرجاء إدخال المعطيات التالية</h2>
-              <FormModal/>
+              {valid ? (
+                <FormValidation/>
+              ) : (
+                <FormModal valid={valid} setValid={setValid} session={session}/>
+              )}
             </div>
           </Modal>
         </div>
