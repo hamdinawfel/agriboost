@@ -1,24 +1,24 @@
-require("dotenv").config();
-const express = require("express");
-const Condidates = require("../models/condidate");
-var authenticate = require("../middlewares/authenticate");
-var calulateUnemploymentScore = require("../middlewares/calulateUnemploymentScore");
-var calulateUnemploymentDuration = require("../middlewares/calulateUnemploymentDuration");
-var verifyCandidateTime = require("../middlewares/verifyCandidateTime");
-const limiter = require("../middlewares/limiter");
+require('dotenv').config();
+const express = require('express');
+const Condidates = require('../models/condidate');
+var authenticate = require('../middlewares/authenticate');
+var calulateUnemploymentScore = require('../helpers/calulateUnemploymentScore');
+var calulateUnemploymentDuration = require('../helpers/calulateUnemploymentDuration');
+var verifyCandidateTime = require('../middlewares/verifyCandidateTime');
+const limiter = require('../middlewares/limiter');
 
 const condidateRouter = express.Router();
 
 const candidateStatus = {
-  submitted: "مطلبكم في مرحلة الفرز",
-  rejected: "نأسف لعدم قبول مطلبكم",
-  waited: "مطلبكم في قائمة الإنتظار",
-  initial: "حضي مطلبكم بالقبول مبدئيا",
-  final: "حضي مطلبكم بالقبول",
+  submitted: 'مطلبكم في مرحلة الفرز',
+  rejected: 'نأسف لعدم قبول مطلبكم',
+  waited: 'مطلبكم في قائمة الإنتظار',
+  initial: 'حضي مطلبكم بالقبول مبدئيا',
+  final: 'حضي مطلبكم بالقبول',
 };
 
 condidateRouter
-  .route("/")
+  .route('/')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.find({})
       .sort({ totalScore: -1 })
@@ -27,7 +27,7 @@ condidateRouter
       .then(
         (condidates) => {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidates);
         },
         (err) => next(err)
@@ -40,22 +40,22 @@ condidateRouter
         (condidat) => {
           if (!condidat) {
             let totalScore = 0;
-            if (req.body.candidateTreatmentCard === "بطاقة العلاج المجاني") {
+            if (req.body.candidateTreatmentCard === 'بطاقة العلاج المجاني') {
               totalScore = totalScore + 4;
             }
             if (
               req.body.candidateTreatmentCard ===
-              "بطاقة علاج ذات التعريفة المنخفظة"
+              'بطاقة علاج ذات التعريفة المنخفظة'
             ) {
               totalScore = totalScore + 3;
             }
-            if (req.body.isCandidateHaveChildren === "نعم") {
+            if (req.body.isCandidateHaveChildren === 'نعم') {
               totalScore = totalScore + 1;
             }
-            if (req.body.isCandidateHaveSiblings === "نعم") {
+            if (req.body.isCandidateHaveSiblings === 'نعم') {
               totalScore = totalScore + 1;
             }
-            if (req.body.isCandidateHaveAnetiInscription === "نعم") {
+            if (req.body.isCandidateHaveAnetiInscription === 'نعم') {
               totalScore = totalScore + 1;
             }
             const unemploymentScore = calulateUnemploymentScore(
@@ -103,14 +103,14 @@ condidateRouter
               .then(
                 (condidate) => {
                   res.statusCode = 200;
-                  res.setHeader("Content-Type", "application/json");
+                  res.setHeader('Content-Type', 'application/json');
                   res.json(condidate);
                 },
                 (err) => next(err)
               )
               .catch((err) => next(err));
           } else {
-            return res.status(400).json({ cin: "Vous êtes déjà abonné" });
+            return res.status(400).json({ cin: 'Vous êtes déjà abonné' });
           }
         },
         (err) => next(err)
@@ -119,7 +119,7 @@ condidateRouter
   });
 //GET REJECTED CANDIDATES
 condidateRouter
-  .route("/rejected")
+  .route('/rejected')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.find({ status: candidateStatus.rejected })
       .sort({ totalScore: -1 })
@@ -128,7 +128,7 @@ condidateRouter
       .then(
         (condidates) => {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidates);
         },
         (err) => next(err)
@@ -137,7 +137,7 @@ condidateRouter
   });
 //GET WAITED CANDIDATES
 condidateRouter
-  .route("/waited")
+  .route('/waited')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.find({ status: candidateStatus.waited })
       .sort({ totalScore: -1 })
@@ -146,7 +146,7 @@ condidateRouter
       .then(
         (condidates) => {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidates);
         },
         (err) => next(err)
@@ -155,7 +155,7 @@ condidateRouter
   });
 //GET INITAIL CANDIDATES
 condidateRouter
-  .route("/initial")
+  .route('/initial')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.find({ status: candidateStatus.initial })
       .sort({ totalScore: -1 })
@@ -164,7 +164,7 @@ condidateRouter
       .then(
         (condidates) => {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidates);
         },
         (err) => next(err)
@@ -173,7 +173,7 @@ condidateRouter
   });
 //GET FINAL CANDIDATES
 condidateRouter
-  .route("/final")
+  .route('/final')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.find({ status: candidateStatus.final })
       .sort({ totalScore: -1 })
@@ -182,7 +182,7 @@ condidateRouter
       .then(
         (condidates) => {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidates);
         },
         (err) => next(err)
@@ -191,7 +191,7 @@ condidateRouter
   });
 
 condidateRouter
-  .route("/admin/:condidateId")
+  .route('/admin/:condidateId')
   .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.findByIdAndUpdate(
       req.params.condidateId,
@@ -203,7 +203,7 @@ condidateRouter
       .then(
         (condidate) => {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidate);
         },
         (err) => next(err)
@@ -212,15 +212,15 @@ condidateRouter
   });
 // USED BY ADMIN TO GET CONDIDATE INFO BY CIN NUMBER
 condidateRouter
-  .route("/search/:candidateCin")
+  .route('/search/:candidateCin')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Condidates.findOne({ cin: req.params.candidateCin })
       .then((condidate) => {
         if (!condidate) {
-          return res.status(404).json({ error: "cin not found" });
+          return res.status(404).json({ error: 'cin not found' });
         } else {
           res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
+          res.setHeader('Content-Type', 'application/json');
           res.json(condidate);
         }
       })
@@ -229,17 +229,17 @@ condidateRouter
       });
   });
 // SHOW SUBMITION STATE TO CONDIDATE
-condidateRouter.route("/:condidateCin").get(limiter, (req, res, next) => {
+condidateRouter.route('/:condidateCin').get(limiter, (req, res, next) => {
   Condidates.findOne(
     { cin: req.params.condidateCin },
     { cin: 1, firstName: 1, lastName: 1, status: 1, sexe: 1 }
   )
     .then((condidate) => {
       if (!condidate) {
-        return res.status(404).json("cin not found");
+        return res.status(404).json('cin not found');
       } else {
         res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
+        res.setHeader('Content-Type', 'application/json');
         res.json(condidate);
       }
     })
