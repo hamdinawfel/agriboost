@@ -17,6 +17,7 @@ app.use(helmet());
 const condidateRouter = require('./routes/condidateRouter');
 const countRouter = require('./routes/countRouter');
 const reclamationRouter = require('./routes/reclamationRouter');
+const reservationRouter = require('./routes/reservationRouter');
 const users = require('./routes/users');
 
 app.use(express.json());
@@ -59,6 +60,7 @@ app.use('/condidates', condidateRouter);
 app.use('/count', countRouter);
 app.use('/reclamations', reclamationRouter);
 app.use('/users', users);
+app.use('/reservations', reservationRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/build'));
