@@ -61,4 +61,30 @@ reservationRouter
     });
   });
 
+reservationRouter.route('/confirmation').post((req, res, next) => {
+  Reservations.findOne({ cin: req.body.cin }).then((reservation) => {
+    if (reservation && reservation.smsCode == req.body.smsCode) {
+      if (!reservation.isPhoneVerified) {
+        reservation.isPhoneVerified = true;
+        reservation
+          .save()
+          .then(() => {
+            res.status(201).json({ message: 'Reservation was confirmed' });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              error: err,
+            });
+          });
+      } else {
+        res.status(500).json({
+          error: `This Reservation was already confirmed with this phone number:${reservation.phone}`,
+        });
+      }
+    } else {
+      return res.status(403).json({ error: 'Verification code was incorrect' });
+    }
+  });
+});
+
 module.exports = reservationRouter;
