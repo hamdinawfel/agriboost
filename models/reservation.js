@@ -20,7 +20,7 @@ const reservationSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    smsCode: {
+    smsVerificatioCode: {
       type: String,
       required: true,
     },

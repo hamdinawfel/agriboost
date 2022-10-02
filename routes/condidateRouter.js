@@ -236,7 +236,7 @@ condidateRouter.route('/:condidateCin').get(limiter, (req, res, next) => {
   )
     .then((condidate) => {
       if (!condidate) {
-        return res.status(404).json('cin not found');
+        return res.status(404).json({ error: 'cin not found' });
       } else {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
