@@ -8,13 +8,12 @@ import Title from '../../utils/Title';
 import Footer from '../../utils/Footer';
 import { sessions } from './components/data'; 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
     root: {
       padding: "2rem",
-      margin: "-400px 0 0 0"
     },
     container: {
-      margin: "40px 0 40px 0"
+      margin: "40px 0 10px 0",
     },
     text: {
       textAlign: "right",
@@ -22,7 +21,7 @@ const useStyles = makeStyles({
       fontWeight: 300,
       marginRight: "30px"
     },
-  });
+  }));
 
 const Reservation = () => {
   const classes = useStyles();
@@ -32,12 +31,26 @@ const Reservation = () => {
         <Hero/>
         <div className={classes.root}>
             <Title title='إرشاد و توجيه' />
-            <Grid container className={classes.container}>
-                <Grid item lg={12}>
+            <Grid 
+              container 
+              className={classes.container}
+            >
+                <Grid 
+                  item 
+                  lg={12}
+                >
                     <p className={classes.text}>قم باختيار الدورة التي تناسبك</p>
-                    <Grid container spacing={8}>
+                    <Grid 
+                      container 
+                      spacing={8}
+                    >
                       {sessions.map((item) => (
-                        <Grid item lg={4} key={item.id}>
+                        <Grid 
+                          item 
+                          lg={4} 
+                          xs={12}
+                          key={item.id}
+                        >
                           <ReservationCard 
                             session={item.session}
                             period={item.period}

@@ -29,7 +29,10 @@ const ReservationCard = ({session, period}) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <Card 
+      className={classes.root} 
+      variant="outlined"
+    >
       <CardContent>
         <Typography className={classes.title}>
         دورة إرشاد و توجيه
@@ -37,8 +40,12 @@ const ReservationCard = ({session, period}) => {
         <Typography className={classes.subtitle}>
         {session}
         </Typography>
-        <Typography className={classes.text} variant="body2" component="p">
-        {period} 
+        <Typography 
+          className={classes.text} 
+          variant="body2" 
+          component="p"
+        >
+          {period} 
         </Typography>
       </CardContent>
       <CardActions>

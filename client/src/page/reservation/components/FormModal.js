@@ -26,17 +26,9 @@ const validationSchema = yup.object({
   });
 
 const useStyles = makeStyles((theme) => ({
-  form:{
-    display: 'flex', 
-    flexDirection: 'column', 
-    justifyContent: 'center',
-  },
-  textField: {
-    // margin: 10,
-    width: "100%",
-  },
   item: {
     padding: 15,
+    width: '100%',
   },
   labelRoot: {
     right: 0,
@@ -75,10 +67,14 @@ const FormModal = ({valid, setValid, session}) => {
   });
 
   return (
-    <form className={classes.form} onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
         <Grid container>
           <h2 style={{textAlign:'center', width:'100%'}}>الرجاء إدخال المعطيات التالية</h2>
-            <Grid item lg={12} className={classes.item}>
+            <Grid 
+              className={classes.item}
+              item 
+              sm={12} 
+            >
             <TextField
                 InputLabelProps={{
                 classes: {
@@ -86,7 +82,7 @@ const FormModal = ({valid, setValid, session}) => {
                     shrink: classes.shrink,
                 },
                 }}
-                className={classes.textField}
+                fullWidth
                 dir='rtl'
                 type='text'
                 id='cin'
@@ -98,25 +94,29 @@ const FormModal = ({valid, setValid, session}) => {
                 helperText={formik.touched.cin && formik.errors.cin}
             />
             </Grid>
-            <Grid item lg={12} className={classes.item}>
-            <TextField
-                InputLabelProps={{
-                classes: {
-                    root: classes.labelRoot,
-                    shrink: classes.shrink,
-                },
-                }}
-                className={classes.textField}
-                dir='rtl'
-                type='text'
-                id='phone'
-                name='phone'
-                label='الهاتف'
-                value={formik.values.phone}
-                onChange={formik.handleChange}
-                error={formik.touched.phone && Boolean(formik.errors.phone)}
-                helperText={formik.touched.phone && formik.errors.phone}
-            />
+            <Grid 
+              className={classes.item}
+              item 
+              sm={12} 
+            >
+              <TextField
+                  InputLabelProps={{
+                  classes: {
+                      root: classes.labelRoot,
+                      shrink: classes.shrink,
+                  },
+                  }}
+                  fullWidth
+                  dir='rtl'
+                  type='text'
+                  id='phone'
+                  name='phone'
+                  label='الهاتف'
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  helperText={formik.touched.phone && formik.errors.phone}
+              />
             </Grid>
           </Grid>
           <Button

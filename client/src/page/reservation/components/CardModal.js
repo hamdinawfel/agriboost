@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     padding: '2rem',
     width: '30vw',
+    [theme.breakpoints.down("sm")]: {
+      width: '80vw',
+      height: '38vh',
+    },
     height: '45vh',
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`,
@@ -65,7 +69,11 @@ const CardModal = ({session}) => {
               {valid ? (
                 <FormValidation/>
               ) : (
-                <FormModal valid={valid} setValid={setValid} session={session}/>
+                <FormModal 
+                  valid={valid} 
+                  setValid={setValid} 
+                  session={session}
+                />
               )}
             </div>
           </Modal>

@@ -23,6 +23,7 @@ const validationSchema = yup.object({
       /^\d{4}$/,
       "الرجاء التثبت من إدخال رقم الهاتف على النحو التالي: 2201"
     )
+    .required(),
   });
 
 const useStyles = makeStyles((theme) => ({
@@ -32,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   textField: {
-    // margin: 10,
     width: "100%",
   },
   item: {
     padding: 15,
+    width: "100%",
   },
   labelRoot: {
     right: 0,
