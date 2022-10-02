@@ -33,8 +33,7 @@ const sendSmsMessage = (req, res, next, message) => {
       data,
       options
     )
-    .then((response) => {
-      console.log(response.data);
+    .then(() => {
       return next();
     })
     .catch((err) => {
