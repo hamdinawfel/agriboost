@@ -1,14 +1,14 @@
-require("dotenv").config();
-const express = require("express");
-const Reclamations = require("../models/reclamation");
-var authenticate = require("../middlewares/authenticate");
-const limiter = require("../middlewares/limiter");
-var verifyReclamationTime = require("../middlewares/verifyReclamationTime");
+require('dotenv').config();
+const express = require('express');
+const Reclamations = require('../models/reclamation');
+var authenticate = require('../middlewares/authenticate');
+const limiter = require('../middlewares/limiter');
+var verifyReclamationTime = require('../middlewares/verifyReclamationTime');
 
 const reclamationRouter = express.Router();
 
 reclamationRouter
-  .route("/")
+  .route('/')
   .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Reclamations.find({})
       .then((reclamations) => {
@@ -42,39 +42,39 @@ reclamationRouter
           });
       } else {
         res.status(403).json({
-          error: "We have already been requested a reclamation",
+          error: 'You have already been requested a reclamation',
         });
       }
     });
   })
   .put((req, res, next) => {
     res.statusCode = 403;
-    res.end("PUT operation not supported on /reclamations");
+    res.end('PUT operation not supported on /reclamations');
   })
   .delete((req, res, next) => {
     res.statusCode = 403;
-    res.end("DELETE operation not supported on /reclamations");
+    res.end('DELETE operation not supported on /reclamations');
   });
 //
 reclamationRouter
-  .route("/:reclamationId")
+  .route('/:reclamationId')
   .get((req, res, next) => {
     res.statusCode = 403;
     res.end(
-      "GET operation not supported on /reclamations/" + req.params.reclamationId
+      'GET operation not supported on /reclamations/' + req.params.reclamationId
     );
   })
   .post((req, res, next) => {
     res.statusCode = 403;
     res.end(
-      "POST operation not supported on /reclamations/" +
+      'POST operation not supported on /reclamations/' +
         req.params.reclamationId
     );
   })
   .put((req, res, next) => {
     res.statusCode = 403;
     res.end(
-      "PUT operation not supported on /reclamations/" + req.params.reclamationId
+      'PUT operation not supported on /reclamations/' + req.params.reclamationId
     );
   })
   .delete(
