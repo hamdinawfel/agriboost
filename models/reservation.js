@@ -21,7 +21,7 @@ const reservationSchema = new Schema(
       default: false,
     },
     smsCode: {
-      type: Number,
+      type: String,
       required: true,
     },
     isInformed: {
