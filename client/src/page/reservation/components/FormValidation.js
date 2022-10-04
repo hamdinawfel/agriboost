@@ -9,17 +9,6 @@ import { confirmReservation } from "../actions";
 
 
 const validationSchema = yup.object({
-  cin: yup
-    .string()
-    .matches(/^[0-9]{8}$/, "الرجاء التثبت من رقم بطاقة التعريف الوطنية")
-    .required("الرجاء التثبت من رقم بطاقة التعريف الوطنية"),
-  phone: yup
-    .string()
-    .matches(
-      /^\d{8}$/,
-      "الرجاء التثبت من إدخال رقم الهاتف على النحو التالي: 22013013"
-    )
-    .required("الرجاء التثبت من إدخال رقم الهاتف"),
   code: yup
     .string()
     .matches(
@@ -71,12 +60,12 @@ const FormValidation = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        console.log(values)
+      console.log(values)
         props.confirmReservation(values)
     },
   });
 
-  const { success, error, alertMessage } = props.validation;
+  const { success, error, alertMessage } = props.confirmation;
 
 
   return (
@@ -112,13 +101,12 @@ const FormValidation = (props) => {
             className={classes.submit}>
             تأكيد
           </Button> 
-          
     </form>
   );
 }
 
 const mapStateToProps = (state) => ({
-  validation: state.validation,
+  confirmation: state.confirmation,
 });
 
 const mapActionsToProps = {

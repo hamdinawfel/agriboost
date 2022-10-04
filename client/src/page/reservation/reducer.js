@@ -1,4 +1,4 @@
-import { LOADING, SUCCESS_MESSAGE, SET_ERROR } from "./types";
+import { LOADING_RESERVATION, SUCCESS_MESSAGE_RESERVATION, SET_ERROR_RESERVATION, LOADING_CONFIRMATION, SUCCESS_MESSAGE_CONFIRMATION, SET_ERROR_CONFIRMATION } from "./types";
 const initialState = {
   loading: false,
   success: false,
@@ -6,14 +6,14 @@ const initialState = {
   alertMessage: "",
 };
 
-export default function reducer(state = initialState, { type, payload }) {
+export const reservationReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case LOADING:
+    case LOADING_RESERVATION:
       return {
         ...state,
         loading: true,
       };
-    case SUCCESS_MESSAGE:
+    case SUCCESS_MESSAGE_RESERVATION:
       return {
         ...state,
         success: true,
@@ -21,7 +21,36 @@ export default function reducer(state = initialState, { type, payload }) {
         alertMessage: payload,
       };
 
-    case SET_ERROR:
+    case SET_ERROR_RESERVATION:
+      return {
+        ...state,
+        error: true,
+        success: false,
+        alertMessage: payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+
+export const confirmReservationReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case LOADING_CONFIRMATION:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SUCCESS_MESSAGE_CONFIRMATION:
+      return {
+        ...state,
+        success: true,
+        error: false,
+        alertMessage: payload,
+      };
+
+    case SET_ERROR_CONFIRMATION:
       return {
         ...state,
         error: true,

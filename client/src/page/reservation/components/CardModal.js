@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import { Modal } from '@material-ui/core';
 import FormModal from './FormModal';
 import FormValidation from './FormValidation';
+import { connect } from 'react-redux';
+import { sendReservation } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -28,20 +30,26 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     padding: '2rem',
     width: '450px',
+    height: '330px',
     [theme.breakpoints.down("sm")]: {
-      width: '450px',
+      width: '350px',
       height: '350px',
     },
-    height: '330px',
+    [theme.breakpoints.down("xs")]: {
+      width: '250px',
+      height: '350px',
+    },
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`,
   },
 }));
 
-const CardModal = ({session}) => {
+const CardModal = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [valid, setValid] = useState(false)
+
+  const { success, error, alertMessage } = props.reservation;
+  const isValid = alertMessage==="الرجاء تأكيد التسجيل";
 
 
   const handleOpen = () => {
@@ -66,14 +74,10 @@ const CardModal = ({session}) => {
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
-              {valid ? (
+              {success || isValid ? (
                 <FormValidation/>
               ) : (
-                <FormModal 
-                  valid={valid} 
-                  setValid={setValid} 
-                  session={session}
-                />
+                <FormModal/>
               )}
             </div>
           </Modal>
@@ -81,4 +85,11 @@ const CardModal = ({session}) => {
   );
 }
 
-export default CardModal
+const mapStateToProps = (state) => ({
+  reservation: state.reservation,
+});
+
+const mapActionsToProps = {
+  sendReservation,
+};
+export default connect(mapStateToProps, mapActionsToProps)(CardModal);
