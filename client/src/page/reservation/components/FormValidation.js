@@ -57,6 +57,7 @@ const FormValidation = (props) => {
   const formik = useFormik({
     initialValues: {
       code: "",
+      cin: localStorage.getItem("cin")
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {

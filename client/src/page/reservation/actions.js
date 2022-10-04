@@ -43,8 +43,7 @@ export const confirmReservation = (confirmationData) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: SUCCESS_MESSAGE_CONFIRMATION,
-        payload:
-          "لقد تمت عملية الإرسال بنجاح، سوف يتم الإتصال بك في أقرب الأجال",
+        payload: "تمت عملية التسجيل بنجاح",
       });
     })
     .catch((err) =>

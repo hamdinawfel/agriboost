@@ -68,7 +68,7 @@ const FormModal = (props) => {
     initialValues: {
       cin: "",
       phone: "",
-      trainingPromotion: 1,
+      trainingPromotion: localStorage.getItem("session"),
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {

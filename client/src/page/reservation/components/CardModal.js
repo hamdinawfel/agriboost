@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Modal } from '@material-ui/core';
 import FormModal from './FormModal';
 import FormValidation from './FormValidation';
+import SuccessModal from './SuccessModal';
 import { connect } from 'react-redux';
 import { sendReservation } from "../actions";
 
@@ -44,16 +45,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardModal = (props) => {
+const CardModal = (props, session) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   const { success, error, alertMessage } = props.reservation;
+  const isSuccess = props.confirmation.success;
   const isValid = alertMessage==="الرجاء تأكيد التسجيل";
 
 
   const handleOpen = () => {
+    const sessionNumber = session === 'الدورة الأولى' ? 1 : session === 'الدورة الثانية' ? 2 : 3;
     setOpen(true);
+    localStorage.setItem("session", sessionNumber)
   };
 
   const handleClose = () => {
@@ -74,11 +78,15 @@ const CardModal = (props) => {
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
-              {success || isValid ? (
+              {isSuccess ? 
+                <SuccessModal/> 
+              :
+              success || isValid ? (
                 <FormValidation/>
-              ) : (
-                <FormModal/>
-              )}
+                ) : (
+                  <FormModal/>
+                  )
+                }
             </div>
           </Modal>
         </div>
@@ -87,9 +95,7 @@ const CardModal = (props) => {
 
 const mapStateToProps = (state) => ({
   reservation: state.reservation,
+  confirmation: state.confirmation,
 });
 
-const mapActionsToProps = {
-  sendReservation,
-};
-export default connect(mapStateToProps, mapActionsToProps)(CardModal);
+export default connect(mapStateToProps)(CardModal);
