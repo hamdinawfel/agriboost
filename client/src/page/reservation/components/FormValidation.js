@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button';
 import { Grid, TextField } from '@material-ui/core';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { connect } from 'react-redux';
+import { confirmReservation } from "../actions";
+
 
 const validationSchema = yup.object({
   cin: yup
@@ -60,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormValidation = () => {
+const FormValidation = (props) => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
@@ -69,8 +72,12 @@ const FormValidation = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
         console.log(values)
+        props.confirmReservation(values)
     },
   });
+
+  const { success, error, alertMessage } = props.validation;
+
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
@@ -110,4 +117,11 @@ const FormValidation = () => {
   );
 }
 
-export default FormValidation
+const mapStateToProps = (state) => ({
+  validation: state.validation,
+});
+
+const mapActionsToProps = {
+  confirmReservation,
+};
+export default connect(mapStateToProps, mapActionsToProps)(FormValidation);

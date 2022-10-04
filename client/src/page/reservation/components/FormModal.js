@@ -4,6 +4,10 @@ import Button from '@material-ui/core/Button';
 import { Grid, TextField } from '@material-ui/core';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { connect } from 'react-redux';
+import { sendReservation } from "../actions";
+
+
 
 const validationSchema = yup.object({
   cin: yup
@@ -51,20 +55,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormModal = ({valid, setValid, session}) => {
+const FormModal = (props) => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       cin: "",
       phone: "",
-      session: session,
+      trainingPromotion: 1,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        console.log(values)
-        setValid(true)
+        props.sendReservation(values)
     },
   });
+  const { success, error, alertMessage } = props.reservation;
+  console.log(props.reservation)
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -131,4 +136,11 @@ const FormModal = ({valid, setValid, session}) => {
   );
 }
 
-export default FormModal
+const mapStateToProps = (state) => ({
+  reservation: state.reservation,
+});
+
+const mapActionsToProps = {
+  sendReservation,
+};
+export default connect(mapStateToProps, mapActionsToProps)(FormModal);
