@@ -72,11 +72,12 @@ const FormModal = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      console.log(values)
       props.sendReservation(values)
       localStorage.setItem("cin", values.cin)
     },
   });
-  const { success, error, alertMessage } = props.reservation;
+  const { alertMessage } = props.reservation;
 
   return (
     <form onSubmit={formik.handleSubmit}>

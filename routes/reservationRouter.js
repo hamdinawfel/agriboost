@@ -43,7 +43,7 @@ reservationRouter
 
 reservationRouter.route('/confirmation').post((req, res, next) => {
   Reservations.findOne({ cin: req.body.cin }).then((reservation) => {
-    if (reservation && reservation.smsCode == req.body.smsCode) {
+    if (reservation && reservation.smsVerificatioCode == req.body.smsCode) {
       if (!reservation.isPhoneVerified) {
         reservation.isPhoneVerified = true;
         reservation

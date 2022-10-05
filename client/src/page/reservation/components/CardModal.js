@@ -5,8 +5,7 @@ import { Modal } from '@material-ui/core';
 import FormModal from './FormModal';
 import FormValidation from './FormValidation';
 import SuccessModal from './SuccessModal';
-import { connect } from 'react-redux';
-import { sendReservation } from "../actions";
+import { connect, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -45,19 +44,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardModal = (props, session) => {
+const CardModal = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
-  const { success, error, alertMessage } = props.reservation;
+  const { success, alertMessage } = props.reservation;
   const isSuccess = props.confirmation.success;
   const isValid = alertMessage==="الرجاء تأكيد التسجيل";
 
 
   const handleOpen = () => {
-    const sessionNumber = session === 'الدورة الأولى' ? 1 : session === 'الدورة الثانية' ? 2 : 3;
+    const sessionNumber = props.session === 'الدورة الأولى' ? 1 : props.session === 'الدورة الثانية' ? 2 : 3;
     setOpen(true);
     localStorage.setItem("session", sessionNumber)
+    dispatch({type: "RESET"})
   };
 
   const handleClose = () => {
@@ -78,7 +79,7 @@ const CardModal = (props, session) => {
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
-              {!isSuccess ? 
+              {isSuccess ? 
                 <SuccessModal/> 
               :
               success || isValid ? (

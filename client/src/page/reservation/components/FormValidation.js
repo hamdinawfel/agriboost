@@ -9,7 +9,7 @@ import { confirmReservation } from "../actions";
 
 
 const validationSchema = yup.object({
-  code: yup
+  smsCode: yup
     .string()
     .matches(
       /^\d{4}$/,
@@ -50,23 +50,29 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#fff",
     },
   },
+  alert: {
+    width: '100%',
+    textAlign: 'right',
+    marginRight: '10px',
+    fontSize: 16,
+    color: 'red',
+  },
 }));
 
 const FormValidation = (props) => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
-      code: "",
-      cin: localStorage.getItem("cin")
+      smsCode: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log(values)
-        props.confirmReservation(values)
+        props.confirmReservation({...values, cin: localStorage.getItem("cin")})
     },
   });
 
-  const { success, error, alertMessage } = props.confirmation;
+  const { alertMessage } = props.confirmation;
 
 
   return (
@@ -84,15 +90,16 @@ const FormValidation = (props) => {
                     className={classes.textField}
                     dir='rtl'
                     type='text'
-                    id='code'
-                    name='code'
+                    id='smsCode'
+                    name='smsCode'
                     label="الرقم السري"
-                    value={formik.values.code}
+                    value={formik.values.smsCode}
                     onChange={formik.handleChange}
-                    error={formik.touched.code && Boolean(formik.errors.code)}
-                    helperText={formik.touched.code && formik.errors.code}
+                    error={formik.touched.smsCode && Boolean(formik.errors.smsCode)}
+                    helperText={formik.touched.smsCode && formik.errors.smsCode}
                 />
             </Grid>
+            {alertMessage && <p className={classes.alert}>{alertMessage}</p>}
         </Grid>
           <Button
             type='submit'

@@ -50,11 +50,11 @@ export const confirmReservation = (confirmationData) => (dispatch) => {
       dispatch({
         type: SET_ERROR_CONFIRMATION,
         payload:
-          err.response.status === 403
-            ? "هذه العملية غير مسموح بها، لقد سبق وتم إرسال الإعتراض"
-            : err.response.status !== 429
-            ? "يوجد خلل ما، الرجاء التحقق من إرباطك من شبكة الأنترنات"
-            : "لقد أجريت العديد من المحاولات في وقت قصير، حاول لاحقا",
+        err.response.data.error === "Verification code was incorrect"
+            ? "الرجاء إعادة التثبت في الرقم السري"
+            : err.response.data.error.includes('This Reservation was already confirmed with this phone number')
+            ? "لقد تم تأكيد العملية سابقا"
+            : "يوجد خلل ما، الرجاء التحقق من إرباطك من شبكة الأنترنات",
       })
     );
 };
