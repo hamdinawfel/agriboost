@@ -14,13 +14,14 @@ const useStyles = makeStyles((theme)=>({
     },
     container: {
       margin: "40px 0 10px 0",
+      display: "flex",
+      justifyContent: "center",
     },
     mapping: {
       [theme.breakpoints.down("md")]: {
         display: "flex",
         flexDirection: "column-reverse",
-        justifyContent: "center",
-        width: "100vw",
+        width: "97vw",
       },
     },
     text: {

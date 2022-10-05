@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     width: "160px",
   },
   typography: {
-    marginLeft: "20px",
+    marginLeft: "12px",
   },
   link: {
     display: 'flex',
