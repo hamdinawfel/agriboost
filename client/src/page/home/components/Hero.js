@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
     position: "relative",
-    margin:"0 0 200px 0",
+    margin:"0 0 50px 0",
   },
   cta: {
     textAlign: "start",
@@ -131,8 +131,8 @@ const useStyles = makeStyles((theme) => ({
       width: "90%",
     },
     [theme.breakpoints.down("sm")]: {
-      height: "90vh",
-      width: "80%",
+      height: "50vh",
+      width: "100%",
     },
   },
 }));
@@ -227,11 +227,11 @@ export default function Hero() {
       <div style={{ position: "sticky" }}>
         <img src={slider} className={classes.slider} alt='slider' />
       </div>
-      <div className={classes.cta}>
+      {/* <div className={classes.cta}>
         <Countdown
           date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
           renderer={renderer}></Countdown>
-      </div>
+      </div> */}
     </div>
   );
 }
