@@ -19,7 +19,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
-          <Navbar />
+          {/* <Navbar /> */}
           <div>
             <Switch>
               <Route exact path="/" component={Home} />

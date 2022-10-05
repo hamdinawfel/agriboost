@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import { Modal } from '@material-ui/core';
 import FormModal from './FormModal';
 import FormValidation from './FormValidation';
+import SuccessModal from './SuccessModal';
+import { connect, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -27,25 +29,36 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     margin: 'auto',
     padding: '2rem',
-    width: '30vw',
+    width: '450px',
+    height: '330px',
     [theme.breakpoints.down("sm")]: {
-      width: '80vw',
-      height: '38vh',
+      width: '350px',
+      height: '350px',
     },
-    height: '45vh',
+    [theme.breakpoints.down("xs")]: {
+      width: '250px',
+      height: '350px',
+    },
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`,
   },
 }));
 
-const CardModal = ({session}) => {
+const CardModal = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [valid, setValid] = useState(false)
+
+  const { success, alertMessage } = props.reservation;
+  const isSuccess = props.confirmation.success;
+  const isValid = alertMessage==="الرجاء تأكيد التسجيل";
 
 
   const handleOpen = () => {
+    const sessionNumber = props.session === 'الدورة الأولى' ? 1 : props.session === 'الدورة الثانية' ? 2 : 3;
     setOpen(true);
+    localStorage.setItem("session", sessionNumber)
+    dispatch({type: "RESET"})
   };
 
   const handleClose = () => {
@@ -66,19 +79,24 @@ const CardModal = ({session}) => {
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
-              {valid ? (
+              {isSuccess ? 
+                <SuccessModal/> 
+              :
+              success || isValid ? (
                 <FormValidation/>
-              ) : (
-                <FormModal 
-                  valid={valid} 
-                  setValid={setValid} 
-                  session={session}
-                />
-              )}
+                ) : (
+                  <FormModal/>
+                  )
+                }
             </div>
           </Modal>
         </div>
   );
 }
 
-export default CardModal
+const mapStateToProps = (state) => ({
+  reservation: state.reservation,
+  confirmation: state.confirmation,
+});
+
+export default connect(mapStateToProps)(CardModal);

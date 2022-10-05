@@ -14,6 +14,15 @@ const useStyles = makeStyles((theme)=>({
     },
     container: {
       margin: "40px 0 10px 0",
+      display: "flex",
+      justifyContent: "center",
+    },
+    mapping: {
+      [theme.breakpoints.down("md")]: {
+        display: "flex",
+        flexDirection: "column-reverse",
+        width: "97vw",
+      },
     },
     text: {
       textAlign: "right",
@@ -41,6 +50,7 @@ const Reservation = () => {
                 >
                     <p className={classes.text}>قم باختيار الدورة التي تناسبك</p>
                     <Grid 
+                      className={classes.mapping}
                       container 
                       spacing={8}
                     >
@@ -48,6 +58,8 @@ const Reservation = () => {
                         <Grid 
                           item 
                           lg={4} 
+                          md={12}
+                          sm={12}
                           xs={12}
                           key={item.id}
                         >

@@ -4,6 +4,10 @@ import Button from '@material-ui/core/Button';
 import { Grid, TextField } from '@material-ui/core';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { connect } from 'react-redux';
+import { sendReservation } from "../actions";
+
+
 
 const validationSchema = yup.object({
   cin: yup
@@ -27,7 +31,7 @@ const validationSchema = yup.object({
 
 const useStyles = makeStyles((theme) => ({
   item: {
-    padding: 15,
+    padding: 0,
     width: '100%',
   },
   labelRoot: {
@@ -49,22 +53,31 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#fff",
     },
   },
+  alert: {
+    width: '100%',
+    textAlign: 'right',
+    marginRight: '10px',
+    fontSize: 16,
+    color: 'red',
+  },
 }));
 
-const FormModal = ({valid, setValid, session}) => {
+const FormModal = (props) => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       cin: "",
       phone: "",
-      session: session,
+      trainingPromotion: localStorage.getItem("session"),
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        console.log(values)
-        setValid(true)
+      console.log(values)
+      props.sendReservation(values)
+      localStorage.setItem("cin", values.cin)
     },
   });
+  const { alertMessage } = props.reservation;
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -118,6 +131,7 @@ const FormModal = ({valid, setValid, session}) => {
                   helperText={formik.touched.phone && formik.errors.phone}
               />
             </Grid>
+            {alertMessage && <p className={classes.alert}>{alertMessage}</p>}
           </Grid>
           <Button
             type='submit'
@@ -131,4 +145,11 @@ const FormModal = ({valid, setValid, session}) => {
   );
 }
 
-export default FormModal
+const mapStateToProps = (state) => ({
+  reservation: state.reservation,
+});
+
+const mapActionsToProps = {
+  sendReservation,
+};
+export default connect(mapStateToProps, mapActionsToProps)(FormModal);

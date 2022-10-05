@@ -4,20 +4,12 @@ import Button from '@material-ui/core/Button';
 import { Grid, TextField } from '@material-ui/core';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { connect } from 'react-redux';
+import { confirmReservation } from "../actions";
+
 
 const validationSchema = yup.object({
-  cin: yup
-    .string()
-    .matches(/^[0-9]{8}$/, "الرجاء التثبت من رقم بطاقة التعريف الوطنية")
-    .required("الرجاء التثبت من رقم بطاقة التعريف الوطنية"),
-  phone: yup
-    .string()
-    .matches(
-      /^\d{8}$/,
-      "الرجاء التثبت من إدخال رقم الهاتف على النحو التالي: 22013013"
-    )
-    .required("الرجاء التثبت من إدخال رقم الهاتف"),
-  code: yup
+  smsCode: yup
     .string()
     .matches(
       /^\d{4}$/,
@@ -58,19 +50,30 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#fff",
     },
   },
+  alert: {
+    width: '100%',
+    textAlign: 'right',
+    marginRight: '10px',
+    fontSize: 16,
+    color: 'red',
+  },
 }));
 
-const FormValidation = () => {
+const FormValidation = (props) => {
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
-      code: "",
+      smsCode: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        console.log(values)
+      console.log(values)
+        props.confirmReservation({...values, cin: localStorage.getItem("cin")})
     },
   });
+
+  const { alertMessage } = props.confirmation;
+
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
@@ -87,15 +90,16 @@ const FormValidation = () => {
                     className={classes.textField}
                     dir='rtl'
                     type='text'
-                    id='code'
-                    name='code'
+                    id='smsCode'
+                    name='smsCode'
                     label="الرقم السري"
-                    value={formik.values.code}
+                    value={formik.values.smsCode}
                     onChange={formik.handleChange}
-                    error={formik.touched.code && Boolean(formik.errors.code)}
-                    helperText={formik.touched.code && formik.errors.code}
+                    error={formik.touched.smsCode && Boolean(formik.errors.smsCode)}
+                    helperText={formik.touched.smsCode && formik.errors.smsCode}
                 />
             </Grid>
+            {alertMessage && <p className={classes.alert}>{alertMessage}</p>}
         </Grid>
           <Button
             type='submit'
@@ -105,9 +109,15 @@ const FormValidation = () => {
             className={classes.submit}>
             تأكيد
           </Button> 
-          
     </form>
   );
 }
 
-export default FormValidation
+const mapStateToProps = (state) => ({
+  confirmation: state.confirmation,
+});
+
+const mapActionsToProps = {
+  confirmReservation,
+};
+export default connect(mapStateToProps, mapActionsToProps)(FormValidation);

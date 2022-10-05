@@ -11,14 +11,11 @@ import HomeIcon from '@material-ui/icons/Home';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#008343',
-    marginTop: 0,
+    marginTop: "50px",
     color:"white",
-    padding: "2rem 1rem 1rem 1rem",
+    padding: "20px 100px 0 100px",
     [theme.breakpoints.down("sm")]: {
-      marginTop: 0,
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginTop: 0,
+      padding: "20px 30px 0 30px",
     },
   },
   title: {
@@ -28,6 +25,14 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       fontSize: "18px",
+    },
+  },
+  center: {
+    [theme.breakpoints.up("md")]: {
+      marginTop: "50px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "10px",
     },
   },
   copyRight: {
@@ -48,7 +53,10 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     display: "flex",
     justifyContent: "center",
-    margin: "1rem 0 2rem 0",
+    margin: "1rem 0 0 0",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "20px",
+    },
 
   },
   time: {
@@ -61,22 +69,44 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "50px",
     },
   },
+  imgContainer: {
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "flex-start",
+    },
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
   image: {
     height: "230px",
     width: "160px",
-    marginTop:"-20px"
   },
   typography: {
-    marginLeft: "20px",
+    marginLeft: "12px",
   },
   link: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#414143',
+    backgroundColor: '#008343',
     borderRadius: '10%',
     height: '3rem',
     width: '3rem',
+  }, 
+  info: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  infoContainer: {
+    display: "flex",
+    justifyContent: "center",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "50px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "10px",
+    },
   }
 }));
 
@@ -125,8 +155,8 @@ export default function Footer() {
             {/* left */}
             <Grid item lg={3} md={4} xs={12}>
               <Grid 
+                className={classes.imgContainer}
                 container 
-                justifyContent="center"
               >
                 <img className={classes.image} src={FooterImage} alt="footerImage"/>
               </Grid>
@@ -134,9 +164,9 @@ export default function Footer() {
             {/* center */}
             <Grid item lg={6} md={4} xs={12}>
               <Grid 
+                className={classes.center}
                 container 
                 direction="column" 
-                justifyContent="center"
               >
                 <Grid>
                   <Typography 
@@ -151,48 +181,35 @@ export default function Footer() {
             </Grid>
             {/* right */}
             <Grid item lg={3} md={4} xs={12}>
-              <Grid 
-                container
-                justifyContent="center"
-                direction="column">
-                  <Grid 
-                    container 
-                    direction="row" 
-                    justifyContent="center" 
-                    alignItems="center"
-                  >
-                    <HomeIcon/>
-                    <Typography 
-                      className={classes.typography}
-                      variant="h6"
-                      align="left"
-                    > سيدي عمر بوحجلة، القيروان</Typography>
-                  </Grid>
-                  <Grid 
-                    container 
-                    direction="row" 
-                    justifyContent="center" 
-                    alignItems="center"
-                  >
-                    <PhoneInTalkIcon/>
-                    <Typography
-                      className={classes.typography}
-                      variant="h6"
-                      align="left"
-                    > +216 33 22 11 00 </Typography>
-                  </Grid>
-                  <div className={classes.social}>
-                    <div className={classes.link}>
-                      <Link
-                        color='inherit'
-                        target='_blank'
-                        rel='noreferrer'
-                        href='https://www.facebook.com/Agriboost.Kairouan'>
-                        <FacebookIcon fontSize='large' style={{ color: "#fff" }} />
-                      </Link>
+              <div className={classes.infoContainer}>
+                  <div>
+                    <div className={classes.info}>
+                      <HomeIcon/>
+                      <Typography 
+                        className={classes.typography}
+                        variant="h6"
+                        align="left"
+                      > سيدي عمر بوحجلة، القيروان</Typography>
+                    </div>
+                    <div className={classes.info}>
+                      <PhoneInTalkIcon/>
+                      <Typography
+                        className={classes.typography}
+                        variant="h6"
+                        align="left"
+                      > +216 33 22 11 00 </Typography>
                     </div>
                   </div>
-                </Grid>
+              </div>
+              <div className={classes.social}>
+                <Link
+                  color='inherit'
+                  target='_blank'
+                  rel='noreferrer'
+                  href='https://www.facebook.com/Agriboost.Kairouan'>
+                  <FacebookIcon fontSize='large' style={{ color: "#fff" }} />
+                </Link>
+              </div>
             </Grid>
           </Grid>
         </Grid>
