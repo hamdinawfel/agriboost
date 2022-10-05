@@ -78,7 +78,7 @@ const CardModal = (props, session) => {
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
-              {isSuccess ? 
+              {!isSuccess ? 
                 <SuccessModal/> 
               :
               success || isValid ? (
