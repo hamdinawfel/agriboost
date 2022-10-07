@@ -9,15 +9,15 @@ import Title from "../../../utils/Title";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    top: -620,
-    padding: "0 100px 0 100px",
+    // top: -620,
+    padding: "0 100px 70px 100px",
     [theme.breakpoints.down("md")]: {
-      padding: "0 20px 100px 20px",
-      top: -480,
+      // padding: "0 20px 100px 20px",
+      // top: -480,
     },
     [theme.breakpoints.down("sm")]: {
-      top: 20,
-      padding: "0 20px 0 20px",
+      // top: 20,
+      // padding: "0 20px 0 20px",
     },
   },
   video: {

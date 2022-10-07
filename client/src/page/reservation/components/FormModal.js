@@ -31,7 +31,7 @@ const validationSchema = yup.object({
 
 const useStyles = makeStyles((theme) => ({
   item: {
-    padding: 15,
+    padding: 0,
     width: '100%',
   },
   labelRoot: {
@@ -53,6 +53,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#fff",
     },
   },
+  alert: {
+    width: '100%',
+    textAlign: 'right',
+    marginRight: '10px',
+    fontSize: 16,
+    color: 'red',
+  },
 }));
 
 const FormModal = (props) => {
@@ -61,15 +68,16 @@ const FormModal = (props) => {
     initialValues: {
       cin: "",
       phone: "",
-      trainingPromotion: 1,
+      trainingPromotion: localStorage.getItem("session"),
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        props.sendReservation(values)
+      console.log(values)
+      props.sendReservation(values)
+      localStorage.setItem("cin", values.cin)
     },
   });
-  const { success, error, alertMessage } = props.reservation;
-  console.log(props.reservation)
+  const { alertMessage } = props.reservation;
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -123,6 +131,7 @@ const FormModal = (props) => {
                   helperText={formik.touched.phone && formik.errors.phone}
               />
             </Grid>
+            {alertMessage && <p className={classes.alert}>{alertMessage}</p>}
           </Grid>
           <Button
             type='submit'

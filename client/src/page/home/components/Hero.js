@@ -9,46 +9,52 @@ import IconButton from "@material-ui/core/IconButton";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import CloseIcon from "@material-ui/icons/Close";
-import slider from "../../../assets/slider.jpg";
+import slider from "../../../assets/hero-image.png";
 import reveal from "../../../assets/reveal.mp4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "0 0 100px 0",
     textAlign: "center",
+    position: "relative",
+    margin:"0 0 50px 0",
   },
   cta: {
-    position: "relative",
-    top: "-620px",
     textAlign: "start",
-    display: "inline-block",
-    margin: "0 auto",
-    padding: "20px",
-    backgroundColor: "rgba(255,255,255,0.85)",
-    width: "60%",
+    display: "flex",
+    margin: "-134px 0 0 1028px",
     [theme.breakpoints.down("md")]: {
-      width: "80%",
+      margin: "0 0 0 0",
     },
-    [theme.breakpoints.down("sm")]: {
-      top: "0",
-      width: "90%",
-      display: "block",
-      margin: "0 auto",
-    },
+    // padding: "20px",
+    backgroundColor: "black",
+    // [theme.breakpoints.down("md")]: {
+    //   width: "80%",
+    // },
+    // [theme.breakpoints.down("sm")]: {
+    //   top: "0",
+    //   width: "90%",
+    //   display: "block",
+    //   margin: "0 auto",
+    // },
   },
   myButton: {
     display: "block",
     margin: "0 auto",
     color: "#fff",
-    fontSize: 25,
-    width: "50%",
+    fontSize: 20,
+    width: "150px",
+    height: "55px",
+    [theme.breakpoints.down("md")]: {
+      width: "50px",
+      height: "35px",
+    },
     fontWeight: 900,
-    padding: "10px 50px",
-    borderRadius: 0,
-    marginTop: 40,
-    marginBottom: 20,
-    backgroundColor: theme.palette.primary.main,
-    border: `2px solid #fff`,
+    // padding: "10px 50px",
+    borderRadius: "20px",
+    // marginTop: 40,
+    // marginBottom: 20,
+    backgroundColor: "#014f04",
+    // border: `2px solid #fff`,
     letterSpacing: 0.8,
     textTransform: "capitalize",
     transition: "0.5s",
@@ -58,11 +64,11 @@ const useStyles = makeStyles((theme) => ({
       border: `2px solid ${theme.palette.primary.main}`,
       backgroundColor: "#fff",
     },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: 18,
-      fontWeight: 600,
-      width: "100%",
-    },
+    // [theme.breakpoints.down("sm")]: {
+    //   fontSize: 18,
+    //   fontWeight: 600,
+    //   width: "100%",
+    // },
   },
   video: {
     width: 500,
@@ -119,9 +125,14 @@ const useStyles = makeStyles((theme) => ({
   },
   slider: {
     width: "100%",
-    height: 700,
+    height: "100vh",
     [theme.breakpoints.down("md")]: {
-      height: "auto",
+      height: "90vh",
+      width: "90%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "50vh",
+      width: "100%",
     },
   },
 }));
@@ -148,9 +159,6 @@ export default function Hero() {
   // to be showen only at end of event time
   const Completionist = () => (
     <div>
-      <p className={classes.caption}>
-        إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
-      </p>
       <Button className={classes.myButton} onClick={handleResult}>
         النتائج
       </Button>
@@ -162,9 +170,6 @@ export default function Hero() {
     } else {
       return (
         <div>
-          <p className={classes.caption}>
-            إنتهاء مدة التسجيل يوم 05 ديسمبر 2021
-          </p>
           <div className={classes.timeContainer}>
             <span className={classes.time}>
               {days}:{hours}:{minutes}:{seconds}
@@ -222,17 +227,11 @@ export default function Hero() {
       <div style={{ position: "sticky" }}>
         <img src={slider} className={classes.slider} alt='slider' />
       </div>
-      <div className={classes.cta}>
-        <h1 className={classes.title}>
-          مرحبا بكم بموقع التسجيل بمشروع الإدماج الإقتصادي للشباب أڨريبوست
-        </h1>
-        <h1 className={classes.caption}>
-          مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
-        </h1>
+      {/* <div className={classes.cta}>
         <Countdown
           date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
           renderer={renderer}></Countdown>
-      </div>
+      </div> */}
     </div>
   );
 }
