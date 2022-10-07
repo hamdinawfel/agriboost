@@ -13,7 +13,7 @@ const sendSmsMessage = (req, res, next, message) => {
 
   const data = {
     outboundSMSMessageRequest: {
-      address: `tel:+${req.body.phone}`,
+      address: `tel:+216${req.body.phone}`,
       senderAddress: `tel:+${process.env.SENDER_PHONE_NUMBER}`,
       outboundSMSTextMessage: {
         message,
