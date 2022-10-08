@@ -6,7 +6,7 @@ var getSmsApiToken = require('../middlewares/getSmsApiToken');
 var checkCandidateHasReservation = require('../middlewares/checkCandidateHasReservation');
 var checkCondidateIsAdmitted = require('../middlewares/checkCondidateIsAdmitted');
 var sendVerificationCode = require('../middlewares/sendVerificationCode');
-// const Condidates = require('../models/condidate');
+var authenticate = require('../middlewares/authenticate');
 
 const reservationRouter = express.Router();
 
@@ -66,5 +66,12 @@ reservationRouter.route('/confirmation').post((req, res, next) => {
     }
   });
 });
+reservationRouter
+  .route('/count')
+  .get(
+    authenticate.verifyUser,
+    authenticate.verifyAdmin,
+    (req, res, next) => {}
+  );
 
 module.exports = reservationRouter;
