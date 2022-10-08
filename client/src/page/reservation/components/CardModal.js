@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2rem',
     width: '450px',
     height: '330px',
+    borderRadius: '10px',
     [theme.breakpoints.down("sm")]: {
       width: '350px',
       height: '350px',
@@ -45,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
   close: {
     color: 'gray',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    margin: '-1rem 0 0 -1rem',
   },
 }));
 
