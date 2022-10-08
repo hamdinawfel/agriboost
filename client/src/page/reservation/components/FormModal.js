@@ -75,9 +75,10 @@ const FormModal = (props) => {
       console.log(values)
       props.sendReservation(values)
       localStorage.setItem("cin", values.cin)
+      localStorage.setItem("phone", values.phone)
     },
   });
-  const { alertMessage } = props.reservation;
+  const { alertMessage, loading } = props.reservation;
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -100,7 +101,7 @@ const FormModal = (props) => {
                 type='text'
                 id='cin'
                 name='cin'
-                label='ب٠ت٠و'
+                label='رقم بطاقة التعريف الوطنية'
                 value={formik.values.cin}
                 onChange={formik.handleChange}
                 error={formik.touched.cin && Boolean(formik.errors.cin)}
@@ -124,7 +125,7 @@ const FormModal = (props) => {
                   type='text'
                   id='phone'
                   name='phone'
-                  label='الهاتف'
+                  label='رقم الهاتف'
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   error={formik.touched.phone && Boolean(formik.errors.phone)}
@@ -135,6 +136,7 @@ const FormModal = (props) => {
           </Grid>
           <Button
             type='submit'
+            disabled={loading}
             fullWidth
             variant='contained'
             color='primary'
