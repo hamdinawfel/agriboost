@@ -6,6 +6,7 @@ import FormModal from './FormModal';
 import FormValidation from './FormValidation';
 import SuccessModal from './SuccessModal';
 import { connect, useDispatch } from 'react-redux';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2rem',
     width: '450px',
     height: '330px',
+    borderRadius: '10px',
     [theme.breakpoints.down("sm")]: {
       width: '350px',
       height: '350px',
@@ -41,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     },
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`,
+  },
+  close: {
+    color: 'gray',
+    cursor: 'pointer',
+    margin: '-1rem 0 0 -1rem',
   },
 }));
 
@@ -65,6 +72,11 @@ const CardModal = (props) => {
     setOpen(false);
   };
 
+  const handleCloseModal = () => {
+    setOpen(false);
+    dispatch({type: "RESET"})
+  };
+
   return (
         <div>
           <Button 
@@ -74,11 +86,14 @@ const CardModal = (props) => {
           </Button>
           <Modal
             open={open}
-            onClose={handleClose}
+            onClose={handleCloseModal}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
           >
             <div className={classes.paper}>
+              <div className={classes.close}>
+                <CloseIcon onClick={handleClose}/>
+              </div>
               {isSuccess ? 
                 <SuccessModal/> 
               :

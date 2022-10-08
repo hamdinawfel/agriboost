@@ -72,13 +72,14 @@ const FormValidation = (props) => {
     },
   });
 
-  const { alertMessage } = props.confirmation;
+  const { alertMessage, loading } = props.confirmation;
 
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
         <Grid container>
           <h2 style={{textAlign:'center', width:'100%'}}>الرجاء إدخال  الرقم السري</h2>
+          <p style={{textAlign:'right', width:'100%'}}>لقد تم إرسال رقم سري في إرسالية قصيرة على الرقم {localStorage.getItem("phone")}</p>
             <Grid item lg={12} className={classes.item}>
                 <TextField
                     InputLabelProps={{
@@ -92,7 +93,7 @@ const FormValidation = (props) => {
                     type='text'
                     id='smsCode'
                     name='smsCode'
-                    label="الرقم السري"
+                    label="أدخل الرقم السري"
                     value={formik.values.smsCode}
                     onChange={formik.handleChange}
                     error={formik.touched.smsCode && Boolean(formik.errors.smsCode)}
@@ -103,6 +104,7 @@ const FormValidation = (props) => {
         </Grid>
           <Button
             type='submit'
+            disabled={loading}
             fullWidth
             variant='contained'
             color='primary'

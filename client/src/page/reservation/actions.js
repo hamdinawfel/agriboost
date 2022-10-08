@@ -22,7 +22,7 @@ export const sendReservation = (reservationData) => (dispatch) => {
             err.response.data.error === "Reservation not confirmed"
             ? "الرجاء تأكيد التسجيل"
             : err.response.data.error === "Condidate not admitted"
-            ? "للأسف هذا المترشح غير مقبول"
+            ? "،للأسف مطلبكم حظي بالرفض"
             : err.response.data.error === "You are already have a confirmed reservation: 1"
             ? "لقد تم تسجيل هذا المترشح في دورة التكوين الأولى"
             : err.response.data.error === "You are already have a confirmed reservation: 2"
