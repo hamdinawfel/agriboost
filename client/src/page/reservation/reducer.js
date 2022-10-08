@@ -24,6 +24,7 @@ export const reservationReducer = (state = initialState, { type, payload }) => {
     case SET_ERROR_RESERVATION:
       return {
         ...state,
+        loading: false,
         error: true,
         success: false,
         alertMessage: payload,
@@ -62,9 +63,18 @@ export const confirmReservationReducer = (state = initialState, { type, payload 
     case SET_ERROR_CONFIRMATION:
       return {
         ...state,
+        loading: false,
         error: true,
         success: false,
         alertMessage: payload,
+      };
+      case RESET:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        success: false,
+        alertMessage: "",
       };
 
     default:
