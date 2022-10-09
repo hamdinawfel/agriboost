@@ -5,6 +5,7 @@ const limiter = require('../middlewares/limiter');
 var getSmsApiToken = require('../middlewares/getSmsApiToken');
 var checkCandidateHasReservation = require('../middlewares/checkCandidateHasReservation');
 var checkCondidateIsAdmitted = require('../middlewares/checkCondidateIsAdmitted');
+var checkAvailablePlaces = require('../middlewares/checkAvailablePlaces');
 var sendVerificationCode = require('../middlewares/sendVerificationCode');
 var authenticate = require('../middlewares/authenticate');
 
@@ -15,6 +16,7 @@ reservationRouter
   .post(
     checkCandidateHasReservation,
     checkCondidateIsAdmitted,
+    checkAvailablePlaces,
     getSmsApiToken,
     sendVerificationCode,
     (req, res, next) => {
@@ -66,12 +68,21 @@ reservationRouter.route('/confirmation').post((req, res, next) => {
     }
   });
 });
-reservationRouter
-  .route('/count')
-  .get(
-    authenticate.verifyUser,
-    authenticate.verifyAdmin,
-    (req, res, next) => {}
-  );
+
+reservationRouter.route('/count').get((req, res, next) => {
+  Reservations.aggregate([
+    { $match: { isPhoneVerified: true } },
+    {
+      $group: {
+        _id: '$trainingPromotion',
+        reservationsCount: { $sum: 1 },
+      },
+    },
+  ])
+    .then((output) => {
+      res.status(200).json(output);
+    })
+    .catch((err) => next(err));
+});
 
 module.exports = reservationRouter;
