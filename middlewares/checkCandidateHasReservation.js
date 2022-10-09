@@ -6,9 +6,11 @@ const checkCandidateHasReservation = (req, res, next) => {
       next();
     } else {
       if (!reservation.isPhoneVerified) {
-        res.status(500).json({
-          error: 'Reservation not confirmed',
-        });
+        Reservations.findOneAndDelete({ _id: reservation._id })
+          .then(() => {
+            next();
+          })
+          .catch((err) => console.log(err));
       } else {
         res.status(500).json({
           error: `You are already have a confirmed reservation: ${reservation.trainingPromotion}`,
