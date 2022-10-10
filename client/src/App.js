@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Home from './page/home/Index';
 import Reclamation from './page/reclamation/Index';
 //utils
-import Navbar from './utils/Navbar';
+// import Navbar from './utils/Navbar';
 import PageNotFound from './utils/PageNotFound';
 //Redux setup
 import store from './redux/store';

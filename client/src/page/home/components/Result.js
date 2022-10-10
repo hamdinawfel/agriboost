@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "70px 100px 0 100px",
     [theme.breakpoints.down("md")]: {
       // top: -400,
-      // padding: 10,
+      padding: "70px 40px 0 40px",
     },
     [theme.breakpoints.down("sm")]: {
       // top: "-70px",
       // width: "100%",
-      // padding: 0,
+      padding: "70px 10px 0 10px",
     },
   },
   box: {

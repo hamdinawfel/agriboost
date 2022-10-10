@@ -1,16 +1,16 @@
 import React from "react";
-import Countdown from "react-countdown";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import IconButton from "@material-ui/core/IconButton";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import CloseIcon from "@material-ui/icons/Close";
+// import Countdown from "react-countdown";
+import { makeStyles } from "@material-ui/core/styles";
+// import Button from "@material-ui/core/Button";
+// import Dialog from "@material-ui/core/Dialog";
+// import DialogContent from "@material-ui/core/DialogContent";
+// import DialogTitle from "@material-ui/core/DialogTitle";
+// import IconButton from "@material-ui/core/IconButton";
+// import useMediaQuery from "@material-ui/core/useMediaQuery";
+// import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+// import CloseIcon from "@material-ui/icons/Close";
 import slider from "../../../assets/hero-image.png";
-import reveal from "../../../assets/reveal.mp4";
+// import reveal from "../../../assets/reveal.mp4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -139,89 +139,89 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Hero() {
   const classes = useStyles();
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const theme = useTheme();
+  // const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  // const [open, setOpen] = React.useState(false);
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleResult = () => {
-    if (!fullScreen) {
-      window.scrollTo(0, 780);
-    } else {
-      window.scrollTo(0, 650);
-    }
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  // const handleResult = () => {
+  //   if (!fullScreen) {
+  //     window.scrollTo(0, 780);
+  //   } else {
+  //     window.scrollTo(0, 650);
+  //   }
+  // };
   // to be showen only at end of event time
-  const Completionist = () => (
-    <div>
-      <Button className={classes.myButton} onClick={handleResult}>
-        النتائج
-      </Button>
-    </div>
-  );
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <Completionist />;
-    } else {
-      return (
-        <div>
-          <div className={classes.timeContainer}>
-            <span className={classes.time}>
-              {days}:{hours}:{minutes}:{seconds}
-            </span>
-          </div>
-          <Button className={classes.myButton} onClick={handleClickOpen}>
-            <PlayCircleOutlineIcon
-              fontSize='large'
-              style={{
-                verticalAlign: "middle",
-                marginRight: 20,
-                marginTop: -5,
-              }}
-            />
-            شاهد طريقة التسجيل
-          </Button>
-          <Dialog
-            fullScreen={fullScreen}
-            open={open}
-            onClose={handleClose}
-            aria-labelledby='responsive-dialog-title'>
-            <div
-              style={{
-                display: "flex",
-                boxShadow: "0px 0px 8px rgba(91, 137, 158, 0.3)",
-                alignItems: "center",
-                marginBottom: 20,
-              }}>
-              <IconButton onClick={handleClose} style={{ marginLeft: 20 }}>
-                <CloseIcon />
-              </IconButton>
-              <DialogTitle
-                style={{ textAlign: "center" }}
-                id='responsive-dialog-title'>
-                {"فيديو طريقة التسجيل"}
-              </DialogTitle>
-            </div>
-            <DialogContent
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginBottom: 50,
-              }}>
-              <video controls className={classes.video}>
-                <source src={reveal} type='video/webm' />
-              </video>
-            </DialogContent>
-          </Dialog>
-        </div>
-      );
-    }
-  };
+  // const Completionist = () => (
+  //   <div>
+  //     <Button className={classes.myButton} onClick={handleResult}>
+  //       النتائج
+  //     </Button>
+  //   </div>
+  // );
+  // const renderer = ({ days, hours, minutes, seconds, completed }) => {
+  //   if (completed) {
+  //     return <Completionist />;
+  //   } else {
+  //     return (
+  //       <div>
+  //         <div className={classes.timeContainer}>
+  //           <span className={classes.time}>
+  //             {days}:{hours}:{minutes}:{seconds}
+  //           </span>
+  //         </div>
+  //         <Button className={classes.myButton} onClick={handleClickOpen}>
+  //           <PlayCircleOutlineIcon
+  //             fontSize='large'
+  //             style={{
+  //               verticalAlign: "middle",
+  //               marginRight: 20,
+  //               marginTop: -5,
+  //             }}
+  //           />
+  //           شاهد طريقة التسجيل
+  //         </Button>
+  //         <Dialog
+  //           fullScreen={fullScreen}
+  //           open={open}
+  //           onClose={handleClose}
+  //           aria-labelledby='responsive-dialog-title'>
+  //           <div
+  //             style={{
+  //               display: "flex",
+  //               boxShadow: "0px 0px 8px rgba(91, 137, 158, 0.3)",
+  //               alignItems: "center",
+  //               marginBottom: 20,
+  //             }}>
+  //             <IconButton onClick={handleClose} style={{ marginLeft: 20 }}>
+  //               <CloseIcon />
+  //             </IconButton>
+  //             <DialogTitle
+  //               style={{ textAlign: "center" }}
+  //               id='responsive-dialog-title'>
+  //               {"فيديو طريقة التسجيل"}
+  //             </DialogTitle>
+  //           </div>
+  //           <DialogContent
+  //             style={{
+  //               display: "flex",
+  //               justifyContent: "center",
+  //               marginBottom: 50,
+  //             }}>
+  //             <video controls className={classes.video}>
+  //               <source src={reveal} type='video/webm' />
+  //             </video>
+  //           </DialogContent>
+  //         </Dialog>
+  //       </div>
+  //     );
+  //   }
+  // };
   return (
     <div className={classes.root}>
       <div style={{ position: "sticky" }}>

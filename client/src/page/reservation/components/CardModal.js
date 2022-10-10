@@ -80,6 +80,7 @@ const CardModal = (props) => {
   return (
         <div>
           <Button 
+            disabled={props.remaining <= 0 ? true : false}
             className={classes.ModalButton} 
             onClick={handleOpen}>
           تسجيل
