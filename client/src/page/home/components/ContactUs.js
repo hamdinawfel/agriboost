@@ -12,12 +12,12 @@ const useStyles = makeStyles((theme) => ({
     // top: -620,
     padding: "0 100px 70px 100px",
     [theme.breakpoints.down("md")]: {
-      // padding: "0 20px 100px 20px",
+      padding: "0 40px 70px 40px",
       // top: -480,
     },
     [theme.breakpoints.down("sm")]: {
       // top: 20,
-      // padding: "0 20px 0 20px",
+      padding: "0 10px 70px 10px",
     },
   },
   video: {

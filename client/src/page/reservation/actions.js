@@ -58,3 +58,8 @@ export const confirmReservation = (confirmationData) => (dispatch) => {
       })
     );
 };
+
+export const getCountPlaces = async () => {
+  const response = await axios.get(`/reservations/count`)
+  return response.data
+};

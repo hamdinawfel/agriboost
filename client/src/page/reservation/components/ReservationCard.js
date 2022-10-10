@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ReservationCard = ({session, period}) => {
+const ReservationCard = ({session, period, remaining}) => {
   const classes = useStyles();
 
   return (
@@ -37,9 +37,23 @@ const ReservationCard = ({session, period}) => {
         <Typography className={classes.title}>
         دورة إرشاد و توجيه
         </Typography>
+        {remaining>10 ?
         <Typography className={classes.subtitle}>
-        {session}
+         {session} {`(متبقي ${remaining} مقعدا)`}
         </Typography>
+        : 1 <remaining < 11 ?
+        <Typography className={classes.subtitle}>
+         {session} {`(متبقي ${remaining} مقاعد)`}
+        </Typography>
+        : remaining === 1 ?
+        <Typography className={classes.subtitle}>
+         {session} {`(متبقي ${remaining} مقعد وحيد)`}
+        </Typography>
+        :
+        <Typography className={classes.subtitle}>
+         {session} {`(لا يمكن التسجيل بهذه الدورة)`}
+        </Typography>
+        }
         <Typography 
           className={classes.text} 
           variant="body2" 
@@ -49,7 +63,7 @@ const ReservationCard = ({session, period}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <CardModal session={session}/>
+        <CardModal session={session} remaining={remaining}/>
       </CardActions>
     </Card>
   );
