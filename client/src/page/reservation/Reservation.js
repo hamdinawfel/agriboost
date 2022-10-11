@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import Result from "../home/components/Result";
 import ProjectTimeline from "../home/components/ProjectTimeline";
 import Hero from '../home/components/Hero';
 import ReservationCard from './components/ReservationCard';
@@ -14,11 +13,18 @@ import { getCountPlaces } from './actions';
 
 const useStyles = makeStyles((theme)=>({
     root: {
-      padding: "2rem",
-      marginBottom: '100px',
+      padding: "0 100px 70px 100px",
+      [theme.breakpoints.down("md")]: {
+        padding: "0 40px 70px 40px",
+        // top: -480,
+      },
+      [theme.breakpoints.down("sm")]: {
+        // top: 20,
+        padding: "0 10px 70px 10px",
+      },
     },
     container: {
-      margin: "40px 0 10px 0",
+      margin: "10px 0 10px 0",
       display: "flex",
       justifyContent: "center",
     },
@@ -57,8 +63,6 @@ const Reservation = () => {
   return (
     <div>
         <Hero/>
-        <Result />
-        <ProjectTimeline/>
         <div className={classes.root}>
             <Title title='إرشاد و توجيه' />
             <Grid 
@@ -95,6 +99,7 @@ const Reservation = () => {
                 </Grid>
             </Grid>
         </div>
+        <ProjectTimeline/>
         <ContactUs />
         <Footer/>
     </div>
