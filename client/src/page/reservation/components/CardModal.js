@@ -22,24 +22,21 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#fff",
     },
   },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   paper: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
     margin: 'auto',
     padding: '2rem',
     width: '450px',
-    height: '330px',
     borderRadius: '10px',
     [theme.breakpoints.down("sm")]: {
       width: '350px',
-      height: '350px',
     },
     [theme.breakpoints.down("xs")]: {
       width: '250px',
-      height: '350px',
     },
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`,
@@ -87,6 +84,7 @@ const CardModal = (props) => {
           </Button>
           <Modal
             open={open}
+            className={classes.modal}
             onClose={handleCloseModal}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
