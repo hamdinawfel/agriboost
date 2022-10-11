@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 100px 70px 100px",
     [theme.breakpoints.down("md")]: {
       // top: -500,
-      // padding: 10,
+      padding: "0 40px 70px 40px",
     },
     [theme.breakpoints.down("sm")]: {
       // top: "-70px",
       // width: "100%",
-      // padding: 0,
+      padding: "0 10px 70px 10px",
     },
   },
   paper: {

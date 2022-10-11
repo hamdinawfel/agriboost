@@ -72,7 +72,6 @@ const FormModal = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values)
       props.sendReservation(values)
       localStorage.setItem("cin", values.cin)
       localStorage.setItem("phone", values.phone)
