@@ -53,13 +53,17 @@ const Reservation = () => {
   useEffect(() => {
     getCountPlaces()
     .then((data) => { 
-      for(let i=0;i<3;i++){
+      for(let i=0;i<data.length;i++){
         table[data[i]._id-1]["placeRemaining"] = 50 - data[i].reservationsCount;
+      }
+      for(let i=0;i<3;i++){
+        if(!table[i].hasOwnProperty("placeRemaining")) {
+          table[i]["placeRemaining"] = 50;
+        }
       }
       setRerender(1)
     }) 
   }, [rerender])
-  console.log(table)
   return (
     <div>
         <Hero/>
