@@ -67,6 +67,7 @@ const CardModal = (props) => {
 
   const handleClose = () => {
     setOpen(false);
+    dispatch({type: "RESET"})
   };
 
   const handleCloseModal = () => {

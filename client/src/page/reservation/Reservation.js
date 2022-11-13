@@ -10,6 +10,8 @@ import Footer from '../../utils/Footer';
 import { sessions } from './components/data'; 
 import ContactUs from '../home/components/ContactUs';
 import { getCountPlaces } from './actions';
+import Orientation from './components/Orientation';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme)=>({
     root: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme)=>({
         padding: "0 40px 70px 40px",
         // top: -480,
       },
-      [theme.breakpoints.down("sm")]: {
+      [theme.breakpoints.down("xs")]: {
         // top: 20,
         padding: "0 10px 70px 10px",
       },
@@ -39,9 +41,9 @@ const useStyles = makeStyles((theme)=>({
     },
     text: { 
       textAlign: "right",
-      fontSize: "25px",
-      fontWeight: 300,
-      marginRight: "30px",
+      fontSize: "2rem",
+      fontWeight: 500,
+      padding: "28px 0px",
     },
   }));
 
@@ -69,6 +71,7 @@ const Reservation = () => {
         <Hero/>
         <div className={classes.root}>
             <Title title='إرشاد و توجيه' />
+            <Orientation />
             <Grid 
               container 
               className={classes.container}
@@ -77,7 +80,7 @@ const Reservation = () => {
                   item 
                   lg={12}
                 >
-                    <p className={classes.text}>قم باختيار الدورة التي تناسبك</p>
+                    <Typography className={classes.text}>قم باختيار الدورة التي تناسبك</Typography>
                     <Grid 
                       className={classes.mapping}
                       container 
