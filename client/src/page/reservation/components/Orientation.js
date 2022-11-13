@@ -11,20 +11,17 @@ import OrientationModal from './OrientationModal';
 
 
 const useStyles = makeStyles((theme)=>({
-    // root: {
-    //   padding: "0 100px 70px 100px",
-    //   [theme.breakpoints.down("md")]: {
-    //     padding: "0 40px 70px 40px",
-    //   },
-    //   [theme.breakpoints.down("sm")]: {
-    //     padding: "0 10px 70px 10px",
-    //   },
-    // },
     container: {
       margin: "10px 0 10px 0",
       padding: "0px",
       display: "flex",
       justifyContent: "center",
+      [theme.breakpoints.only("xs")]: {
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0px 25px"
+      },
     },
     mapping: {
       display: "flex",
@@ -33,6 +30,9 @@ const useStyles = makeStyles((theme)=>({
         display: "flex",
         flexDirection: "column",
         width: "97vw",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "100vw",
       },
     },
     text: { 
@@ -91,6 +91,7 @@ const useStyles = makeStyles((theme)=>({
         fontSize: "1.5rem",
         [theme.breakpoints.down("xs")]: {
             alignItems: "flex-start",
+            paddingTop: "5px",
           },
     },
     itemContent: {
@@ -109,7 +110,9 @@ const useStyles = makeStyles((theme)=>({
         fontWeight: 300,
     },
     itemIcon: {
-
+        [theme.breakpoints.down("xs")]: {
+            marginTop: "5px",
+          },
     },
   }));
 
@@ -303,13 +306,13 @@ const Orientation = () => {
                       </Grid>
                     </Grid>
                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.cardBottom} style={{marginTop: "20px"}}>
-                        <Typography className={classes.caution}>.حضور الجلسات التوجيهية إلزامي</Typography>
+                        <Typography className={classes.caution}>حضور الجلسات التوجيهية إلزامي</Typography>
                         <div className={classes.icon} style={{color: "blue"}}>
                             <BsFillExclamationCircleFill />
                         </div>
                     </Grid>
                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.cardBottom}>
-                        <Typography className={classes.caution}>.أي غياب يلغي تلقائيا مشاركة الشاب في برنامج الدعم</Typography>
+                        <Typography className={classes.caution}>أي غياب يلغي تلقائيا مشاركة الشاب في برنامج الدعم</Typography>
                         <div className={classes.icon} style={{color: "red"}}>
                             <GoAlert />
                         </div>

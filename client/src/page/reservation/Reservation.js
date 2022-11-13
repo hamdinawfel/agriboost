@@ -22,13 +22,19 @@ const useStyles = makeStyles((theme)=>({
       },
       [theme.breakpoints.down("xs")]: {
         // top: 20,
-        padding: "0 10px 70px 10px",
+        padding: "0 5px 70px 5px",
       },
     },
     container: {
       margin: "10px 0 10px 0",
       display: "flex",
       justifyContent: "center",
+      [theme.breakpoints.only("xs")]: {
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0px 25px"
+      },
     },
     mapping: {
       display: "flex",
@@ -37,6 +43,9 @@ const useStyles = makeStyles((theme)=>({
         display: "flex",
         flexDirection: "column",
         width: "97vw",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "100vw",
       },
     },
     text: { 
