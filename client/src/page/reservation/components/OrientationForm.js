@@ -5,7 +5,7 @@ import { Grid, TextField } from '@material-ui/core';
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { connect } from 'react-redux';
-import { sendReservation } from "../actions";
+import { sendInscription } from "../actions";
 
 
 
@@ -54,15 +54,16 @@ const OrientationForm = (props) => {
   const formik = useFormik({
     initialValues: {
       cin: "",
-      section: localStorage.getItem("section"),
+      section: localStorage.getItem("sector"),
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      props.sendReservation(values)
+      props.sendInscription(values)
       localStorage.setItem("cin", values.cin)
+      console.log(values)
     },
   });
-  const { alertMessage, loading } = props.reservation;
+  const { alertMessage, loading } = props.inscription;
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -108,10 +109,10 @@ const OrientationForm = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  reservation: state.reservation,
+  inscription: state.inscription,
 });
 
 const mapActionsToProps = {
-  sendReservation,
+  sendInscription,
 };
 export default connect(mapStateToProps, mapActionsToProps)(OrientationForm);

@@ -81,7 +81,7 @@ const Reservation = () => {
         <div className={classes.root}>
             <Title title='إرشاد و توجيه' />
             <Orientation />
-            <Grid 
+            {/* <Grid 
               container 
               className={classes.container}
             >
@@ -113,7 +113,7 @@ const Reservation = () => {
                       ))}
                     </Grid>
                 </Grid>
-            </Grid>
+            </Grid> */}
         </div>
         <ProjectTimeline/>
         <ContactUs />

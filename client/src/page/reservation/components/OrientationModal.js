@@ -58,9 +58,9 @@ const OrientationModal = (props) => {
 
 
   const handleOpen = () => {
-    const section = props.section;
+    const sector = props.sector === 'عام' ? 1 : props.sector === 'خاص' ? 2 : 3;
     setOpen(true);
-    localStorage.setItem("section", section)
+    localStorage.setItem("sector", sector)
     dispatch({type: "RESET"})
   };
 

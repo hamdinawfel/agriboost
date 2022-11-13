@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme)=>({
     card: { 
       position: "relative",
       height: "470px",
+      [theme.breakpoints.down("xs")]: {
+        height: "490px",
+      },
       borderColor: "#00a35c",
     },
     cardHeader: { 
@@ -206,7 +209,7 @@ const Orientation = () => {
                                 </Grid>
                             </CardContent>
                             <CardActions style={{position: "absolute", left: "3px", bottom: "3px"}}>
-                                <OrientationModal section="عام"/>
+                                <OrientationModal sector="عام"/>
                             </CardActions>
                         </Card> 
                       </Grid>
@@ -253,7 +256,7 @@ const Orientation = () => {
                                 </Grid>
                             </CardContent>
                             <CardActions style={{position: "absolute", left: "3px", bottom: "3px"}}>
-                                <OrientationModal section="خاص" />
+                                <OrientationModal sector="خاص" />
                             </CardActions>
                         </Card> 
                       </Grid>
@@ -300,7 +303,7 @@ const Orientation = () => {
                                 </Grid>
                             </CardContent>
                             <CardActions style={{position: "absolute", left: "3px", bottom: "3px"}}>
-                                <OrientationModal section="لاحقا" />
+                                <OrientationModal sector="لاحقا" />
                             </CardActions>
                         </Card> 
                       </Grid>

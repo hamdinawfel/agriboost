@@ -1,60 +1,53 @@
 import React from "react";
-// import Countdown from "react-countdown";
-import { makeStyles } from "@material-ui/core/styles";
-// import Button from "@material-ui/core/Button";
-// import Dialog from "@material-ui/core/Dialog";
-// import DialogContent from "@material-ui/core/DialogContent";
-// import DialogTitle from "@material-ui/core/DialogTitle";
-// import IconButton from "@material-ui/core/IconButton";
-// import useMediaQuery from "@material-ui/core/useMediaQuery";
-// import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-// import CloseIcon from "@material-ui/icons/Close";
-import slider from "../../../assets/hero-image.png";
-// import reveal from "../../../assets/reveal.mp4";
+import Countdown from "react-countdown";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import IconButton from "@material-ui/core/IconButton";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+import CloseIcon from "@material-ui/icons/Close";
+import slider from "../../../assets/slider.jpg";
+import reveal from "../../../assets/reveal.mp4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    margin: "0 0 0px 0",
     textAlign: "center",
-    position: "relative",
-    margin:"0 0 50px 0",
   },
   cta: {
+    position: "relative",
+    top: "-620px",
     textAlign: "start",
-    display: "flex",
-    margin: "-134px 0 0 1028px",
+    display: "inline-block",
+    margin: "0 auto",
+    padding: "0px",
+    backgroundColor: "rgba(255,255,255,0.85)",
+    width: "60%",
     [theme.breakpoints.down("md")]: {
-      margin: "0 0 0 0",
+      width: "80%",
     },
-    // padding: "20px",
-    backgroundColor: "black",
-    // [theme.breakpoints.down("md")]: {
-    //   width: "80%",
-    // },
-    // [theme.breakpoints.down("sm")]: {
-    //   top: "0",
-    //   width: "90%",
-    //   display: "block",
-    //   margin: "0 auto",
-    // },
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      display: "block",
+      margin: "20px auto",
+    },
   },
   myButton: {
     display: "block",
     margin: "0 auto",
     color: "#fff",
-    fontSize: 20,
-    width: "150px",
-    height: "55px",
-    [theme.breakpoints.down("md")]: {
-      width: "50px",
-      height: "35px",
-    },
+    fontSize: 25,
+    width: "50%",
     fontWeight: 900,
-    // padding: "10px 50px",
-    borderRadius: "20px",
-    // marginTop: 40,
-    // marginBottom: 20,
-    backgroundColor: "#014f04",
-    // border: `2px solid #fff`,
+    padding: "0px 50px",
+    borderRadius: 0,
+    marginTop: 40,
+    marginBottom: 20,
+    backgroundColor: theme.palette.primary.main,
+    border: `2px solid #fff`,
     letterSpacing: 0.8,
     textTransform: "capitalize",
     transition: "0.5s",
@@ -64,16 +57,16 @@ const useStyles = makeStyles((theme) => ({
       border: `2px solid ${theme.palette.primary.main}`,
       backgroundColor: "#fff",
     },
-    // [theme.breakpoints.down("sm")]: {
-    //   fontSize: 18,
-    //   fontWeight: 600,
-    //   width: "100%",
-    // },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 18,
+      fontWeight: 600,
+      width: "100%",
+    },
   },
   video: {
     width: 500,
     height: 300,
-    marginTop: 15,
+    marginTop: 0,
     [theme.breakpoints.down("sm")]: {
       width: "340px",
       height: "200px",
@@ -85,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 900,
     color: theme.palette.primary.dark,
     display: "block",
-    margin: "20px auto",
+    margin: "0px auto",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       fontSize: "20px",
@@ -97,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     color: theme.palette.primary.dark,
     display: "block",
-    margin: "20px auto",
+    margin: "0px auto",
     textAlign: "center",
     [theme.breakpoints.down("xs")]: {
       fontSize: "18px",
@@ -125,113 +118,120 @@ const useStyles = makeStyles((theme) => ({
   },
   slider: {
     width: "100%",
-    height: "100vh",
+    height: 700,
     [theme.breakpoints.down("md")]: {
-      height: "90vh",
-      width: "90%",
-    },
-    [theme.breakpoints.down("sm")]: {
-      height: "50vh",
-      width: "100%",
+      height: "auto",
     },
   },
 }));
 
 export default function Hero() {
   const classes = useStyles();
-  // const theme = useTheme();
-  // const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  // const [open, setOpen] = React.useState(false);
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-  // const handleResult = () => {
-  //   if (!fullScreen) {
-  //     window.scrollTo(0, 780);
-  //   } else {
-  //     window.scrollTo(0, 650);
-  //   }
-  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleResult = () => {
+    if (!fullScreen) {
+      window.scrollTo(0, 780);
+    } else {
+      window.scrollTo(0, 650);
+    }
+  };
   // to be showen only at end of event time
-  // const Completionist = () => (
-  //   <div>
-  //     <Button className={classes.myButton} onClick={handleResult}>
-  //       النتائج
-  //     </Button>
-  //   </div>
-  // );
-  // const renderer = ({ days, hours, minutes, seconds, completed }) => {
-  //   if (completed) {
-  //     return <Completionist />;
-  //   } else {
-  //     return (
-  //       <div>
-  //         <div className={classes.timeContainer}>
-  //           <span className={classes.time}>
-  //             {days}:{hours}:{minutes}:{seconds}
-  //           </span>
-  //         </div>
-  //         <Button className={classes.myButton} onClick={handleClickOpen}>
-  //           <PlayCircleOutlineIcon
-  //             fontSize='large'
-  //             style={{
-  //               verticalAlign: "middle",
-  //               marginRight: 20,
-  //               marginTop: -5,
-  //             }}
-  //           />
-  //           شاهد طريقة التسجيل
-  //         </Button>
-  //         <Dialog
-  //           fullScreen={fullScreen}
-  //           open={open}
-  //           onClose={handleClose}
-  //           aria-labelledby='responsive-dialog-title'>
-  //           <div
-  //             style={{
-  //               display: "flex",
-  //               boxShadow: "0px 0px 8px rgba(91, 137, 158, 0.3)",
-  //               alignItems: "center",
-  //               marginBottom: 20,
-  //             }}>
-  //             <IconButton onClick={handleClose} style={{ marginLeft: 20 }}>
-  //               <CloseIcon />
-  //             </IconButton>
-  //             <DialogTitle
-  //               style={{ textAlign: "center" }}
-  //               id='responsive-dialog-title'>
-  //               {"فيديو طريقة التسجيل"}
-  //             </DialogTitle>
-  //           </div>
-  //           <DialogContent
-  //             style={{
-  //               display: "flex",
-  //               justifyContent: "center",
-  //               marginBottom: 50,
-  //             }}>
-  //             <video controls className={classes.video}>
-  //               <source src={reveal} type='video/webm' />
-  //             </video>
-  //           </DialogContent>
-  //         </Dialog>
-  //       </div>
-  //     );
-  //   }
-  // };
+  const Completionist = () => (
+    <div>
+      <p className={classes.caption}>
+        إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
+      </p>
+      <Button className={classes.myButton} onClick={handleResult}>
+        النتائج
+      </Button>
+    </div>
+  );
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+      return <Completionist />;
+    } else {
+      return (
+        <div>
+          <p className={classes.caption}>
+            إنتهاء مدة التسجيل يوم 05 ديسمبر 2021
+          </p>
+          <div className={classes.timeContainer}>
+            <span className={classes.time}>
+              {days}:{hours}:{minutes}:{seconds}
+            </span>
+          </div>
+          <Button className={classes.myButton} onClick={handleClickOpen}>
+            <PlayCircleOutlineIcon
+              fontSize='large'
+              style={{
+                verticalAlign: "middle",
+                marginRight: 20,
+                marginTop: -5,
+              }}
+            />
+            شاهد طريقة التسجيل
+          </Button>
+          <Dialog
+            fullScreen={fullScreen}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby='responsive-dialog-title'>
+            <div
+              style={{
+                display: "flex",
+                boxShadow: "0px 0px 8px rgba(91, 137, 158, 0.3)",
+                alignItems: "center",
+                marginBottom: 20,
+              }}>
+              <IconButton onClick={handleClose} style={{ marginLeft: 20 }}>
+                <CloseIcon />
+              </IconButton>
+              <DialogTitle
+                style={{ textAlign: "center" }}
+                id='responsive-dialog-title'>
+                {"فيديو طريقة التسجيل"}
+              </DialogTitle>
+            </div>
+            <DialogContent
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: 50,
+              }}>
+              <video controls className={classes.video}>
+                <source src={reveal} type='video/webm' />
+              </video>
+            </DialogContent>
+          </Dialog>
+        </div>
+      );
+    }
+  };
   return (
     <div className={classes.root}>
       <div style={{ position: "sticky" }}>
         <img src={slider} className={classes.slider} alt='slider' />
       </div>
-      {/* <div className={classes.cta}>
+      <div className={classes.cta}>
+        <h1 className={classes.title}>
+          مرحبا بكم بموقع التسجيل بمشروع الإدماج الإقتصادي للشباب أڨريبوست
+        </h1>
+        <h1 className={classes.caption}>
+          مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
+        </h1>
         <Countdown
           date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
           renderer={renderer}></Countdown>
-      </div> */}
+      </div>
     </div>
   );
 }
