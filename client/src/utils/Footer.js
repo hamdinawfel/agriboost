@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       padding: "20px 30px 0 30px",
     },
-    marginTop: -480,
+    marginTop: -500,
     [theme.breakpoints.down("sm")]: {
       marginTop: 0,
     },

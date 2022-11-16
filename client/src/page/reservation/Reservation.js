@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 
 import ProjectTimeline from "../home/components/ProjectTimeline";
 import Hero from '../home/components/Hero';
-import Title from '../../utils/Title';
+// import Title from '../../utils/Title';
 import Footer from '../../utils/Footer';
 import { sessions } from './components/data'; 
 import ContactUs from '../home/components/ContactUs';
 import { getCountPlaces } from './actions';
-import Orientation from './components/Orientation';
-import { Typography } from '@material-ui/core';
+// import Orientation from './components/Orientation';
+// import { Typography } from '@material-ui/core';
 import Result from '../home/components/Result';
 
 const useStyles = makeStyles((theme)=>({
@@ -81,10 +81,10 @@ const Reservation = () => {
     <div>
         <Hero/>
         <Result/>
-        <div className={classes.root}>
+        {/* <div className={classes.root}>
             <Title title='إرشاد و توجيه' />
             <Orientation />
-            {/* <Grid 
+            <Grid 
               container 
               className={classes.container}
             >
@@ -116,8 +116,8 @@ const Reservation = () => {
                       ))}
                     </Grid>
                 </Grid>
-            </Grid> */}
-        </div>
+            </Grid>
+        </div> */}
         <ProjectTimeline/>
         <ContactUs/>
         <Footer/>

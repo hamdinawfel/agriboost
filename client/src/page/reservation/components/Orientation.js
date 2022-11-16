@@ -43,9 +43,9 @@ const useStyles = makeStyles((theme)=>({
     },
     card: { 
       position: "relative",
-      height: "470px",
+      height: "480px",
       [theme.breakpoints.down("xs")]: {
-        height: "490px",
+        height: "500px",
       },
       borderColor: "#00a35c",
     },

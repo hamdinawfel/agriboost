@@ -149,7 +149,7 @@ export default function Hero() {
   const Completionist = () => (
     <div>
       <p className={classes.caption}>
-        إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
+        إنتهت عملية التسجيل بتاريخ 10 ديسمبر 2021
       </p>
       <Button className={classes.myButton} onClick={handleResult}>
         النتائج
@@ -234,7 +234,7 @@ export default function Hero() {
           renderer={renderer}></Countdown> */}
           <div>
             <p className={classes.caption}>
-              إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
+              إنتهت عملية التسجيل بتاريخ 10 ديسمبر 2021
             </p>
             <Button className={classes.myButton} onClick={handleResult}>
               النتائج
