@@ -107,6 +107,13 @@ const useStyles = makeStyles((theme)=>({
         justifyContent: "flex-end",
         margin: "2px 0 0 0"
     },
+    itemContentLong: {
+        display: "flex",
+        alignItems: "flex-start",
+        gap: "8px",
+        justifyContent: "flex-end",
+        margin: "2px 0 0 0"
+    },
     itemTitle: {
         textAlign: "right",
         fontSize: "1.2rem",
@@ -116,6 +123,9 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down("xs")]: {
             marginTop: "5px",
           },
+    },
+    itemIconLong: {
+        marginTop: "5px",
     },
   }));
 
@@ -130,7 +140,7 @@ const Orientation = () => {
                   item 
                   lg={12}
                 >
-                    <Typography className={classes.text}>حدد قطاعك للمشاركة في جلسات التوجيه</Typography>
+                    <Typography className={classes.text}>:حدّد قطاعك للمشاركة في جلسات التوجيه</Typography>
                     <Grid 
                       className={classes.mapping}
                       container 
@@ -153,7 +163,7 @@ const Orientation = () => {
                                     </Grid>
                                     <Grid item lg={8} md={8} sm={8} xs={8} style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
                                         <Typography className={classes.title}>
-                                        أنا مهتم بالعمل التقاعدي
+                                        أنا مهتم بالعمل التعاقدي
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -165,15 +175,15 @@ const Orientation = () => {
                                         </div>
                                     </Grid>
                                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>خمسة مهن مطلوبة لدى سوق الشغل كالآتي</Typography>
+                                        <Typography className={classes.itemTitle}> مهن مطلوبة لدى سوق الشغل كالآتي</Typography><Typography className={classes.itemTitle}>05</Typography>
                                         <div>
                                             <BsFillCheckCircleFill className={classes.itemIcon} />
                                         </div>
                                     </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مختص أشجار مثمرة</Typography>
+                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContentLong}>
+                                        <Typography className={classes.itemTitle}>مختص أشجار مثمرة (تقليم أشجار، تسميد، مداواة)</Typography>
                                         <div>
-                                            <BsCheck className={classes.itemIcon} style={{paddingRight: "20px"}} />
+                                            <BsCheck className={classes.itemIconLong} style={{paddingRight: "20px"}} />
                                         </div>
                                     </Grid>
                                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
@@ -201,7 +211,7 @@ const Orientation = () => {
                                         </div>
                                     </Grid>
                                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مدة جلسات التوجيه ( 02 يومين )</Typography>
+                                        <Typography className={classes.itemTitle} style={{color:"red"}}> التسجيل ( 02 يومين )</Typography>
                                         <div>
                                             <BsFillCheckCircleFill className={classes.itemIcon} />
                                         </div>
@@ -248,7 +258,7 @@ const Orientation = () => {
                                         </div>
                                     </Grid>
                                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مدة جلسات التوجيه ( من 02 إلى 04 أيام )</Typography>
+                                        <Typography className={classes.itemTitle} style={{color:"red"}}>التسجيل ( من 02 إلى 04 أيام )</Typography>
                                         <div>
                                             <BsFillCheckCircleFill className={classes.itemIcon} />
                                         </div>
@@ -277,7 +287,7 @@ const Orientation = () => {
                                     </Grid>
                                     <Grid item lg={8} md={8} sm={8} xs={8} style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
                                         <Typography className={classes.title}>
-                                        لا أعرف تحديد قطاع
+                                        لا أعرف  
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -295,7 +305,7 @@ const Orientation = () => {
                                         </div>
                                     </Grid>
                                     <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مدة جلسات التوجيه ( 06 أيام )</Typography>
+                                        <Typography className={classes.itemTitle} style={{color:"red"}}> التسجيل ( 06 أيام )</Typography>
                                         <div>
                                             <BsFillCheckCircleFill className={classes.itemIcon} />
                                         </div>

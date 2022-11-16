@@ -21,17 +21,16 @@ import Title from "../../../utils/Title";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    // top: -680,
-    // padding: 100,
-    padding: "0 100px 70px 100px",
+    top: -680,
+    padding: 100,
     [theme.breakpoints.down("md")]: {
-      // top: -500,
-      padding: "0 40px 70px 40px",
+      top: -500,
+      padding: 10,
     },
     [theme.breakpoints.down("sm")]: {
-      // top: "-70px",
-      // width: "100%",
-      padding: "0 10px 70px 10px",
+      top: "60px",
+      width: "100%",
+      padding: 0,
     },
   },
   paper: {

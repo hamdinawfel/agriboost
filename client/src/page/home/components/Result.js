@@ -23,17 +23,16 @@ const ref = React.createRef();
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    // top: -500,
-    // padding: 100,
-    padding: "70px 100px 0 100px",
+    top: -500,
+    padding: 100,
     [theme.breakpoints.down("md")]: {
-      // top: -400,
-      padding: "70px 40px 0 40px",
+      top: -400,
+      padding: 10,
     },
     [theme.breakpoints.down("sm")]: {
-      // top: "-70px",
-      // width: "100%",
-      padding: "70px 10px 0 10px",
+      top: "-70px",
+      width: "100%",
+      padding: 0,
     },
   },
   box: {

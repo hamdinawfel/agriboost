@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 
 import ProjectTimeline from "../home/components/ProjectTimeline";
 import Hero from '../home/components/Hero';
-import ReservationCard from './components/ReservationCard';
 import Title from '../../utils/Title';
 import Footer from '../../utils/Footer';
 import { sessions } from './components/data'; 
@@ -12,17 +11,20 @@ import ContactUs from '../home/components/ContactUs';
 import { getCountPlaces } from './actions';
 import Orientation from './components/Orientation';
 import { Typography } from '@material-ui/core';
+import Result from '../home/components/Result';
 
 const useStyles = makeStyles((theme)=>({
     root: {
-      padding: "0 100px 70px 100px",
+      position: "relative",
+      top: -620,
+      padding: "0 100px 0 100px",
       [theme.breakpoints.down("md")]: {
-        padding: "0 40px 70px 40px",
-        // top: -480,
+        padding: "0 20px 100px 20px",
+        top: -480,
       },
-      [theme.breakpoints.down("xs")]: {
-        // top: 20,
-        padding: "0 5px 70px 5px",
+      [theme.breakpoints.down("sm")]: {
+        top: -20,
+        padding: "0 20px 0 20px",
       },
     },
     container: {
@@ -78,6 +80,7 @@ const Reservation = () => {
   return (
     <div>
         <Hero/>
+        <Result/>
         <div className={classes.root}>
             <Title title='إرشاد و توجيه' />
             <Orientation />
@@ -116,7 +119,7 @@ const Reservation = () => {
             </Grid> */}
         </div>
         <ProjectTimeline/>
-        <ContactUs />
+        <ContactUs/>
         <Footer/>
     </div>
   );

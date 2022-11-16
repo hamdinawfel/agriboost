@@ -7,7 +7,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Home from './page/home/Index';
 import Reclamation from './page/reclamation/Index';
 //utils
-// import Navbar from './utils/Navbar';
+import Navbar from './utils/Navbar';
 import PageNotFound from './utils/PageNotFound';
 //Redux setup
 import store from './redux/store';
@@ -19,7 +19,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
-          {/* <Navbar /> */}
+          <Navbar />
           <div>
             <Switch>
               <Route exact path="/home" component={Home} />

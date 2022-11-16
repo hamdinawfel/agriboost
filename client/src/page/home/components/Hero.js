@@ -14,7 +14,7 @@ import reveal from "../../../assets/reveal.mp4";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "0 0 0px 0",
+    margin: "0 0 100px 0",
     textAlign: "center",
   },
   cta: {
@@ -23,16 +23,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "start",
     display: "inline-block",
     margin: "0 auto",
-    padding: "0px",
+    padding: "20px",
     backgroundColor: "rgba(255,255,255,0.85)",
     width: "60%",
     [theme.breakpoints.down("md")]: {
       width: "80%",
     },
     [theme.breakpoints.down("sm")]: {
+      top: "0",
       width: "90%",
       display: "block",
-      margin: "20px auto",
+      margin: "0 auto",
     },
   },
   myButton: {
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 25,
     width: "50%",
     fontWeight: 900,
-    padding: "0px 50px",
+    padding: "10px 50px",
     borderRadius: 0,
     marginTop: 40,
     marginBottom: 20,
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   video: {
     width: 500,
     height: 300,
-    marginTop: 0,
+    marginTop: 15,
     [theme.breakpoints.down("sm")]: {
       width: "340px",
       height: "200px",
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 900,
     color: theme.palette.primary.dark,
     display: "block",
-    margin: "0px auto",
+    margin: "20px auto",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       fontSize: "20px",
@@ -90,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     color: theme.palette.primary.dark,
     display: "block",
-    margin: "0px auto",
+    margin: "20px auto",
     textAlign: "center",
     [theme.breakpoints.down("xs")]: {
       fontSize: "18px",
@@ -228,9 +229,17 @@ export default function Hero() {
         <h1 className={classes.caption}>
           مقاربة مندمجة ومتعدّدة القطاعات لتحسين فرص الشّغل للشّباب الأقلّ حظّا
         </h1>
-        <Countdown
+        {/* <Countdown
           date={parseInt(process.env.REACT_APP_END_SUBMSITTION)}
-          renderer={renderer}></Countdown>
+          renderer={renderer}></Countdown> */}
+          <div>
+            <p className={classes.caption}>
+              إنتهت عملية التسجيل بتاريخ 05 ديسمبر 2021
+            </p>
+            <Button className={classes.myButton} onClick={handleResult}>
+              النتائج
+            </Button>
+          </div>
       </div>
     </div>
   );
