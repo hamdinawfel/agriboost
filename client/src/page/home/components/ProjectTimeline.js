@@ -21,7 +21,7 @@ import Title from "../../../utils/Title";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    top: -680,
+    top: -610,
     padding: 100,
     [theme.breakpoints.down("md")]: {
       top: -500,

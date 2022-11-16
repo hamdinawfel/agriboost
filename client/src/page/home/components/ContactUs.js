@@ -9,7 +9,7 @@ import Title from "../../../utils/Title";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    top: -620,
+    top: -610,
     padding: "0 100px 0 100px",
     [theme.breakpoints.down("md")]: {
       padding: "0 20px 100px 20px",
