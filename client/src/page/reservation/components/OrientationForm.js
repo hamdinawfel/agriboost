@@ -54,7 +54,7 @@ const OrientationForm = (props) => {
   const formik = useFormik({
     initialValues: {
       cin: "",
-      section: localStorage.getItem("sector"),
+      sector: localStorage.getItem("sector"),
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {

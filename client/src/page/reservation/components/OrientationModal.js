@@ -6,6 +6,8 @@ import { connect, useDispatch } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
 import OrientationForm from './OrientationForm';
 import OrientationSuccess from './OrientationSuccess';
+import { sendInscription } from "../actions";
+
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -52,16 +54,16 @@ const OrientationModal = (props) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
-  const { success, alertMessage } = props.reservation;
-  const isSuccess = props.confirmation.success;
-  const isValid = alertMessage==="الرجاء تأكيد التسجيل";
 
 
   const handleOpen = () => {
     const sector = props.sector === 'عام' ? 1 : props.sector === 'خاص' ? 2 : 3;
+    const values = {
+      cin: localStorage.getItem("cin"),
+      sector
+    }
+    props.sendInscription(values)
     setOpen(true);
-    localStorage.setItem("sector", sector)
-    dispatch({type: "RESET"})
   };
 
   const handleClose = () => {
@@ -93,11 +95,7 @@ const OrientationModal = (props) => {
               <div className={classes.close}>
                 <CloseIcon onClick={handleClose}/>
               </div>
-              {isSuccess ? 
-                <OrientationSuccess/> 
-              :
-                <OrientationForm/>
-              }
+              <OrientationSuccess/> 
             </div>
           </Modal>
         </div>
@@ -105,8 +103,11 @@ const OrientationModal = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  reservation: state.reservation,
-  confirmation: state.confirmation,
+  inscription: state.inscription,
 });
 
-export default connect(mapStateToProps)(OrientationModal);
+const mapActionsToProps = {
+  sendInscription,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(OrientationModal);

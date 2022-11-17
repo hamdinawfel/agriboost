@@ -154,6 +154,7 @@ function Result(props) {
     e.preventDefault();
     if (cin.match(cinRegex)) {
       props.getResult(cin);
+      localStorage.setItem("cin", cin)
       setCinError(false);
     } else {
       setCinError(true);

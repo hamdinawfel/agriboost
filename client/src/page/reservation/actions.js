@@ -10,7 +10,7 @@ export const sendInscription = (inscriptionData) => (dispatch) => {
       dispatch({
         type: SUCCESS_MESSAGE_INSCRIPTION,
         payload:
-            "تمت عملية التسجيل بنجاح",
+            "لقد تمت عملية تحديد القطاع بنجاح",
       });
     })
     .catch((err) =>
