@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme)=>({
       fontSize: "2rem",
       fontWeight: 500,
       padding: "28px 0px",
-      whiteSpace: "nowrap;
     },
     card: { 
       position: "relative",
