@@ -244,7 +244,7 @@ condidateRouter.route('/:condidateCin').get(limiter, (req, res, next) => {
       }
     })
     .catch((err) => {
-      res.status(404).json({ error: err });
+      res.status(500).json({ error: err });
     });
 });
 module.exports = condidateRouter;

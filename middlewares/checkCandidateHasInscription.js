@@ -6,7 +6,7 @@ const checkCandidateHasInscription = (req, res, next) => {
       next();
     } else {
         res.status(500).json({
-            error: `You have already set your sector`,
+            error: `You have already set your sector: ${inscription.sector}`,
         });
     }
   });

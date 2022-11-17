@@ -257,8 +257,15 @@ function Result(props) {
             </p>
             <p className={classes.body} style={{ marginTop: 20 }}>
               <span style={{ fontWeight: 600 }}>
-                {props.condidate.data.status}
+                agriboost لقد تمّ اختيارك الأولي لبرنامج
               </span>
+            </p>
+            <p className={classes.body} style={{ marginTop: 20 }}>
+              <Link 
+                href="/inscription" 
+                style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
+                اضعط على هذا الرابط لتحديد قطاعك للمشاركة في جلسات التوجيه
+              </Link>
             </p>
           </div>
           <Pdf

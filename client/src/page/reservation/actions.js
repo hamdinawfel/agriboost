@@ -19,12 +19,14 @@ export const sendInscription = (inscriptionData) => (dispatch) => {
         dispatch({
           type: SET_ERROR_INSCRIPTION,
           payload: 
-            err.response.data.error === "Reservation not confirmed"
-            ? "الرجاء تأكيد التسجيل"
-            : err.response.data.error === "Condidate not admitted"
+            err.response.data.error === "Condidate not admitted"
             ? "،للأسف مطلبكم حظي بالرفض"
-            : err.response.data.error === "You have already set your sector"
-            ? "لقد قمت باختيار القطاع مسبقا"
+            : err.response.data.error === "You have already set your sector: 1"
+            ? "لقد قمت باختيار قطاع العمل التعاقدي مسبقا"
+            : err.response.data.error === "You have already set your sector: 2"
+            ? "لقد قمت باختيار القطاع الخاص مسبقا"
+            : err.response.data.error === "You have already set your sector: 3"
+            ? "لقد قمت باختيار لا أعرف مسبقا"
             : "يوجد خلل في الشبكة",
         })
       }
