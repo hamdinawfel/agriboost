@@ -35,23 +35,24 @@ const ReservationCard = ({session, period, remaining}) => {
     >
       <CardContent>
         <Typography className={classes.title}>
-        دورة إرشاد و توجيه
+        {session}
         </Typography>
-        {remaining>10 ?
+        {!remaining ? <></> 
+        : remaining>10 ?
         <Typography className={classes.subtitle}>
-         {session} {`(متبقي ${remaining} مقعدا)`}
+          {`(متبقي ${remaining} مقعدا)`}
         </Typography>
         : 1 <remaining < 11 ?
         <Typography className={classes.subtitle}>
-         {session} {`(متبقي ${remaining} مقاعد)`}
+          {`(متبقي ${remaining} مقاعد)`}
         </Typography>
         : remaining === 1 ?
         <Typography className={classes.subtitle}>
-         {session} {`(متبقي ${remaining} مقعد وحيد)`}
+         {`(متبقي ${remaining} مقعد وحيد)`}
         </Typography>
         :
         <Typography className={classes.subtitle}>
-         {session} {`(لا يمكن التسجيل بهذه الدورة)`}
+          {`(لا يمكن التسجيل بهذه الدورة)`}
         </Typography>
         }
         <Typography 

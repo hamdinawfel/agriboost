@@ -1,5 +1,37 @@
-import { LOADING_RESERVATION, SUCCESS_MESSAGE_RESERVATION, SET_ERROR_RESERVATION, LOADING_CONFIRMATION, SUCCESS_MESSAGE_CONFIRMATION, SET_ERROR_CONFIRMATION } from "./types";
+import { LOADING_INSCRIPTION, SUCCESS_MESSAGE_INSCRIPTION, SET_ERROR_INSCRIPTION, LOADING_RESERVATION, SUCCESS_MESSAGE_RESERVATION, SET_ERROR_RESERVATION, LOADING_CONFIRMATION, SUCCESS_MESSAGE_CONFIRMATION, SET_ERROR_CONFIRMATION } from "./types";
 import axios from "axios";
+
+export const sendInscription = (inscriptionData) => (dispatch) => {
+  dispatch({ type: LOADING_INSCRIPTION });
+  axios
+    .post(`/inscription`, inscriptionData)
+    .then((res) => {
+      console.log(res)
+      dispatch({
+        type: SUCCESS_MESSAGE_INSCRIPTION,
+        payload:
+            "لقد تمت عملية تحديد القطاع بنجاح",
+      });
+    })
+    .catch((err) =>
+      {
+        console.log(err.response.data.error)
+        dispatch({
+          type: SET_ERROR_INSCRIPTION,
+          payload: 
+            err.response.data.error === "Condidate not admitted"
+            ? "،للأسف مطلبكم حظي بالرفض"
+            : err.response.data.error === "You have already set your sector: 1"
+            ? "لقد قمت باختيار قطاع العمل التعاقدي مسبقا"
+            : err.response.data.error === "You have already set your sector: 2"
+            ? "لقد قمت باختيار القطاع الخاص مسبقا"
+            : err.response.data.error === "You have already set your sector: 3"
+            ? "لقد قمت باختيار لا أعرف مسبقا"
+            : "يوجد خلل في الشبكة",
+        })
+      }
+    );
+};
 
 export const sendReservation = (reservationData) => (dispatch) => {
   dispatch({ type: LOADING_RESERVATION });

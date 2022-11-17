@@ -7,24 +7,26 @@ import { ThemeProvider } from '@material-ui/styles';
 import Home from './page/home/Index';
 import Reclamation from './page/reclamation/Index';
 //utils
-// import Navbar from './utils/Navbar';
+import Navbar from './utils/Navbar';
 import PageNotFound from './utils/PageNotFound';
 //Redux setup
 import store from './redux/store';
 import { Provider } from 'react-redux';
-import reservation from './page/reservation/Reservation';
+import Reservation from './page/reservation/Reservation';
+import Inscription from './page/reservation/Inscription';
 
 function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
-          {/* <Navbar /> */}
+          <Navbar />
           <div>
             <Switch>
               <Route exact path="/home" component={Home} />
               <Route exact path="/reclamation" component={Reclamation} />
-              <Route exact path="/" component={reservation} />
+              <Route exact path="/" component={Reservation} />
+              <Route exact path="/inscription" component={Inscription} />
               <Route component={PageNotFound} />
             </Switch>
           </div>

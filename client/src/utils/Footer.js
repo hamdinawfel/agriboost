@@ -11,11 +11,17 @@ import HomeIcon from '@material-ui/icons/Home';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#008343',
-    marginTop: "50px",
     color:"white",
     padding: "20px 100px 0 100px",
     [theme.breakpoints.down("sm")]: {
       padding: "20px 30px 0 30px",
+    },
+    marginTop: -500,
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 0,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 200,
     },
   },
   title: {
