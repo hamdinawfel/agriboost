@@ -269,25 +269,25 @@ function Result(props) {
               </Link>
             </p>
           </div>
-          <Pdf
-            targetRef={ref}
-            filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}
-            scale={fullScreen ? 1.6 : 1.4}
-            x={fullScreen ? 40 : 0}
-            y={10}>
-            {({ toPdf }) => (
-              <Button className={classes.myButton} onClick={toPdf}>
-                <PrintIcon
-                  style={{
-                    verticalAlign: "middle",
-                    marginRight: 20,
-                    marginTop: -5,
-                  }}
-                />{" "}
-                طباعة
-              </Button>
-            )}
-          </Pdf>
+//           <Pdf
+//             targetRef={ref}
+//             filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}
+//             scale={fullScreen ? 1.6 : 1.4}
+//             x={fullScreen ? 40 : 0}
+//             y={10}>
+//             {({ toPdf }) => (
+//               <Button className={classes.myButton} onClick={toPdf}>
+//                 <PrintIcon
+//                   style={{
+//                     verticalAlign: "middle",
+//                     marginRight: 20,
+//                     marginTop: -5,
+//                   }}
+//                 />{" "}
+//                 طباعة
+//               </Button>
+//             )}
+//           </Pdf>
           {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
             <Link
               href='/reclamation'
