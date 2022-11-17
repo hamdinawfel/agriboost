@@ -71,5 +71,5 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 // port
-const port = process.env.PORT || 8082;
+const port = parseInt(process.env.PORT) || 8082;
 app.listen(port, () => console.log(`Server running on port : ${port}`));
