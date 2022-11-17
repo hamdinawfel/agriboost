@@ -6,7 +6,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 let helmet = require('helmet');
-
+const schedule = require('node-schedule');
 //Load routes
 
 let app = express();
@@ -61,6 +61,17 @@ app.use('/count', countRouter);
 app.use('/reclamations', reclamationRouter);
 app.use('/users', users);
 app.use('/reservations', reservationRouter);
+
+const date = new Date(2022, 10, 11, 17, 14, 0);
+
+// const job = schedule.scheduleJob(date, function () {
+//   console.log('The world is going to end today.');
+// });
+// console.log(job);
+
+const job = schedule.scheduleJob('17 * * * *', function () {
+  console.log('The answer to life, the universe, and everything!');
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/build'));
