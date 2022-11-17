@@ -23,17 +23,16 @@ const ref = React.createRef();
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    // top: -500,
-    // padding: 100,
-    padding: "70px 100px 0 100px",
+    top: -500,
+    padding: 100,
     [theme.breakpoints.down("md")]: {
-      // top: -400,
-      padding: "70px 40px 0 40px",
+      top: -400,
+      padding: 10,
     },
     [theme.breakpoints.down("sm")]: {
-      // top: "-70px",
-      // width: "100%",
-      padding: "70px 10px 0 10px",
+      top: "-70px",
+      width: "100%",
+      padding: 0,
     },
   },
   box: {
@@ -155,6 +154,7 @@ function Result(props) {
     e.preventDefault();
     if (cin.match(cinRegex)) {
       props.getResult(cin);
+      localStorage.setItem("cin", cin)
       setCinError(false);
     } else {
       setCinError(true);
@@ -258,8 +258,15 @@ function Result(props) {
             </p>
             <p className={classes.body} style={{ marginTop: 20 }}>
               <span style={{ fontWeight: 600 }}>
-                {props.condidate.data.status}
+                agriboost لقد تمّ اختيارك الأولي لبرنامج
               </span>
+            </p>
+            <p className={classes.body} style={{ marginTop: 20 }}>
+              <Link 
+                href="/inscription" 
+                style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
+                اضعط على هذا الرابط لتحديد قطاعك للمشاركة في جلسات التوجيه
+              </Link>
             </p>
           </div>
           <Pdf
