@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import OrientationForm from './OrientationForm';
 import OrientationSuccess from './OrientationSuccess';
 import { sendInscription } from "../actions";
-
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const OrientationModal = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
 
 
@@ -69,11 +70,13 @@ const OrientationModal = (props) => {
   const handleClose = () => {
     setOpen(false);
     dispatch({type: "RESET"})
+    history.push('/');
   };
 
   const handleCloseModal = () => {
     setOpen(false);
-    dispatch({type: "RESET"})
+    dispatch({type: "RESET"});
+    history.push('/');
   };
 
   return (
