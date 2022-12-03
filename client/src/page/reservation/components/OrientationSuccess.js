@@ -11,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    padding: "40px 20px",
+    padding: "20px 0px",
   },
   h5: {
     marginTop: "40px",
@@ -51,7 +51,7 @@ const OrientationSuccess = (props) => {
               <Typography variant='h3'>تذكير</Typography>
             }
             <Typography className={classes.h5} variant='h5'>{alertMessage}</Typography>
-            <p className={classes.body} style={{ marginTop: 20, marginBottom: 30 }}>
+            <p className={classes.body} style={{ marginTop: 20}}>
               <Link 
                 href="/reservation" 
                 style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>

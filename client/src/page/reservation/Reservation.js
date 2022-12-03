@@ -121,7 +121,7 @@ const Reservation = () => {
             </Grid>
             <Typography className={classes.back}>
               <Link
-                href="/home" 
+                href="/" 
                 style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
                 العودة إلى الصفحة الرئيسية
               </Link>
