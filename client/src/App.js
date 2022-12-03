@@ -23,9 +23,9 @@ function App() {
           <Navbar />
           <div>
             <Switch>
-              <Route exact path="/home" component={Home} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/reclamation" component={Reclamation} />
-              <Route exact path="/" component={Reservation} />
+              <Route exact path="/reservation" component={Reservation} />
               <Route exact path="/inscription" component={Inscription} />
               <Route component={PageNotFound} />
             </Switch>

@@ -15,7 +15,6 @@ export const sendInscription = (inscriptionData) => (dispatch) => {
     })
     .catch((err) =>
       {
-        console.log(err.response.data.error)
         dispatch({
           type: SET_ERROR_INSCRIPTION,
           payload: 

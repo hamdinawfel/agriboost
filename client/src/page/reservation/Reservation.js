@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
+import Link from "@material-ui/core/Link";
 
-import ProjectTimeline from "../home/components/ProjectTimeline";
-import Hero from '../home/components/Hero';
-// import Title from '../../utils/Title';
+import ReservationCard from './components/ReservationCard';
+import Title from '../../utils/Title';
 import Footer from '../../utils/Footer';
 import { sessions } from './components/data'; 
-import ContactUs from '../home/components/ContactUs';
 import { getCountPlaces } from './actions';
-// import Orientation from './components/Orientation';
-// import { Typography } from '@material-ui/core';
-import Result from '../home/components/Result';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme)=>({
     root: {
       position: "relative",
-      top: -620,
+      top: 70,
+      marginBottom: 660,
       padding: "0 100px 0 100px",
       [theme.breakpoints.down("md")]: {
         padding: "0 20px 100px 20px",
-        top: -480,
+        marginBottom: 560,
       },
       [theme.breakpoints.down("sm")]: {
-        top: -20,
         padding: "0 20px 0 20px",
+        marginBottom: 0,
       },
     },
     container: {
       margin: "10px 0 10px 0",
+      padding: "0px",
       display: "flex",
       justifyContent: "center",
       [theme.breakpoints.only("xs")]: {
@@ -56,6 +55,12 @@ const useStyles = makeStyles((theme)=>({
       fontWeight: 500,
       padding: "28px 0px",
     },
+    back: { 
+      textAlign: "left",
+      fontSize: "1.2rem",
+      fontWeight: 500,
+      padding: "28px 0px 0px 0px",
+    },
   }));
 
 const Reservation = () => {
@@ -79,11 +84,8 @@ const Reservation = () => {
   }, [rerender])
   return (
     <div>
-        <Hero/>
-        <Result/>
-        {/* <div className={classes.root}>
-            <Title title='إرشاد و توجيه' />
-            <Orientation />
+        <div className={classes.root}>
+            <Title title='الدورات التكوينية' />
             <Grid 
               container 
               className={classes.container}
@@ -117,9 +119,14 @@ const Reservation = () => {
                     </Grid>
                 </Grid>
             </Grid>
-        </div> */}
-        <ProjectTimeline/>
-        <ContactUs/>
+            <Typography className={classes.back}>
+              <Link
+                href="/home" 
+                style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
+                العودة إلى الصفحة الرئيسية
+              </Link>
+            </Typography>
+        </div>
         <Footer/>
     </div>
   );
