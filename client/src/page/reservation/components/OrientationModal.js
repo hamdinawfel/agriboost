@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import OrientationForm from './OrientationForm';
 import OrientationSuccess from './OrientationSuccess';
 import { sendInscription } from "../actions";
-
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   ModalButton: {
@@ -52,34 +52,38 @@ const useStyles = makeStyles((theme) => ({
 const OrientationModal = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
 
 
 
   const handleOpen = () => {
     const sector = props.sector === 'عام' ? 1 : props.sector === 'خاص' ? 2 : 3;
-    const values = {
-      cin: localStorage.getItem("cin"),
-      sector
-    }
-    props.sendInscription(values)
-    setOpen(true);
+    // const values = {
+    //   cin: localStorage.getItem("cin"),
+    //   sector
+    // }
+    // props.sendInscription(values)
+    // setOpen(true);
+    localStorage.setItem("sector", sector)
+    history.push('/reservation')
   };
 
   const handleClose = () => {
     setOpen(false);
     dispatch({type: "RESET"})
+    history.push('/');
   };
 
   const handleCloseModal = () => {
     setOpen(false);
-    dispatch({type: "RESET"})
+    dispatch({type: "RESET"});
+    history.push('/');
   };
 
   return (
         <div>
           <Button 
-            disabled={props.remaining <= 0 ? true : false}
             className={classes.ModalButton} 
             onClick={handleOpen}>
           تسجيل
