@@ -69,6 +69,10 @@ const Reservation = () => {
   let table = sessions
   
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     getCountPlaces()
     .then((data) => { 
       for(let i=0;i<data.length;i++){

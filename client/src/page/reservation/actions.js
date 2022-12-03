@@ -37,7 +37,7 @@ export const sendReservation = (reservationData) => (dispatch) => {
   axios
     .post(`/reservations`, reservationData)
     .then((res) => {
-      console.log(res)
+      console.log(reservationData)
       dispatch({
         type: SUCCESS_MESSAGE_RESERVATION,
         payload:
