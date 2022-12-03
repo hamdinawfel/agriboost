@@ -26,6 +26,7 @@ reservationRouter
         cin: req.body.cin,
         phone: req.body.phone,
         trainingPromotion: req.body.trainingPromotion,
+        sector: req.body.sector,
       });
       reservation
         .save()

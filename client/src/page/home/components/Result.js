@@ -261,7 +261,7 @@ function Result(props) {
                 agriboost لقد تمّ اختيارك الأولي لبرنامج
               </span>
             </p>
-            <p className={classes.body} style={{ marginTop: 20 }}>
+            <p className={classes.body} style={{ marginTop: 20, marginBottom: 30 }}>
               <Link 
                 href="/inscription" 
                 style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
@@ -269,7 +269,7 @@ function Result(props) {
               </Link>
             </p>
           </div>
-          <Pdf
+          {/* <Pdf
             targetRef={ref}
             filename={`النتيجة الأولية للتسجيل بمشروع أڨريبوست  للسيد(ة) ${props.condidate.data.firstName}  ${props.condidate.data.lastName}`}
             scale={fullScreen ? 1.6 : 1.4}
@@ -277,17 +277,17 @@ function Result(props) {
             y={10}>
             {({ toPdf }) => (
               <Button className={classes.myButton} onClick={toPdf}>
-                <PrintIcon
+                 <PrintIcon
                   style={{
                     verticalAlign: "middle",
                     marginRight: 20,
                     marginTop: -5,
                   }}
                 />{" "}
-                طباعة
-              </Button>
+                 طباعة
+               </Button>
             )}
-          </Pdf>
+           </Pdf> */}
           {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
             <Link
               href='/reclamation'

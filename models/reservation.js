@@ -32,6 +32,10 @@ const reservationSchema = new Schema(
       type: Number,
       required: true,
     },
+    sector: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
