@@ -264,8 +264,17 @@ function Result(props) {
             <p className={classes.body} style={{ marginTop: 20, marginBottom: 30 }}>
               <Link 
                 href="/inscription" 
-                style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
+                style={{ fontWeight: 500, textAlign: "right" }}>
                 اضعط على هذا الرابط لتحديد قطاعك للمشاركة في جلسات التوجيه
+              </Link>
+            </p>
+            <p className={classes.body} style={{ marginTop: 20, marginBottom: 30 }}>
+              <Link
+                href='/reclamation'
+                variant='body2'
+                style={{ display: "flex", color: "red", alignItems: "center", fontSize: 18 }}>
+                <NewReleasesIcon style={{ marginLeft: 20 }} />
+                يمكنك تسجيل أي إعتراض عبر هذا الرابط
               </Link>
             </p>
           </div>

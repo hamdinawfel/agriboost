@@ -34,11 +34,9 @@ const sendSmsMessage = (req, res, next, message) => {
       options
     )
     .then(() => {
-      console.log("nabil send succ")
       return next();
     })
     .catch((err) => {
-      console.log("nabil send err")
       console.log(err);
     });
 };
