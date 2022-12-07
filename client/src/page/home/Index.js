@@ -14,7 +14,7 @@ const renderer = ({ completed }) => {
     return (
       <React.Fragment>
         <Result />
-        <ProjectTimeline />
+        {/* <ProjectTimeline /> */}
       </React.Fragment>
     );
   } else {
