@@ -12,6 +12,7 @@ import Alert from "@material-ui/lab/Alert";
 
 import { connect } from "react-redux";
 import { sendReclamation } from "../actions";
+import { MenuItem } from "@material-ui/core";
 
 const validationSchema = yup.object({
   firstName: yup
@@ -83,15 +84,24 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   textField: {
-    // margin: 10,
     width: "100%",
   },
   labelRoot: {
     right: 0,
     fontSize: 16,
   },
+  labelRootMessage: {
+    right: 0,
+    fontSize: 16,
+    textAlign: "right",
+    marginRight: 20
+  },
   shrink: {
     transformOrigin: "top right",
+  },
+  shrinkMessage: {
+    transformOrigin: "top right",
+    fontSize: 20,
   },
 }));
 
@@ -217,27 +227,40 @@ function Form(props) {
                 helperText={formik.touched.phone && formik.errors.phone}
               />
             </Grid>
-            <Grid item xs={12} sm={12} className={classes.item}>
+            <Grid item xs={12} sm={12} className={classes.item} style={{marginRight:"6px"}}>
               <TextField
-                InputLabelProps={{
-                  classes: {
-                    root: classes.labelRoot,
-                    shrink: classes.shrink,
-                  },
-                }}
-                className={classes.textField}
-                dir='rtl'
-                multiline
-                rows={2}
-                type='text'
-                id='message'
-                name='message'
-                label='الموضوع'
-                value={formik.values.message}
-                onChange={formik.handleChange}
-                error={formik.touched.message && Boolean(formik.errors.message)}
-                helperText={formik.touched.message && formik.errors.message}
-              />
+              InputLabelProps={{
+                classes: { root: classes.labelRootMessage, shrink: classes.shrinkMessage },
+              }}
+              className={classes.textField}
+              style={{ margin: 10, width: "100%", textAlign: "right" }}
+              select
+              label='الموضوع'
+              id='message'
+              name='message'
+              value={formik.values.message}
+              onChange={formik.handleChange}
+              error={formik.touched.message && Boolean(formik.errors.message)}
+              helperText={formik.touched.message && formik.errors.message}>
+                <MenuItem 
+                  value='اعتراض حول عملية التسجيل' 
+                  dir='rtl' 
+                  style={{ fontSize: 20 }}>
+                  اعتراض حول عملية التسجيل
+                </MenuItem>
+                <MenuItem 
+                  value='اعتراض حول عملية التوجيه' 
+                  dir='rtl' 
+                  style={{ fontSize: 20 }}>
+                  اعتراض حول عملية التوجيه
+                </MenuItem>
+                <MenuItem 
+                  value='اعتراض حول تحديد القطاع' 
+                  dir='rtl' 
+                  style={{ fontSize: 20 }}>
+                  اعتراض حول تحديد القطاع
+                </MenuItem>
+              </TextField>
             </Grid>
           </Grid>
           <Button
