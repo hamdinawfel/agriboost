@@ -8,6 +8,8 @@ import EmployeeAvatar from "../../../assets/employee.png";
 import BusinessmanAvatar from "../../../assets/businessman.jpg";
 import ThinkingAvatar from "../../../assets/thinking.png";
 import OrientationModal from './OrientationModal';
+import NewReleasesIcon from "@material-ui/icons/NewReleases";
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles((theme)=>({
@@ -132,207 +134,421 @@ const useStyles = makeStyles((theme)=>({
 const Orientation = () => {
     const classes = useStyles();
   return (
-    <Grid 
-              container 
-              className={classes.container}
-            >
-                <Grid 
-                  item 
-                  lg={12}
-                >
-                    <Typography className={classes.text}>:حدّد قطاعك للمشاركة في جلسات التوجيه</Typography>
-                    <Grid 
-                      className={classes.mapping}
-                      container 
-                      spacing={8}
-                    >
-                        <Grid 
-                          item 
-                          lg={4} 
-                          md={12}
-                          sm={12}
-                          xs={12}
-                        >
-                        <Card variant='outlined' className={classes.card}>
-                            <CardContent>
-                                <Grid container className={classes.cardHeader}>
-                                    <Grid item lg={4} md={4} sm={4} xs={4}>
-                                        <div className={classes.cardLogoContainer}>
-                                            <img src={EmployeeAvatar} className={classes.cardLogo} alt="employee" />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={8} md={8} sm={8} xs={8} style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                                        <Typography className={classes.title}>
-                                        أنا مهتم بالعمل التعاقدي
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                <Grid container>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>جلسة توجيه و تقييم</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}> مهن مطلوبة لدى سوق الشغل كالآتي</Typography><Typography className={classes.itemTitle}>05</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContentLong}>
-                                        <Typography className={classes.itemTitle}>مختص أشجار مثمرة (تقليم أشجار، تسميد، مداواة)</Typography>
-                                        <div>
-                                            <BsCheck className={classes.itemIconLong} style={{paddingRight: "20px"}} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مختص تركيب و صيانة شبكات ري</Typography>
-                                        <div>
-                                            <BsCheck className={classes.itemIcon} style={{paddingRight: "20px"}} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مشغل آلة إنتاج</Typography>
-                                        <div>
-                                            <BsCheck className={classes.itemIcon} style={{paddingRight: "20px"}} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>مسؤول تجاري في المواد الفلاحية</Typography>
-                                        <div>
-                                            <BsCheck className={classes.itemIcon} style={{paddingRight: "20px"}} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>يحدد لاحقا</Typography>
-                                        <div>
-                                            <BsCheck className={classes.itemIcon} style={{paddingRight: "20px"}} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle} style={{color:"red"}}> التسجيل ( 02 يومين )</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                            <CardActions style={{position: "absolute", left: "3px", bottom: "3px"}}>
-                                <OrientationModal sector="عام"/>
-                            </CardActions>
-                        </Card> 
-                      </Grid>
-                        <Grid 
-                          item 
-                          lg={4} 
-                          md={12}
-                          sm={12}
-                          xs={12}
-                        >
-                        <Card variant='outlined' className={classes.card}>
-                            <CardContent>
-                                <Grid container className={classes.cardHeader}>
-                                    <Grid item lg={4} md={4} sm={4} xs={4}>
-                                        <div className={classes.cardLogoContainer}>
-                                            <img src={BusinessmanAvatar} className={classes.cardLogo} alt="employee" />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={8} md={8} sm={8} xs={8} style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                                        <Typography className={classes.title}>
-                                        أنا مهتم ببعث مشروع خاص
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                <Grid container>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>جلسة توجيه و تقييم</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>الشروع في ريادة الأعمال</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle} style={{color:"red"}}>التسجيل ( من 02 إلى 04 أيام )</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                            <CardActions style={{position: "absolute", left: "3px", bottom: "3px"}}>
-                                <OrientationModal sector="خاص" />
-                            </CardActions>
-                        </Card> 
-                      </Grid>
-                        <Grid 
-                          item 
-                          lg={4} 
-                          md={12}
-                          sm={12}
-                          xs={12}
-                        >
-                        <Card variant='outlined' className={classes.card}>
-                            <CardContent>
-                                <Grid container className={classes.cardHeader}>
-                                    <Grid item lg={4} md={4} sm={4} xs={4}>
-                                        <div className={classes.cardLogoContainer}>
-                                            <img src={ThinkingAvatar} className={classes.cardLogo} alt="employee" />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={8} md={8} sm={8} xs={8} style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                                        <Typography className={classes.title}>
-                                        لا أعرف  
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                <Grid container>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle}>جلسة توجيه و تقييم</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent} style={{alignItems:"flex-start"}}>
-                                        <Typography className={classes.itemTitle}>إذا كنت لا تعرف أي قطاع تختار، يمكنك المشاركة في جميع جلسات التوجيه المهنية لتوجيه اختيارك بشكل أفضل</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.itemContent}>
-                                        <Typography className={classes.itemTitle} style={{color:"red"}}> التسجيل ( 06 أيام )</Typography>
-                                        <div>
-                                            <BsFillCheckCircleFill className={classes.itemIcon} />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                            <CardActions style={{position: "absolute", left: "3px", bottom: "3px"}}>
-                                <OrientationModal sector="لاحقا" />
-                            </CardActions>
-                        </Card> 
-                      </Grid>
-                    </Grid>
-                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.cardBottom} style={{marginTop: "20px"}}>
-                        <Typography className={classes.caution}>حضور الجلسات التوجيهية إلزامي</Typography>
-                        <div className={classes.icon} style={{color: "blue"}}>
-                            <BsFillExclamationCircleFill />
-                        </div>
-                    </Grid>
-                    <Grid item lg={12} md={12} sm={12} xs={12} className={classes.cardBottom}>
-                        <Typography className={classes.caution}>أي غياب يلغي تلقائيا مشاركة الشاب في برنامج الدعم</Typography>
-                        <div className={classes.icon} style={{color: "red"}}>
-                            <GoAlert />
-                        </div>
-                    </Grid>
+    <Grid container className={classes.container}>
+      <Grid item lg={12}>
+        <Typography className={classes.text}>
+          :حدّد قطاعك للمشاركة في جلسات التوجيه
+        </Typography>
+        <Grid className={classes.mapping} container spacing={8}>
+          <Grid item lg={4} md={12} sm={12} xs={12}>
+            <Card variant="outlined" className={classes.card}>
+              <CardContent>
+                <Grid container className={classes.cardHeader}>
+                  <Grid item lg={4} md={4} sm={4} xs={4}>
+                    <div className={classes.cardLogoContainer}>
+                      <img
+                        src={EmployeeAvatar}
+                        className={classes.cardLogo}
+                        alt="employee"
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={8}
+                    md={8}
+                    sm={8}
+                    xs={8}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                    }}
+                  >
+                    <Typography className={classes.title}>
+                      أنا مهتم بالعمل التعاقدي
+                    </Typography>
+                  </Grid>
                 </Grid>
-            </Grid>
-  )
+                <Grid container>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      جلسة توجيه و تقييم
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      {' '}
+                      مهن مطلوبة لدى سوق الشغل كالآتي
+                    </Typography>
+                    <Typography className={classes.itemTitle}>05</Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContentLong}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      مختص أشجار مثمرة (تقليم أشجار، تسميد، مداواة)
+                    </Typography>
+                    <div>
+                      <BsCheck
+                        className={classes.itemIconLong}
+                        style={{ paddingRight: '20px' }}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      مختص تركيب و صيانة شبكات ري
+                    </Typography>
+                    <div>
+                      <BsCheck
+                        className={classes.itemIcon}
+                        style={{ paddingRight: '20px' }}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      مشغل آلة إنتاج
+                    </Typography>
+                    <div>
+                      <BsCheck
+                        className={classes.itemIcon}
+                        style={{ paddingRight: '20px' }}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      مسؤول تجاري في المواد الفلاحية
+                    </Typography>
+                    <div>
+                      <BsCheck
+                        className={classes.itemIcon}
+                        style={{ paddingRight: '20px' }}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      يحدد لاحقا
+                    </Typography>
+                    <div>
+                      <BsCheck
+                        className={classes.itemIcon}
+                        style={{ paddingRight: '20px' }}
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography
+                      className={classes.itemTitle}
+                      style={{ color: 'red' }}
+                    >
+                      {' '}
+                      التسجيل ( 02 يومين )
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                </Grid>
+              </CardContent>
+              <CardActions
+                style={{ position: 'absolute', left: '3px', bottom: '3px' }}
+              >
+                <OrientationModal sector="عام" />
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item lg={4} md={12} sm={12} xs={12}>
+            <Card variant="outlined" className={classes.card}>
+              <CardContent>
+                <Grid container className={classes.cardHeader}>
+                  <Grid item lg={4} md={4} sm={4} xs={4}>
+                    <div className={classes.cardLogoContainer}>
+                      <img
+                        src={BusinessmanAvatar}
+                        className={classes.cardLogo}
+                        alt="employee"
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={8}
+                    md={8}
+                    sm={8}
+                    xs={8}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                    }}
+                  >
+                    <Typography className={classes.title}>
+                      أنا مهتم ببعث مشروع خاص
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      جلسة توجيه و تقييم
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      الشروع في ريادة الأعمال
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography
+                      className={classes.itemTitle}
+                      style={{ color: 'red' }}
+                    >
+                      التسجيل ( من 02 إلى 04 أيام )
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                </Grid>
+              </CardContent>
+              <CardActions
+                style={{ position: 'absolute', left: '3px', bottom: '3px' }}
+              >
+                <OrientationModal sector="خاص" />
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item lg={4} md={12} sm={12} xs={12}>
+            <Card variant="outlined" className={classes.card}>
+              <CardContent>
+                <Grid container className={classes.cardHeader}>
+                  <Grid item lg={4} md={4} sm={4} xs={4}>
+                    <div className={classes.cardLogoContainer}>
+                      <img
+                        src={ThinkingAvatar}
+                        className={classes.cardLogo}
+                        alt="employee"
+                      />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={8}
+                    md={8}
+                    sm={8}
+                    xs={8}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                    }}
+                  >
+                    <Typography className={classes.title}>لا أعرف</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      جلسة توجيه و تقييم
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                    style={{ alignItems: 'flex-start' }}
+                  >
+                    <Typography className={classes.itemTitle}>
+                      إذا كنت لا تعرف أي قطاع تختار، يمكنك المشاركة في جميع
+                      جلسات التوجيه المهنية لتوجيه اختيارك بشكل أفضل
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                  <Grid
+                    item
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className={classes.itemContent}
+                  >
+                    <Typography
+                      className={classes.itemTitle}
+                      style={{ color: 'red' }}
+                    >
+                      {' '}
+                      التسجيل ( 06 أيام )
+                    </Typography>
+                    <div>
+                      <BsFillCheckCircleFill className={classes.itemIcon} />
+                    </div>
+                  </Grid>
+                </Grid>
+              </CardContent>
+              <CardActions
+                style={{ position: 'absolute', left: '3px', bottom: '3px' }}
+              >
+                <OrientationModal sector="لاحقا" />
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          lg={12}
+          md={12}
+          sm={12}
+          xs={12}
+          className={classes.cardBottom}
+          style={{ marginTop: '20px' }}
+        >
+          <Typography className={classes.caution}>
+            حضور الجلسات التوجيهية إلزامي
+          </Typography>
+          <div className={classes.icon} style={{ color: 'blue' }}>
+            <BsFillExclamationCircleFill />
+          </div>
+        </Grid>
+        <Grid
+          item
+          lg={12}
+          md={12}
+          sm={12}
+          xs={12}
+          className={classes.cardBottom}
+        >
+          <Typography className={classes.caution}>
+            أي غياب يلغي تلقائيا مشاركة الشاب في برنامج الدعم
+          </Typography>
+          <div className={classes.icon} style={{ color: 'red' }}>
+            <GoAlert />
+          </div>
+        </Grid>
+        <Grid
+          item
+          lg={12}
+          md={12}
+          sm={12}
+          xs={12}
+          className={classes.cardBottom}
+        >
+          <Link className={classes.caution} style={{ color: '#fc4e4e' }} href="/reclamation">
+          في حالة عدم توصلك لإتمام عملية التوجيه بنجاح أو لديك إعتراض تواصل معنا عبر جهذا الرابط
+          </Link>
+
+          <div className={classes.icon} style={{ color: 'red' }}>
+            <NewReleasesIcon />
+          </div>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default Orientation

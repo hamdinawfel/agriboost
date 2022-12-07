@@ -10,13 +10,13 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CloseIcon from "@material-ui/icons/Close";
-import PrintIcon from "@material-ui/icons/Print";
+// import PrintIcon from "@material-ui/icons/Print";
 import NewReleasesIcon from "@material-ui/icons/NewReleases";
 import Title from "../../../utils/Title";
 import banner from "../../../assets/banner.jpg";
 import { connect } from "react-redux";
 import { getResult, closeResult } from "../actions";
-import Pdf from "react-to-pdf";
+// import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 
@@ -122,6 +122,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
     flexDirection: "right",
     margin: "0 10px",
+    float: 'right'
   },
   footer: {
     textAlign: "right",
@@ -173,8 +174,8 @@ function Result(props) {
   const femalSexe = "السيدة";
   const malSexe = "السيد";
   return (
-    <div className={classes.root} dir='rtl'>
-      <Title title='النتائج الأولية' />
+    <div className={classes.root} dir="rtl">
+      <Title title="النتائج الأولية" />
       <form onSubmit={handleSubmit} className={classes.box}>
         <p className={classes.subTitle}>
           للإطلاع على النتيجة، يرجى إدخال رقم بطاقة التعريف الوطنية
@@ -185,9 +186,9 @@ function Result(props) {
         <TextField
           error={cinError}
           fullWidth
-          type='text'
+          type="text"
           className={classes.textField}
-          label='رقم بطاقة التعريف الوطنية'
+          label="رقم بطاقة التعريف الوطنية"
           value={cin}
           onChange={(e) => setCin(e.target.value)}
           InputLabelProps={{
@@ -196,19 +197,21 @@ function Result(props) {
         />
         <Button
           className={classes.myButton}
-          type='submit'
-          disabled={props.condidate.loading}>
+          type="submit"
+          disabled={props.condidate.loading}
+        >
           {!props.condidate.loading ? (
-            "دخول"
+            'دخول'
           ) : (
-            <CircularProgress style={{ display: "block", margin: "0 auto" }} />
+            <CircularProgress style={{ display: 'block', margin: '0 auto' }} />
           )}
         </Button>
         {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
           <Link
-            href='/reclamation'
-            variant='body2'
-            style={{ display: "flex", alignItems: "center", fontSize: 18 }}>
+            href="/reclamation"
+            variant="body2"
+            style={{ display: 'flex', alignItems: 'center', fontSize: 18 }}
+          >
             <NewReleasesIcon style={{ marginLeft: 20 }} />
             يمكنك تسجيل إعتراض على النتائج الأولية عبر هذا الرابط
           </Link>
@@ -219,64 +222,91 @@ function Result(props) {
         fullScreen={fullScreen}
         open={props.condidate.showResult}
         onClose={handleClose}
-        aria-labelledby='responsive-dialog-title'>
+        aria-labelledby="responsive-dialog-title"
+      >
         <div
           style={{
-            display: "flex",
-            boxShadow: "0px 0px 8px rgba(91, 137, 158, 0.3)",
-            alignItems: "center",
+            display: 'flex',
+            boxShadow: '0px 0px 8px rgba(91, 137, 158, 0.3)',
+            alignItems: 'center',
             marginBottom: 20,
-          }}>
+          }}
+        >
           <IconButton onClick={handleClose} style={{ marginLeft: 20 }}>
             <CloseIcon />
           </IconButton>
           <DialogTitle
-            style={{ textAlign: "right" }}
-            id='responsive-dialog-title'>
-            {"النتائج الأولية"}
+            style={{ textAlign: 'right' }}
+            id="responsive-dialog-title"
+          >
+            {'النتائج الأولية'}
           </DialogTitle>
         </div>
         <DialogContent>
-          <div ref={ref} style={{ display: "block", margin: "0 auto" }}>
-            <img src={banner} style={{ width: "100%" }} alt='Agriboost' />
+          <div ref={ref} style={{ display: 'block', margin: '0 auto' }}>
+            <img src={banner} style={{ width: '100%' }} alt="Agriboost" />
             <p className={classes.header}>
-              {"النتيجة الأولية للتسجيل بمشروع أڨريبوست"}
+              {'النتيجة الأولية للتسجيل بمشروع أڨريبوست'}
             </p>
 
             <p className={classes.body}>
-              {props.condidate.data.sexe === "أنثى" ? femalSexe : malSexe}
-              <span style={{ fontWeight: 600, margin: "0 10px" }}>
-                {props.condidate.data.firstName} {"  "}{" "}
-                {props.condidate.data.lastName}{" "}
+              {props.condidate.data.sexe === 'أنثى' ? femalSexe : malSexe}
+              <span style={{ fontWeight: 600, margin: '0 10px' }}>
+                {props.condidate.data.firstName} {'  '}{' '}
+                {props.condidate.data.lastName}{' '}
               </span>
               <span className={classes.body}>
-                {"صاحب  بطاقة  التعريف الوطنية رقم"}
+                {'صاحب  بطاقة  التعريف الوطنية رقم'}
               </span>
-              <span style={{ fontWeight: 600, margin: "0 10px" }}>
-                {props.condidate.data.cin}{" "}
+              <span style={{ fontWeight: 600, margin: '0 10px' }}>
+                {props.condidate.data.cin}{' '}
               </span>
             </p>
             <p className={classes.body} style={{ marginTop: 20 }}>
               <span style={{ fontWeight: 600 }}>
-                agriboost لقد تمّ اختيارك الأولي لبرنامج
+                لقد تمّ اختيارك الأولي لبرنامج أڨريبوست
               </span>
             </p>
-            <p className={classes.body} style={{ marginTop: 20, marginBottom: 30 }}>
-              <Link 
-                href="/inscription" 
-                style={{ fontWeight: 500, textAlign: "right" }}>
-                اضعط على هذا الرابط لتحديد قطاعك للمشاركة في جلسات التوجيه
-              </Link>
-            </p>
-            <p className={classes.body} style={{ marginTop: 20, marginBottom: 30 }}>
+            <p
+              className={classes.body}
+              style={{ marginTop: 20, marginBottom: 30 }}
+            >
               <Link
-                href='/reclamation'
-                variant='body2'
-                style={{ display: "flex", color: "red", alignItems: "center", fontSize: 18 }}>
+                href="/inscription"
+                style={{ textDecoration:'none' }}
+              >
+                <Button
+                className={classes.myButton}
+                type="submit"
+                disabled={props.condidate.loading}
+              >
+                {!props.condidate.loading ? (
+                  'قم بتأكيد إهتماك للمشاركة في جلسات التوجيه'
+                ) : (
+                  <CircularProgress
+                    style={{ display: 'block', margin: '0 auto' }}
+                  />
+                )}
+              </Button>
+              </Link>
+              
+            </p>
+            <div className={classes.body} style={{ marginBottom: 30 }}>
+              {/* <Link
+                href="/reclamation"
+                variant="body2"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row-reverse',
+                  color: 'red',
+                  alignItems: 'center',
+                  fontSize: 18,
+                }}
+              >
                 <NewReleasesIcon style={{ marginLeft: 20 }} />
                 يمكنك تسجيل أي إعتراض عبر هذا الرابط
-              </Link>
-            </p>
+              </Link> */}
+            </div>
           </div>
           {/* <Pdf
             targetRef={ref}
@@ -297,7 +327,7 @@ function Result(props) {
                </Button>
             )}
            </Pdf> */}
-          {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
+          {/* {parseInt(process.env.REACT_APP_END_RECLAMATION) >= Date.now() ? (
             <Link
               href='/reclamation'
               variant='body2'
@@ -311,7 +341,7 @@ function Result(props) {
               يمكنك تسجيل إعتراض على النتائج الأولية عبر هذا الرابط
               <NewReleasesIcon style={{ marginLeft: 20 }} />
             </Link>
-          ) : null}
+          ) : null} */}
         </DialogContent>
       </Dialog>
     </div>

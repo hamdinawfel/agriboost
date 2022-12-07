@@ -4,6 +4,7 @@ const Reclamations = require('../models/reclamation');
 var authenticate = require('../middlewares/authenticate');
 const limiter = require('../middlewares/limiter');
 var verifyReclamationTime = require('../middlewares/verifyReclamationTime');
+var checkCondidateIsAdmitted = require('../middlewares/checkCondidateIsAdmitted');
 
 const reclamationRouter = express.Router();
 
@@ -20,7 +21,8 @@ reclamationRouter
         });
       });
   })
-  .post(limiter, verifyReclamationTime, (req, res, next) => {
+  //TODO: ADD THIS  .post(limiter, verifyReclamationTime, (req, res, next) => {
+  .post(checkCondidateIsAdmitted, (req, res, next) => {
     Reclamations.findOne({ cin: req.body.cin }).then((condidat) => {
       if (!condidat) {
         const reclamation = new Reclamations({
