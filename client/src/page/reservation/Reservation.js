@@ -76,11 +76,11 @@ const Reservation = () => {
     getCountPlaces()
     .then((data) => { 
       for(let i=0;i<data.length;i++){
-        table[data[i]._id-1]["placeRemaining"] = 50 - data[i].reservationsCount;
+        table[data[i]._id-1]["placeRemaining"] = 30 - data[i].reservationsCount;
       }
       for(let i=0;i<3;i++){
         if(!table[i].hasOwnProperty("placeRemaining")) {
-          table[i]["placeRemaining"] = 50;
+          table[i]["placeRemaining"] = 30;
         }
       }
       setRerender(1)
@@ -126,7 +126,8 @@ const Reservation = () => {
             <Typography className={classes.back}>
               <Link
                 href="/" 
-                style={{ fontWeight: 500, color: "blue", cursor:"pointer", textAlign: "right" }}>
+                variant='body2'
+                style={{ textAlign: "right" }}>
                 العودة إلى الصفحة الرئيسية
               </Link>
             </Typography>

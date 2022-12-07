@@ -37,7 +37,6 @@ export const sendReservation = (reservationData) => (dispatch) => {
   axios
     .post(`/reservations`, reservationData)
     .then((res) => {
-      console.log(reservationData)
       dispatch({
         type: SUCCESS_MESSAGE_RESERVATION,
         payload:
@@ -46,7 +45,7 @@ export const sendReservation = (reservationData) => (dispatch) => {
     })
     .catch((err) =>
       {
-        console.log(err.response.data.error)
+        console.log(err)
         dispatch({
           type: SET_ERROR_RESERVATION,
           payload: 
