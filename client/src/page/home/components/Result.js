@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
     transformOrigin: "top right",
   },
   myButton: {
+    textAlign: "center";
     display: "block",
     margin: "0 auto",
     color: "#fff",
