@@ -282,7 +282,7 @@ function Result(props) {
                 disabled={props.condidate.loading}
               >
                 {!props.condidate.loading ? (
-                  'قم بتأكيد إهتماك'
+                  'قم بتأكيد إهتمامك للمشاركة في جلسات التوجيه'
                 ) : (
                   <CircularProgress
                     style={{ display: 'block', margin: '0 auto' }}
